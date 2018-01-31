@@ -14,15 +14,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class NavigationMenuActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+       /* implements NavigationView.OnNavigationItemSelectedListener*/ {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-/*
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-*/
+        setContentView(R.layout.nav_header_navigation_menu);
+/*
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -90,6 +89,6 @@ public class NavigationMenuActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return true;*/
     }
 }
