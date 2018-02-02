@@ -6,5 +6,8 @@
     <string name="title_activity_tabbed">TabbedActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_events">Events</string>
+    <string name="title_activity_home_page">HomePage</string>
+    <string name="title_activity_navigation_menu">NavigationMenu</string>
 
 </resources>

@@ -16,6 +16,7 @@ public class Login_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         findViewById(R.id.signUpLink).setOnClickListener(new handleButton());
+        findViewById(R.id.loginButton).setOnClickListener(new handleButton());
 
     }
 
@@ -23,8 +24,12 @@ public class Login_activity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(Login_activity.this, SignUp.class);
             startActivity(intent);
+            Intent intent2 = new Intent(Login_activity.this, HomePage.class);
+            startActivity(intent2);
         }
     }
+
+
 
 
 }
