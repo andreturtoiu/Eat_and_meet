@@ -15,21 +15,26 @@ public class Login_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        findViewById(R.id.signUpLink).setOnClickListener(new handleButton());
-        findViewById(R.id.loginButton).setOnClickListener(new handleButton());
+        findViewById(R.id.signUpLink).setOnClickListener(new handleButton1());
+        findViewById(R.id.loginButton).setOnClickListener(new handleButton2());
 
     }
 
-    class handleButton implements View.OnClickListener {
+    class handleButton1 implements View.OnClickListener {
         public void onClick(View v) {
             Intent intent = new Intent(Login_activity.this, SignUp.class);
             startActivity(intent);
+
+        }
+    }
+
+    class handleButton2 implements View.OnClickListener {
+        public void onClick(View v) {
+
             Intent intent2 = new Intent(Login_activity.this, HomePage.class);
             startActivity(intent2);
         }
     }
-
-
 
 
 }
