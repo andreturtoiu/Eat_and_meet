@@ -8,10 +8,55 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     >
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Le mie prenotazioni"/>
+    <RelativeLayout
+        android:id="@+id/evento1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        >
+
+        <TextView
+            android:id="@+id/nomeEvento1"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Nome Mia Prenotazione 1"
+            />
+        <ImageView
+            android:layout_below="@+id/nomeEvento1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_menu_camera"/>
+        <TextView
+            android:layout_below="@+id/nomeEvento1"
+            android:layout_marginLeft="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="descrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizione"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/evento2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/evento1"
+        >
+
+        <TextView
+            android:id="@+id/nomeEvento2"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="Nome Mia Prenotazione 2"
+            />
+        <ImageView
+            android:layout_below="@+id/nomeEvento2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_menu_camera"/>
+        <TextView
+            android:layout_below="@+id/nomeEvento2"
+            android:layout_marginLeft="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="descrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizionedescrizione"/>
+    </RelativeLayout>
 
 </RelativeLayout>
