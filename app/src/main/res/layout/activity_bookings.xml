@@ -22,11 +22,13 @@
             />
         <ImageView
             android:layout_below="@+id/nomeEvento1"
+            android:id="@+id/fotoEvento1"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/ic_menu_camera"/>
         <TextView
             android:layout_below="@+id/nomeEvento1"
+            android:id="@+id/descrizioneEvento1"
             android:layout_marginLeft="70dp"
             android:layout_width="match_parent"
             android:layout_height="50dp"

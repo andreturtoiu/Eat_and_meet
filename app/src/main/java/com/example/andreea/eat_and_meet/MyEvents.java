@@ -24,11 +24,9 @@ import java.util.ArrayList;
  */
 
 public class MyEvents extends Fragment {
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //View rootView = inflater.inflate(R.layout.activity_events, container, false);
         ScrollView sv = new ScrollView(getActivity());
         ArrayList<Event> eventi = EventFactory.getInstance().getEventList();
         LinearLayout ll = new LinearLayout(getActivity());
@@ -40,6 +38,11 @@ public class MyEvents extends Fragment {
             //Aggiungo Evento
             ll.addView(lle);
         }
+
+        LinearLayout empty = new LinearLayout(getActivity());
+        empty.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200));
+        ll.addView(empty);
+
         sv.addView(ll);
         return sv;
         //return rootView;
@@ -57,12 +60,15 @@ public class MyEvents extends Fragment {
         TextView info = new TextView(getActivity());
         info.setText(e.getDescrizione());
         info.setId(View.generateViewId());
+        info.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.MATCH_PARENT));
         //Icona
         ImageView image = new ImageView(getActivity());
-        image.setImageResource(R.drawable.ic_menu_camera);
+        image.setImageResource(R.drawable.logo);
+        image.setLayoutParams(new LinearLayout.LayoutParams(200,LinearLayout.LayoutParams.MATCH_PARENT));
         LinearLayout box = new LinearLayout(getActivity());
         box.addView(image);
         box.addView(info);
+        box.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200));
         //Aggiungo al contenitore
         eventView.addView(title);
         eventView.addView(box);
@@ -72,12 +78,13 @@ public class MyEvents extends Fragment {
         return eventView;
     }
 
-    public class HandleEvent implements View.OnClickListener{
+    class HandleEvent implements View.OnClickListener{
         Event e;
         @Override
         public void onClick(View v){
             Intent showEvent = new Intent(getActivity(),Login_activity.class); //TEMP: SOSTITUIRE CON DESCRIZIONE EVENTO
             showEvent.putExtra("EVENT_EXTRA",e);
+            showEvent.putExtra("MY_EVENT",true);
             startActivity(showEvent);
         }
         public HandleEvent(Event e){
@@ -86,5 +93,6 @@ public class MyEvents extends Fragment {
     }
 
 }
+
 
 
