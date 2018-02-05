@@ -26,15 +26,40 @@ public class EventFactory {
             e.setId(i);
             e.setTitolo("Titolo"+i);
             e.setDescrizione("Descrizione"+i);
+            for(int j = 0;j<10;j++) e.addFoto(R.drawable.logo);
             listaEventi.add(e);
         }
     }
 
     public Event getEventById(int id){
-        return listaEventi.get(id);
+        for( Event e : listaEventi)
+            if (e.getId() == id)
+                return e;
+        return null;
     }
+
     public ArrayList<Event> getEventList(){
         return this.listaEventi;
+    }
+
+    public ArrayList<Event> getEventsByUser(int userID){
+        ArrayList<Event> l = new ArrayList<>();
+        for(Event e:listaEventi){
+            if (e.getUser() == userID){
+                l.add(e);
+            }
+        }
+        return l;
+    }
+
+    public ArrayList<Event> getBookingsByUser(int userID){ //PLACEHOLDER
+        ArrayList<Event> l = new ArrayList<>();
+        for(Event e:listaEventi){
+            if (e.getUser() == userID){
+                l.add(e);
+            }
+        }
+        return l;
     }
 
 }
