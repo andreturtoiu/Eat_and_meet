@@ -26,7 +26,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Scrivi qui il tuo menù e parla del tuo evento"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
