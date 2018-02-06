@@ -5,6 +5,7 @@ import android.location.Address;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Michele on 03/02/2018.
@@ -62,9 +63,18 @@ public class Event implements Serializable {
     public void setCucina(String cucina) { this.cucina = cucina; }
 
     public Calendar getData() { return this.data; }
-    public void setData(Calendar data) { this.data = data; }
+    public void setData(int year,int month, int date) {
+        this.data = Calendar.getInstance();
+        this.data.set(year,month,date);
+    }
 
     public String getIndirizzo() { return this.indirizzo; }
     public void setIndirizzo(String indirizzo) { this.indirizzo = indirizzo; }
+
+    public boolean isBooked(int userID){
+        for(Integer i:partecipanti)
+            if (i == userID) return true;
+        return false;
+    }
 }
 

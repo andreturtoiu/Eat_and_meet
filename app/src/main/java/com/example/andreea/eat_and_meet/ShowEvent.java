@@ -56,7 +56,7 @@ public class ShowEvent extends AppCompatActivity{
         }
         String source = (String) intent.getSerializableExtra("SOURCE");
         Button btn = (Button) new Button(this);
-        switch (source){
+        switch (source){ //modificare con logged user
             case "MY_EVENTS":
                 btn.setText("Mostra Partecipanti");
                 break;
