@@ -12,8 +12,8 @@
     <TextView
         android:id="@+id/crea_evento"
         android:layout_width="95dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
         android:text="Crea Evento"
         />
 
@@ -79,6 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="17dp"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         android:text="Tipo Cucina"
         android:textAlignment="viewStart" />
 

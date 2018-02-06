@@ -8,14 +8,14 @@
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:paddingLeft="40dp"
-    android:paddingRight="40dp">>
+    android:paddingRight="40dp">
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="160dp"
         android:layout_height="27dp"
         android:text="Descrizione Evento"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         />
 
     <EditText
@@ -28,25 +28,31 @@
         android:hint="Scrivi qui il tuo menù e parla del tuo evento"
         android:inputType="textMultiLine" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginBottom="10dp"
-        android:text="Aggiungi Foto" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginBottom="10dp"
+            android:text="Aggiungi Foto" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="64dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="40dp"
-        app:srcCompat="@drawable/ic_menu_camera" />
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="64dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView4"
+            android:layout_marginBottom="10dp"
+            app:srcCompat="@drawable/ic_menu_camera" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:text="Crea Evento" />
 
 </LinearLayout>
