@@ -84,7 +84,6 @@ public class MyEvents extends Fragment {
         public void onClick(View v){
             Intent showEvent = new Intent(getActivity(),ShowEvent.class); //TEMP: SOSTITUIRE CON DESCRIZIONE EVENTO
             showEvent.putExtra("EVENT_EXTRA",e);
-            showEvent.putExtra("SOURCE","MY_EVENTS");
             startActivity(showEvent);
         }
         public HandleEvent(Event e){
