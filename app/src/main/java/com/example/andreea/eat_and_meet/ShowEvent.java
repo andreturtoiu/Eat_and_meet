@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Michele on 05/02/2018.
@@ -40,6 +41,9 @@ public class ShowEvent extends AppCompatActivity{
         address.setText(evento.getIndirizzo());
         TextView partecipanti = (TextView) findViewById(R.id.IscrittiId);
         partecipanti.setText(evento.getPartecipanti().size()+"");
+        TextView data = (TextView) findViewById(R.id.DataId);
+        Calendar eventoData = evento.getData();
+        data.setText("01/01/2018"); //placeholder
         partecipanti.setEnabled(false);
         titolo.setEnabled(false);
         info.setEnabled(false);
@@ -56,14 +60,14 @@ public class ShowEvent extends AppCompatActivity{
         }
         String source = (String) intent.getSerializableExtra("SOURCE");
         Button btn = (Button) new Button(this);
-        switch (source){ //modificare con logged user
-            case "MY_EVENTS":
-                btn.setText("Mostra Partecipanti");
-                break;
-            case "MY_BOOKINGS":
+
+        if(evento.getUser() == 0) // Sono il proprietario. Cambiare "0" con "logged_User"
+            btn.setText("Mostra Partecipanti");
+        else {
+            if (evento.isBooked(0)) //Sono iscritto. Voglio annullare
                 btn.setText("Annulla Iscrizione");
-                break;
-            default: break;
+            else
+                btn.setText("Iscriviti"); //Non sono iscritto. Voglio iscrivermi
         }
         LinearLayout ll = (LinearLayout) findViewById(R.id.showEventBody);
         ll.addView(btn);
