@@ -61,8 +61,7 @@ public class ShowEvent extends AppCompatActivity{
                 btn.setText("Mostra Partecipanti");
                 break;
             case "MY_BOOKINGS":
-                btn.setText("Iscriviti");
-
+                btn.setText("Annulla Iscrizione");
                 break;
             default: break;
         }
