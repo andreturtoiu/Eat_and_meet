@@ -14,8 +14,13 @@ import java.util.GregorianCalendar;
  */
 
 public class Event implements Serializable {
+
+    public static final int PRANZO = 0;
+    public static final int CENA = 1;
+
     private int id;
     private int user;
+    private int pranzo_cena; //0 = pranzo, 1 = cena
     private String titolo;
     private String descrizione;
     private String cucina;
@@ -30,7 +35,7 @@ public class Event implements Serializable {
         this.setDescrizione("");
     }
 
-    public Event(int id,int user,String titolo,String descrizione,String cucina,String data,String time,String indirizzo){
+    public Event(int id,int user,String titolo,String descrizione,String cucina,String data,String time,int pranzo_cena,String indirizzo){
         this.id = id; this.user = user; this.titolo = titolo; this.descrizione = descrizione; this.cucina = cucina; this.data = data; this.time = time; this.indirizzo = indirizzo;
     }
 
@@ -72,6 +77,8 @@ public class Event implements Serializable {
     public String getData() { return this.data; }
     public void setData(int year,int month, int date) { this.data = date+"/"+month+"/"+year; }
 
+    public int getPranzo_cena() {return this.pranzo_cena;}
+    public void setPranzo_cena(int pranzo_cena){this.pranzo_cena = pranzo_cena;}
 
     public String getTime() { return this.time; }
     public void setTime(int hour, int minute) { this.time = hour+":"+minute; }

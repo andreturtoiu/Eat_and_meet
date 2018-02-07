@@ -9,19 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".Login_activity"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SignUp"
@@ -30,7 +26,8 @@
         <activity
             android:name=".ShowEvent"
             android:label="Descrizione Evento"
-            android:parentActivityName=".HomePage" />
+            android:parentActivityName=".HomePage"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home_page"
@@ -38,8 +35,7 @@
         <activity
             android:name=".NavigationMenu"
             android:label="@string/title_activity_navigation_menu"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -2,7 +2,11 @@ package com.example.andreea.eat_and_meet;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,7 +14,6 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * Created by Michele on 05/02/2018.
@@ -23,6 +26,12 @@ public class ShowEvent extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_event);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("EVENT_EXTRA");
@@ -70,5 +79,32 @@ public class ShowEvent extends AppCompatActivity{
         }
         LinearLayout ll = (LinearLayout) findViewById(R.id.showEventBody);
         ll.addView(btn);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_show_events, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.alterEvent:
+                // User chose the "Settings" item, show the app settings UI...
+                return true;
+
+            case R.id.deleteEvent:
+                Intent intent = new Intent(this,HomePage.class);
+                EventFactory.getInstance().deleteEventById(evento.getId());
+                startActivity(intent);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 }

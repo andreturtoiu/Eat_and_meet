@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/alterEvent"
+        android:title="Modifica"
+        app:showAsAction="never"/>
+    <item android:id="@+id/deleteEvent"
+        android:title="Cancella"
+        app:showAsAction="never"/>
+
+
+</menu>
