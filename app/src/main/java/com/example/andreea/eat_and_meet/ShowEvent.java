@@ -42,7 +42,7 @@ public class ShowEvent extends AppCompatActivity{
         TextView partecipanti = (TextView) findViewById(R.id.IscrittiId);
         partecipanti.setText(evento.getPartecipanti().size()+"");
         TextView data = (TextView) findViewById(R.id.DataId);
-        Calendar eventoData = evento.getData();
+        String eventoData = evento.getData();
         data.setText("01/01/2018"); //placeholder
         partecipanti.setEnabled(false);
         titolo.setEnabled(false);

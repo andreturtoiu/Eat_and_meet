@@ -3,9 +3,11 @@ package com.example.andreea.eat_and_meet;
 import android.location.Address;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Michele on 03/02/2018.
@@ -17,7 +19,8 @@ public class Event implements Serializable {
     private String titolo;
     private String descrizione;
     private String cucina;
-    private Calendar data;
+    private String data;
+    private String time;
     private String indirizzo;
     private ArrayList<Integer> foto = new ArrayList<>();
     private ArrayList<Integer> partecipanti = new ArrayList<>();
@@ -25,6 +28,10 @@ public class Event implements Serializable {
     public Event(){
         this.setTitolo("");
         this.setDescrizione("");
+    }
+
+    public Event(int id,int user,String titolo,String descrizione,String cucina,String data,String time,String indirizzo){
+        this.id = id; this.user = user; this.titolo = titolo; this.descrizione = descrizione; this.cucina = cucina; this.data = data; this.time = time; this.indirizzo = indirizzo;
     }
 
     public void setId(int id){
@@ -62,11 +69,12 @@ public class Event implements Serializable {
     public String getCucina() { return this.cucina; }
     public void setCucina(String cucina) { this.cucina = cucina; }
 
-    public Calendar getData() { return this.data; }
-    public void setData(int year,int month, int date) {
-        this.data = Calendar.getInstance();
-        this.data.set(year,month,date);
-    }
+    public String getData() { return this.data; }
+    public void setData(int year,int month, int date) { this.data = date+"/"+month+"/"+year; }
+
+
+    public String getTime() { return this.time; }
+    public void setTime(int hour, int minute) { this.time = hour+":"+minute; }
 
     public String getIndirizzo() { return this.indirizzo; }
     public void setIndirizzo(String indirizzo) { this.indirizzo = indirizzo; }
