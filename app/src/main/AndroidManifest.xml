@@ -39,8 +39,6 @@
             android:name=".NavigationMenu"
             android:label="@string/title_activity_navigation_menu"
             android:theme="@style/AppTheme.NoActionBar">
-
-
         </activity>
     </application>
 
