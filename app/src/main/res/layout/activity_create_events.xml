@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp">
+
+    <TextView
+        android:id="@+id/crea_evento"
+        android:layout_width="95dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Crea Evento"
+        />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Nome Evento"
+        android:inputType="textPersonName"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="Nome Menù"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editTextindirizzo"
+        android:layout_width="332dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="Indirizzo: Via, città"
+        android:inputType="textPersonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:hint="Data: gg/mm/aaa"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Ora: hh:mm"
+            android:inputType="time"
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Tipo Cucina"
+        android:textAlignment="viewStart" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="339dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="20dp"
+        android:entries="@array/tipo_cucina" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="112dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="20dp"
+            android:text="Pranzo" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="112dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:checked="true"
+            android:text="Cena" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Prosegui" />
+
+</LinearLayout>

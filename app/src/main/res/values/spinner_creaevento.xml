@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tipo_cucina">
+        <item>Italiana</item>
+        <item>Indiana</item>
+        <item>Francese</item>
+        <item>Cinese</item>
+        <item>Tedesca</item>
+        <item>Messicana</item>
+        <item>Giapponese</item>
+    </string-array>
+</resources>

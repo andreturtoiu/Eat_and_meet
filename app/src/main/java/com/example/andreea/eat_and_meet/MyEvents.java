@@ -28,7 +28,7 @@ public class MyEvents extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ScrollView sv = new ScrollView(getActivity());
-        ArrayList<Event> eventi = EventFactory.getInstance().getEventList();
+        ArrayList<Event> eventi = EventFactory.getInstance().getEventsByUser(0); //INSERIRE VARIABILE GLOBALE UTENTE
         LinearLayout ll = new LinearLayout(getActivity());
         ll.setOrientation(LinearLayout.VERTICAL);
         for(Event e : eventi){
@@ -82,9 +82,8 @@ public class MyEvents extends Fragment {
         Event e;
         @Override
         public void onClick(View v){
-            Intent showEvent = new Intent(getActivity(),Login_activity.class); //TEMP: SOSTITUIRE CON DESCRIZIONE EVENTO
+            Intent showEvent = new Intent(getActivity(),ShowEvent.class); //TEMP: SOSTITUIRE CON DESCRIZIONE EVENTO
             showEvent.putExtra("EVENT_EXTRA",e);
-            showEvent.putExtra("MY_EVENT",true);
             startActivity(showEvent);
         }
         public HandleEvent(Event e){
