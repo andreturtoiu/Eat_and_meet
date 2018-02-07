@@ -26,10 +26,9 @@ public class ShowEvent extends AppCompatActivity{
 
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("EVENT_EXTRA");
-        if (obj instanceof Event)
-            evento = (Event) obj;
-        else
-            evento = new Event();
+        if (!(obj instanceof Event)) return;
+
+        evento = (Event) obj;
 
         TextView titolo = (TextView) findViewById(R.id.TitoloId);
         titolo.setText(evento.getTitolo());
