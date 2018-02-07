@@ -7,7 +7,7 @@
         android:id="@+id/nomeSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="Nome"
         android:inputType="textPersonName"
@@ -24,12 +24,15 @@
         android:hint="Cognome"
         android:inputType="textPersonName" />
 
+
     <EditText
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/cognomeSignUp"
         android:layout_below="@+id/cognomeSignUp"
+        android:clickable="true"
+        android:focusable="false"
         android:ems="10"
         android:hint="Data di nascita"
         android:inputType="date" />
