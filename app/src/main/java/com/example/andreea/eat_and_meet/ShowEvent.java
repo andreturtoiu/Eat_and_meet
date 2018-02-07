@@ -42,13 +42,13 @@ public class ShowEvent extends AppCompatActivity{
         TextView partecipanti = (TextView) findViewById(R.id.IscrittiId);
         partecipanti.setText(evento.getPartecipanti().size()+"");
         TextView data = (TextView) findViewById(R.id.DataId);
-        String eventoData = evento.getData();
-        data.setText("01/01/2018"); //placeholder
+        data.setText(evento.getData()+" - "+evento.getTime());
         partecipanti.setEnabled(false);
         titolo.setEnabled(false);
         info.setEnabled(false);
         cucina.setEnabled(false);
         address.setEnabled(false);
+        data.setEnabled(false);
         ArrayList<Integer> fotoList = evento.getFotoList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
