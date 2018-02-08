@@ -1,8 +1,11 @@
 package com.example.andreea.eat_and_meet;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -19,7 +22,7 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -71,7 +74,7 @@ public class HomePage extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home_page, menu);
+        getMenuInflater().inflate(R.menu.navigation_menu, menu);
         return true;
     }
 
@@ -88,6 +91,31 @@ public class HomePage extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+        int position = 0;
+
+        if (id == R.id.events) {
+            Intent t = new Intent(HomePage.this, HomePage.class);
+            startActivity(t);
+
+        } else if (id == R.id.create_event) {
+
+        } else if (id == R.id.search_events) {
+
+        } else if (id == R.id.notifies) {
+
+        }  else if (id == R.id.logout) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     /**
