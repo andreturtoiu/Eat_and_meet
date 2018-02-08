@@ -2,104 +2,123 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <ScrollView
 
-    <EditText
-        android:id="@+id/nomeSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:hint="Nome"
-        android:text=""
-        android:inputType="textPersonName"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/signUpScroll">
 
-    <EditText
-        android:id="@+id/cognomeSignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/nomeSignUp"
-        android:layout_below="@+id/nomeSignUp"
-        android:ems="10"
-        android:hint="Cognome"
-        android:text=""
-        android:inputType="textPersonName"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
 
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/cognomeSignUp"
-        android:layout_below="@+id/cognomeSignUp"
-        android:ems="10"
-        android:hint="Data di nascita"
-        android:text=""
-        android:inputType="date" />
+                    <EditText
+                        android:id="@+id/nomeSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="50dp"
+                        android:ems="10"
+                        android:hint="Nome"
+                        android:inputType="textPersonName"
+                        android:text="" />
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/date"
-        android:layout_below="@+id/date"
-        android:ems="10"
-        android:hint="Email"
-        android:text=""
-        android:inputType="textEmailAddress" />
+                    <EditText
+                        android:id="@+id/cognomeSignUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/nomeSignUp"
+                        android:layout_below="@+id/nomeSignUp"
+                        android:ems="10"
+                        android:hint="Cognome"
+                        android:inputType="textPersonName"
+                        android:text="" />
 
-    <EditText
-        android:id="@+id/passSigUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/email"
-        android:layout_below="@+id/email"
-        android:ems="10"
-        android:hint="Password"
-        android:text=""
-        android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/passSigUp"
-        android:layout_below="@+id/passSigUp"
-        android:ems="10"
-        android:hint="Indirizzo"
-        android:text=""
-        android:inputType="textPostalAddress" />
+                    <EditText
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/cognomeSignUp"
+                        android:layout_below="@+id/cognomeSignUp"
+                        android:ems="10"
+                        android:hint="Data di nascita"
+                        android:inputType="date"
+                        android:text="" />
 
-    <EditText
-        android:id="@+id/city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/address"
-        android:layout_below="@+id/address"
-        android:ems="10"
-        android:hint="Città"
-        android:text=""
-        android:inputType="textPersonName" />
+                    <EditText
+                        android:id="@+id/email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/date"
+                        android:layout_below="@+id/date"
+                        android:ems="10"
+                        android:hint="Email"
+                        android:inputType="textEmailAddress"
+                        android:text="" />
 
-    <EditText
-        android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/city"
-        android:layout_below="@+id/city"
-        android:ems="10"
-        android:hint="Telefono"
-        android:text=""
-        android:inputType="phone" />
+                    <EditText
+                        android:id="@+id/passSigUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/email"
+                        android:layout_below="@+id/email"
+                        android:ems="10"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:text="" />
 
-    <Button
-        android:id="@+id/signUpConfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/phone"
-        android:layout_alignStart="@+id/phone"
-        android:layout_below="@+id/phone"
-        android:layout_marginTop="21dp"
-        android:text="Registrati" />
+                    <EditText
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/passSigUp"
+                        android:layout_below="@+id/passSigUp"
+                        android:ems="10"
+                        android:hint="Indirizzo"
+                        android:inputType="textPostalAddress"
+                        android:text="" />
+
+                    <EditText
+                        android:id="@+id/city"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/address"
+                        android:layout_below="@+id/address"
+                        android:ems="10"
+                        android:hint="Città"
+                        android:inputType="textPersonName"
+                        android:text="" />
+
+                    <EditText
+                        android:id="@+id/phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/city"
+                        android:layout_below="@+id/city"
+                        android:ems="10"
+                        android:hint="Telefono"
+                        android:inputType="phone"
+                        android:text="" />
+
+                    <Button
+                        android:id="@+id/signUpConfirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/phone"
+                        android:layout_alignStart="@+id/phone"
+                        android:layout_below="@+id/phone"
+                        android:layout_marginTop="21dp"
+                        android:text="Registrati" />
+
+            </LinearLayout>
+
+
+    </ScrollView>
+
+
 </RelativeLayout>
