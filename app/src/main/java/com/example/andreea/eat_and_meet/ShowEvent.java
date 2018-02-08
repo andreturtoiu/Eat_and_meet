@@ -1,8 +1,10 @@
 package com.example.andreea.eat_and_meet;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -23,10 +25,14 @@ public class ShowEvent extends AppCompatActivity{
 
     private Event evento;
 
+    Intent intentDelete;
+    Intent intentEdit;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_event);
-
+        this.intentDelete = new Intent(this,HomePage.class);
+        this.intentEdit = new Intent(this,EditEvent.class);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         ActionBar ab = getSupportActionBar();
@@ -36,6 +42,7 @@ public class ShowEvent extends AppCompatActivity{
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("EVENT_EXTRA");
         if (!(obj instanceof Event)) return;
+
 
         evento = (Event) obj;
 
@@ -50,13 +57,8 @@ public class ShowEvent extends AppCompatActivity{
         TextView partecipanti = (TextView) findViewById(R.id.IscrittiId);
         partecipanti.setText(evento.getPartecipanti().size()+"");
         TextView data = (TextView) findViewById(R.id.DataId);
-        data.setText(evento.getData()+" - "+evento.getTime());
-        partecipanti.setEnabled(false);
-        titolo.setEnabled(false);
-        info.setEnabled(false);
-        cucina.setEnabled(false);
-        address.setEnabled(false);
-        data.setEnabled(false);
+        data.setText(evento.getData());
+
         ArrayList<Integer> fotoList = evento.getFotoList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
@@ -84,7 +86,8 @@ public class ShowEvent extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_show_events, menu);
+        if(evento.getUser() == 0)
+            getMenuInflater().inflate(R.menu.menu_show_events, menu);
         return true;
     }
 
@@ -94,12 +97,39 @@ public class ShowEvent extends AppCompatActivity{
         switch (item.getItemId()) {
             case R.id.alterEvent:
                 // User chose the "Settings" item, show the app settings UI...
+                //intentEdit.putExtra("EVENT",evento);
+                intentEdit.putExtra("EVENT_EXTRA",evento);
+                startActivity(intentEdit);
                 return true;
 
             case R.id.deleteEvent:
-                Intent intent = new Intent(this,HomePage.class);
-                EventFactory.getInstance().deleteEventById(evento.getId());
-                startActivity(intent);
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setMessage("Sei sicuro di voler eliminare?");
+                builder1.setCancelable(true);
+
+                builder1.setPositiveButton(
+                        "Sì",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                EventFactory.getInstance().deleteEventById(evento.getId());
+                                startActivity(intentDelete);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+
                 return true;
 
             default:

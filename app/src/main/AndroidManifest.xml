@@ -29,13 +29,22 @@
             android:parentActivityName=".HomePage"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
+            android:name=".EditEvent"
+            android:label="Modifica Evento"/>
+        <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NavigationMenu"
             android:label="@string/title_activity_navigation_menu"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateEvent"
+            android:label="CreateEvent"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
     </application>
 
 </manifest>
