@@ -5,15 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
     <ScrollView
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
@@ -65,11 +56,12 @@
                 android:layout_height="100dp"
                 android:fillViewport="true">
 
-                <TextView
+                <EditText
                     android:id="@+id/InfoId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10" />
+                    android:ems="10"
+                    android:inputType="textMultiLine"/>
             </android.support.v4.widget.NestedScrollView>
 
             <TextView
@@ -119,7 +111,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10" />
-
+            <Button
+                android:id="@+id/ConfirmEditButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Conferma"/>
+            <Button
+                android:id="@+id/AbortEditButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Annulla"/>
         </LinearLayout>
     </ScrollView>
 

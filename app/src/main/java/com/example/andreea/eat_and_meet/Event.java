@@ -24,8 +24,7 @@ public class Event implements Serializable {
     private String titolo;
     private String descrizione;
     private String cucina;
-    private String data;
-    private String time;
+    private Calendar data;
     private String indirizzo;
     private ArrayList<Integer> foto = new ArrayList<>();
     private ArrayList<Integer> partecipanti = new ArrayList<>();
@@ -35,8 +34,14 @@ public class Event implements Serializable {
         this.setDescrizione("");
     }
 
-    public Event(int id,int user,String titolo,String descrizione,String cucina,String data,String time,int pranzo_cena,String indirizzo){
-        this.id = id; this.user = user; this.titolo = titolo; this.descrizione = descrizione; this.cucina = cucina; this.data = data; this.time = time; this.indirizzo = indirizzo;
+    public Event(int id,int user,String titolo,String descrizione,String cucina,Calendar data,int pranzo_cena,String indirizzo){
+        this.id = id;
+        this.user = user;
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.cucina = cucina;
+        this.data = data;
+        this.indirizzo = indirizzo;
     }
 
     public void setId(int id){
@@ -74,14 +79,14 @@ public class Event implements Serializable {
     public String getCucina() { return this.cucina; }
     public void setCucina(String cucina) { this.cucina = cucina; }
 
-    public String getData() { return this.data; }
-    public void setData(int year,int month, int date) { this.data = date+"/"+month+"/"+year; }
+    public String getData() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm");
+        return sdf.format(this.data.getTime());
+    }
+    public void setData(Calendar data) { this.data = data; }
 
     public int getPranzo_cena() {return this.pranzo_cena;}
     public void setPranzo_cena(int pranzo_cena){this.pranzo_cena = pranzo_cena;}
-
-    public String getTime() { return this.time; }
-    public void setTime(int hour, int minute) { this.time = hour+":"+minute; }
 
     public String getIndirizzo() { return this.indirizzo; }
     public void setIndirizzo(String indirizzo) { this.indirizzo = indirizzo; }
