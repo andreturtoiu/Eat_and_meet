@@ -20,8 +20,8 @@ import java.util.Locale;
  * Created by Andreea on 31/01/2018.
  */
 
-
 public class SignUp extends AppCompatActivity {
+
 
     Person person;
     EditText nameText, surnameText, birthText, emailText, passwordText, addressText, cityText, phoneText;
@@ -64,6 +64,7 @@ public class SignUp extends AppCompatActivity {
         phoneError = (TextView) this.findViewById(R.id.phoneErrorSignUp);
         phoneError.setVisibility(View.GONE);
 */
+
         birthText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,14 +75,13 @@ public class SignUp extends AppCompatActivity {
         birthText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus){
+                if (hasFocus) {
                     datePickerFragment.show(getFragmentManager(), "datePicker");
 
                 }
             }
         });
-
-        datePickerFragment.setOnDatePickerFragmentChanged(new DatePickerFragment.DatePickerFragmentListener() {
+      datePickerFragment.setOnDatePickerFragmentChanged(new DatePickerFragment.DatePickerFragmentListener() {
             @Override
             public void onDatePickerFragmentOkButton(DialogFragment dialog, Calendar date) {
                 SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -92,12 +92,16 @@ public class SignUp extends AppCompatActivity {
             public void onDatePickerFragmentCancelButton(DialogFragment dialog) {}
         });
 
+        saveButton = (Button) this.findViewById(R.id.signUpConfirm);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(checkInput()){
 
                     UpdatePerson();
+                    Intent login = new Intent(SignUp.this, Login_activity.class);
+                    startActivity(login);
 
 
                 }
@@ -105,10 +109,11 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-
-
     }
 
+
+
+/*
 
     @Override
     public void onResume(){
@@ -116,7 +121,7 @@ public class SignUp extends AppCompatActivity {
         isResumed = true;
 
     }
-
+*/
     private boolean checkInput(){
 
         int errors=0;
