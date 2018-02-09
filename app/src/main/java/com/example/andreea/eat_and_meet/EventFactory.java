@@ -1,5 +1,12 @@
 package com.example.andreea.eat_and_meet;
 
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -88,6 +95,23 @@ public class EventFactory {
                 filter_pranzo_cena.add(e);
         //Ritorno selezione
         return filter_pranzo_cena;
+    }
+
+    public LinearLayout newEventView (Event e, View.OnClickListener ocl, Context c){
+        LinearLayout eventView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_event, null);
+        TextView title = (TextView) eventView.findViewById(R.id.template_event_title);
+        TextView info = (TextView) eventView.findViewById(R.id.template_event_info);
+        ImageView photo = (ImageView) eventView.findViewById(R.id.template_event_photo);
+        title.setText(e.getTitolo());
+        title.setId(View.generateViewId());
+        info.setText(e.getDescrizione());
+        info.setId(View.generateViewId());
+        photo.setImageResource(R.drawable.logo);
+        photo.setId(View.generateViewId());
+        eventView.setId(View.generateViewId());
+        //Aggiungo listener
+        eventView.setOnClickListener(ocl);
+        return eventView;
     }
 
     private EventFactory() {

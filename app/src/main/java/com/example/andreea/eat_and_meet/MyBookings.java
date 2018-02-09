@@ -23,55 +23,18 @@ public class MyBookings extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ScrollView sv = new ScrollView(getActivity());
+        View myBookings = LayoutInflater.from(getActivity()).inflate(R.layout.activity_event_list, null);
         ArrayList<Event> eventi = EventFactory.getInstance().getBookingsByUser(0); //INSERIRE VARIABILE GLOBALE UTENTE
-        LinearLayout ll = new LinearLayout(getActivity());
-        ll.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout ll = myBookings.findViewById(R.id.event_container);
         for(Event e : eventi){
             //Genero Layout Evento
-            LinearLayout lle = newEventView(e);
-            lle.setId(View.generateViewId());
+            LinearLayout lle = EventFactory.getInstance().newEventView(e,new HandleEvent(e),getActivity());
             //Aggiungo Evento
             ll.addView(lle);
         }
 
-        LinearLayout empty = new LinearLayout(getActivity());
-        empty.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200));
-        ll.addView(empty);
+        return myBookings;
 
-        sv.addView(ll);
-        return sv;
-        //return rootView;
-    }
-
-    private LinearLayout newEventView (Event e){
-        //Contenitore evento
-        LinearLayout eventView = new LinearLayout(getActivity());
-        eventView.setOrientation(LinearLayout.VERTICAL);
-        //Titolo
-        TextView title = new TextView(getActivity());
-        title.setText(e.getTitolo());
-        title.setId(View.generateViewId());
-        //Descrizione
-        TextView info = new TextView(getActivity());
-        info.setText(e.getDescrizione());
-        info.setId(View.generateViewId());
-        info.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.MATCH_PARENT));
-        //Icona
-        ImageView image = new ImageView(getActivity());
-        image.setImageResource(R.drawable.logo);
-        image.setLayoutParams(new LinearLayout.LayoutParams(200,LinearLayout.LayoutParams.MATCH_PARENT));
-        LinearLayout box = new LinearLayout(getActivity());
-        box.addView(image);
-        box.addView(info);
-        box.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200));
-        //Aggiungo al contenitore
-        eventView.addView(title);
-        eventView.addView(box);
-        eventView.setOnClickListener(new HandleEvent(e));
-        //Aggiungo listener
-
-        return eventView;
     }
 
     class HandleEvent implements View.OnClickListener{
