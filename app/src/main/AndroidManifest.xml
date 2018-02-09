@@ -44,6 +44,12 @@
             android:label="CreateEvent"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".SearchEvents"
+            android:label="Cerca Eventi" />
+        <activity
+            android:name=".ShowEventList"
+            android:label="Eventi Trovati" />
 
     </application>
 
