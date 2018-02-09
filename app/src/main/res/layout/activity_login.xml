@@ -8,14 +8,13 @@
 
     <!--Fissare perché non si sposti con la tastiera-->
 
-     <!--  <ImageView
+      <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/background"
+            android:background="#F5F5F5"
             android:scaleType="centerCrop"
             android:id="@+id/formBack"/>
 
--->
 
 
     <ImageView
@@ -45,11 +44,13 @@
             android:layout_marginEnd="30dp"
             android:layout_marginTop="20dp"
             >
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Login"
-                android:textColor="@color/white"
+                android:textColor="#005073"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="5dp"

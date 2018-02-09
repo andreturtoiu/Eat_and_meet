@@ -22,7 +22,8 @@
         <activity
             android:name=".SignUp"
             android:label="Registrazione"
-            android:parentActivityName=".Login_activity" />
+            android:parentActivityName=".Login_activity"
+            android:theme="@style/AppTheme"/>
         <activity
             android:name=".ShowEvent"
             android:label="Descrizione Evento"
