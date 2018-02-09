@@ -2,11 +2,8 @@ package com.example.andreea.eat_and_meet;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -15,17 +12,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 /**
- * Created by Andreea on 02/02/2018.
+ * Created by Michele on 09/02/2018.
  */
 
-public class MyBookings extends Fragment {
+public class ShowEventList extends AppCompatActivity {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //setContentView(R.layout.activity_events);
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ScrollView sv = new ScrollView(getActivity());
-        ArrayList<Event> eventi = EventFactory.getInstance().getBookingsByUser(0); //INSERIRE VARIABILE GLOBALE UTENTE
-        LinearLayout ll = new LinearLayout(getActivity());
+
+        //prova
+        ScrollView sv = new ScrollView(this);
+        Intent intent = getIntent();
+        ArrayList<Event> eventi = (ArrayList<Event>) intent.getSerializableExtra("EVENT_LIST");
+        LinearLayout ll = new LinearLayout(this);
         ll.setOrientation(LinearLayout.VERTICAL);
         for(Event e : eventi){
             //Genero Layout Evento
@@ -35,33 +35,34 @@ public class MyBookings extends Fragment {
             ll.addView(lle);
         }
 
-        LinearLayout empty = new LinearLayout(getActivity());
+        LinearLayout empty = new LinearLayout(this);
         empty.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 200));
         ll.addView(empty);
 
         sv.addView(ll);
-        return sv;
-        //return rootView;
+
+        setContentView(sv);
+
     }
 
     private LinearLayout newEventView (Event e){
         //Contenitore evento
-        LinearLayout eventView = new LinearLayout(getActivity());
+        LinearLayout eventView = new LinearLayout(this);
         eventView.setOrientation(LinearLayout.VERTICAL);
         //Titolo
-        TextView title = new TextView(getActivity());
+        TextView title = new TextView(this);
         title.setText(e.getTitolo());
         title.setId(View.generateViewId());
         //Descrizione
-        TextView info = new TextView(getActivity());
+        TextView info = new TextView(this);
         info.setText(e.getDescrizione());
         info.setId(View.generateViewId());
         info.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.MATCH_PARENT));
         //Icona
-        ImageView image = new ImageView(getActivity());
+        ImageView image = new ImageView(this);
         image.setImageResource(R.drawable.logo);
         image.setLayoutParams(new LinearLayout.LayoutParams(200,LinearLayout.LayoutParams.MATCH_PARENT));
-        LinearLayout box = new LinearLayout(getActivity());
+        LinearLayout box = new LinearLayout(this);
         box.addView(image);
         box.addView(info);
         box.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,200));
@@ -78,7 +79,7 @@ public class MyBookings extends Fragment {
         Event e;
         @Override
         public void onClick(View v){
-            Intent showEvent = new Intent(getActivity(),ShowEvent.class);
+            Intent showEvent = new Intent(ShowEventList.this,ShowEvent.class);
             showEvent.putExtra("EVENT_EXTRA",e);
             startActivity(showEvent);
         }
@@ -88,4 +89,3 @@ public class MyBookings extends Fragment {
     }
 
 }
-

@@ -87,6 +87,8 @@ public class NavigationMenu extends AppCompatActivity
         } else if (id == R.id.create_event) {
 
         } else if (id == R.id.search_events) {
+            Intent t = new Intent(NavigationMenu.this,SearchEvents.class);
+            startActivity(t);
 
         } else if (id == R.id.notifies) {
 

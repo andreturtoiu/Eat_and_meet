@@ -68,12 +68,34 @@ public class EventFactory {
         return l;
     }
 
+    public ArrayList<Event> searchEventsByFilter(String cucina,String citta,int pranzo_cena){
+        ArrayList<Event> filter_cucina = new ArrayList<Event>();
+        ArrayList<Event> filter_citta = new ArrayList<Event>();
+        ArrayList<Event> filter_pranzo_cena = new ArrayList<Event>();
+        //Filtro per cucina;
+        if(cucina != null)
+            for(Event e:listaEventi)
+                if (e.getCucina().equals(cucina))
+                    filter_cucina.add(e);
+        //Filtro citta
+        if(citta != null)
+            for(Event e:filter_cucina)
+                if (e.getIndirizzo().contains(citta))
+                    filter_citta.add(e);
+        //Filtro pranzo_cena
+        for(Event e:filter_citta)
+            if (e.getPranzo_cena()==pranzo_cena)
+                filter_pranzo_cena.add(e);
+        //Ritorno selezione
+        return filter_pranzo_cena;
+    }
+
     private EventFactory() {
         Event e;
         Calendar c = Calendar.getInstance();
         c.set(2018,1,1,12,0);
         //Evento 1
-        e = new Event( 0,0,"Evento  0","Descrizione  0","Cucina  0",c,Event.PRANZO,"Via  0");
+        e = new Event( 0,0,"Evento  0","Descrizione  0","Italiana",c,Event.PRANZO,"Via  0");
         e.addPartecipante(1);
         e.addPartecipante(2);
         e.addFoto(R.drawable.logo);
