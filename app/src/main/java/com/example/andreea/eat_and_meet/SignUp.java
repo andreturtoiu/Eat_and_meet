@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -160,18 +161,24 @@ public class SignUp extends AppCompatActivity {
 
         if(emailText.getText() == null || emailText.getText().length() == 0){
 
-            emailText.setError("Inserire la data di nascita");
+            emailText.setError("Inserire l'email");
+
             errors++;
 
 
         }
         else{
-            emailText.setError(null);
+
+            if(!isEmailValid(emailText.getText())) {
+                emailText.setError("Inserisci un formato valido");
+                errors++;
+            }
+            else emailText.setError(null);
         }
 
         if(passwordText.getText() == null || passwordText.getText().length() == 0){
 
-            passwordText.setError("Inserire la data di nascita");
+            passwordText.setError("Inserire la password");
             errors++;
 
 
@@ -182,7 +189,7 @@ public class SignUp extends AppCompatActivity {
 
         if(addressText.getText() == null || addressText.getText().length() == 0){
 
-            addressText.setError("Inserire la data di nascita");
+            addressText.setError("Inserire un indirizzo");
             errors++;
 
 
@@ -193,7 +200,7 @@ public class SignUp extends AppCompatActivity {
 
         if(cityText.getText() == null || cityText.getText().length() == 0){
 
-            cityText.setError("Inserire la data di nascita");
+            cityText.setError("Inserire la città");
             errors++;
 
 
@@ -204,7 +211,7 @@ public class SignUp extends AppCompatActivity {
 
         if(phoneText.getText() == null || phoneText.getText().length() == 0){
 
-            phoneText.setError("Inserire la data di nascita");
+            phoneText.setError("Inserire il numero di telefono");
             errors++;
 
 
@@ -229,6 +236,10 @@ public class SignUp extends AppCompatActivity {
 
     }
 
+    private boolean isEmailValid(CharSequence email) {
+
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 
 }
 

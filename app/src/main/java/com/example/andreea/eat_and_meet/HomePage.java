@@ -1,11 +1,16 @@
 package com.example.andreea.eat_and_meet;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -22,70 +27,98 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
-public class HomePage extends AppCompatActivity{
+public class HomePage extends AppCompatActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
-
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    private ViewPager mViewPager;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    FragmentManager FM;
+    FragmentTransaction FT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        NavigationMenu navMenu = new NavigationMenu();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        navigationView= (NavigationView) findViewById(R.id.nav_view);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    drawerLayout.closeDrawers();
+
+                    if (item.getItemId()== R.id.events) {
+                        Intent t = new Intent(HomePage.this, HomePage.class);
+                        startActivity(t);
+                    }else if (item.getItemId() == R.id.create_event) {
+
+                        } else if (item.getItemId() == R.id.search_events) {
+
+                        } else if (item.getItemId() == R.id.notifies) {
+
+                        } else if (item.getItemId() == R.id.logout) {
+                                Intent t = new Intent(HomePage.this, Login_activity.class);
+                                startActivity(t);
+                        }
+
+                            return false;
+                        }
+                    });
+
+
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        tabLayout.setupWithViewPager(mViewPager);
+        tabLayout.addTab(tabLayout.newTab().setText("I MIEI EVENTI"));
+        tabLayout.addTab(tabLayout.newTab().setText("LE MIE PRENOTAZIONI"));
 
-/**
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.container);
+        final SectionsPagerAdapter adapter = new SectionsPagerAdapter
+                (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
- */
+
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.navigation_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -93,70 +126,35 @@ public class HomePage extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        int position = 0;
 
-        if (id == R.id.events) {
-            Intent t = new Intent(HomePage.this, HomePage.class);
-            startActivity(t);
+    public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
+        int mNumOfTabs;
 
-        } else if (id == R.id.create_event) {
-
-        } else if (id == R.id.search_events) {
-
-        } else if (id == R.id.notifies) {
-
-        }  else if (id == R.id.logout) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(FragmentManager fm, int NumOfTabs) {
             super(fm);
+            this.mNumOfTabs = NumOfTabs;
         }
 
         @Override
         public Fragment getItem(int position) {
+
             switch (position) {
                 case 0:
-                    return new MyEvents();
+                    MyEvents tab1 = new MyEvents();
+                    return tab1;
                 case 1:
-                    return new MyBookings();
+                    MyBookings tab2 = new MyBookings();
+                    return tab2;
+
+                default:
+                    return null;
             }
-            return null;
         }
 
         @Override
         public int getCount() {
-            return 2;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "I miei eventi";
-                case 1:
-                    return "Le mie prenotazioni";
-            }
-            return null;
+            return mNumOfTabs;
         }
     }
+
 }
