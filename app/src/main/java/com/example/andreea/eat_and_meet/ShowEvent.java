@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -71,8 +72,17 @@ public class ShowEvent extends AppCompatActivity{
         String source = (String) intent.getSerializableExtra("SOURCE");
         Button btn = (Button) new Button(this);
 
-        if(evento.getUser() == 0) // Sono il proprietario. Cambiare "0" con "logged_User"
+        if(evento.getUser() == 0) { // Sono il proprietario. Cambiare "0" con "logged_User"
             btn.setText("Mostra Partecipanti");
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ShowEvent.this,ShowBookedUsersList.class);
+                    intent.putExtra("BOOKED_USERS",evento.getPartecipanti());
+                    startActivity(intent);
+                }
+            });
+        }
         else {
             if (evento.isBooked(0)) //Sono iscritto. Voglio annullare
                 btn.setText("Annulla Iscrizione");

@@ -55,6 +55,9 @@
             android:name=".CreateEvent2"
             android:label="CreateEvent2">
         </activity>
+        <activity
+            android:name=".ShowBookedUsersList"
+            android:label="Partecipanti" />
 
     </application>
 
