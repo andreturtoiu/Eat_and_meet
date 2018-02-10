@@ -15,8 +15,7 @@
         android:layout_width="95dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
-        android:text="Crea Evento"
-        />
+        android:text="Crea Evento" />
 
     <EditText
         android:id="@+id/editText"
@@ -24,10 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
+        android:background="#f2f2f2"
         android:ems="10"
         android:hint="Nome Evento"
         android:inputType="textPersonName"
         android:paddingBottom="10dp"
+        android:paddingStart="20dp"
         android:paddingTop="10dp" />
 
     <EditText
@@ -35,18 +36,26 @@
         android:layout_width="332dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:background="#f2f2f2"
         android:ems="10"
         android:hint="Nome Menù"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:paddingBottom="10dp"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp" />
 
     <EditText
         android:id="@+id/editTextindirizzo"
         android:layout_width="332dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:background="#f2f2f2"
         android:ems="10"
         android:hint="Indirizzo: Via, città"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:paddingBottom="10dp"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,18 +68,26 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
+            android:background="#f2f2f2"
             android:ems="10"
             android:hint="Data: gg/mm/aaa"
-            android:inputType="date" />
+            android:inputType="date"
+            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp" />
 
-        <EditText
-            android:id="@+id/editText4"
+        <TextView
+            android:id="@+id/timeTextView"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
+            android:background="#f2f2f2"
             android:ems="10"
-            android:hint="Ora: hh:mm"
-            android:inputType="time"
-            />
+            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:text="Ora: hh:mm"
+            android:clickable="true"
+            android:focusable="true" />
 
     </LinearLayout>
 
@@ -81,6 +98,8 @@
         android:layout_height="17dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
+        android:background="#f2f2f2"
+        android:paddingStart="10dp"
         android:text="Tipo Cucina"
         android:textAlignment="viewStart" />
 
@@ -89,7 +108,8 @@
         android:layout_width="339dp"
         android:layout_height="26dp"
         android:layout_marginBottom="20dp"
-        android:entries="@array/tipo_cucina" />
+        android:entries="@array/tipo_cucina"
+        android:paddingStart="10dp" />
 
     <RadioGroup
         android:layout_width="fill_parent"
@@ -101,20 +121,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="80dp"
+            android:background="#f2f2f2"
             android:onClick="onRadioButtonClicked"
+            android:paddingRight="10dp"
             android:text="Pranzo" />
 
         <RadioButton
             android:id="@+id/radio_cena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="65dp"
+            android:background="#f2f2f2"
             android:onClick="onRadioButtonClicked"
+            android:paddingRight="10dp"
             android:text="Cena" />
     </RadioGroup>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/prosegui"
         android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
