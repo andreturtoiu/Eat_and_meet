@@ -7,10 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,7 +21,7 @@ public class MyBookings extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View myBookings = LayoutInflater.from(getActivity()).inflate(R.layout.activity_event_list, null);
-        ArrayList<Event> eventi = EventFactory.getInstance().getBookingsByUser(0); //INSERIRE VARIABILE GLOBALE UTENTE
+        ArrayList<Event> eventi = EventFactory.getInstance().getEventsByUser(0); //INSERIRE VARIABILE GLOBALE UTENTE
         LinearLayout ll = myBookings.findViewById(R.id.event_container);
         for(Event e : eventi){
             //Genero Layout Evento
