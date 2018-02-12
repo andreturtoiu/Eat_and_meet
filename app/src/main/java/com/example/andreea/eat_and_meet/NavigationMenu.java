@@ -95,8 +95,9 @@ public class NavigationMenu extends AppCompatActivity
         } else if (id == R.id.logout) {
             Intent t = new Intent(NavigationMenu.this, Login_activity.class);
             startActivity(t);
-        }
+        }else if (id == R.id.imageView){
 
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

@@ -64,6 +64,8 @@ public class HomePage extends AppCompatActivity {
                         } else if (item.getItemId() == R.id.logout) {
                                 Intent t = new Intent(HomePage.this, Login_activity.class);
                                 startActivity(t);
+                        }else if (item.getItemId() == R.id.imageView){
+
                         }
 
                             return false;

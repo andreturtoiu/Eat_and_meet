@@ -31,7 +31,7 @@ public class Login_activity extends AppCompatActivity {
     class handleButton2 implements View.OnClickListener {
         public void onClick(View v) {
 
-            Intent intent2 = new Intent(Login_activity.this, NavigationMenu.class);
+            Intent intent2 = new Intent(Login_activity.this, HomePage.class);
             startActivity(intent2);
         }
     }
