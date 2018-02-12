@@ -8,73 +8,76 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="100dp"
-        android:paddingBottom="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/profile_backgournd"
         android:elevation="2dp"
-        android:background="@drawable/profile_backgournd">
+        android:layout_margin="10dp"
+        android:paddingBottom="16dp">
+
+        <ImageView
+            android:id="@+id/picProfile"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/logo" />
 
         <TextView
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/picProfile"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="68dp"
-            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif"
             android:text="Nome Cognome"
-            android:textSize="24sp"
             android:textColor="@android:color/black"
-            android:fontFamily="sans-serif"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/tvName"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:lines="2"
             android:text="Data di nascita"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-medium"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvEducation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/tvTitle"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="4dp"
+            android:fontFamily="sans-serif-light"
             android:text="Indirizzo - Città"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-light"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/tvEducation"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-light"
             android:text="Email"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-light"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/numberTel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/tvAddress"
+            android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif-light"
             android:text="Numero di Telefono"
-            android:textSize="16sp"
-            android:fontFamily="sans-serif-light"/>
+            android:textSize="16sp" />
+
         <Space
             android:id="@+id/spaceHolder"
             android:layout_width="10dp"
@@ -87,29 +90,93 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
+        android:layout_width="363dp"
         android:layout_height="266dp"
+        android:layout_below="@id/relativeLayout"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="400dp"
-        android:layout_below="@id/relativeLayout"
+        android:layout_marginTop="315dp"
         android:background="@drawable/profile_backgournd"
         android:elevation="2dp"
         android:paddingBottom="16dp">
 
-
-        <TextView
-            android:id="@+id/aboutYou"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/aboutYouRect"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:fontFamily="sans-serif"
-            android:text="Dicono su di te"
-            android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/aboutYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:fontFamily="sans-serif"
+                android:text="Dicono su di te"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:layout_width="175dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="29dp"
+                android:layout_toEndOf="@+id/aboutYou"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="1.0" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/aboutYouCont"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="70dp">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#616161" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/event_logo" />
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Indicator"
+                android:layout_width="175dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="3.5"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/imageView2"
+                android:layout_marginTop="14dp"
+                android:text="sdkfdjvsasdkjkljdkadjksjf"
+                android:textColor="#000" />
+
+
+        </RelativeLayout>
 
     </RelativeLayout>
 

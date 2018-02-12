@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -17,7 +18,8 @@ import java.util.ArrayList;
 public class SearchEvents extends AppCompatActivity {
 
     Spinner spinner;
-    RadioGroup radio_pranzo_cena;
+    CheckBox pranzo;
+    CheckBox cena;
     EditText text_citta;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,8 @@ public class SearchEvents extends AppCompatActivity {
         setContentView(R.layout.activity_search_events);
 
         spinner = (Spinner) findViewById(R.id.spinner_cucina);
-        radio_pranzo_cena = (RadioGroup) findViewById(R.id.radio_pranzo_cena);
+        pranzo = (CheckBox) findViewById(R.id.check_pranzo);
+        cena = (CheckBox) findViewById(R.id.check_cena);
         text_citta = (EditText) findViewById(R.id.citta);
 
         findViewById(R.id.search_button).setOnClickListener(new sendInput());
@@ -37,10 +40,14 @@ public class SearchEvents extends AppCompatActivity {
 
             String cucina = spinner.getSelectedItem().toString();
             int pranzo_cena;
-            if (radio_pranzo_cena.getCheckedRadioButtonId() == R.id.radio_pranzo)
-                pranzo_cena = Event.PRANZO;
-            else
-                pranzo_cena = Event.CENA;
+            if (pranzo.isChecked() && cena.isChecked()){
+                pranzo_cena = -1;
+            }
+            else {
+                if (pranzo.isChecked()) pranzo_cena = Event.PRANZO;
+                else pranzo_cena = Event.CENA;
+            }
+
             String citta = text_citta.getText().toString();
             ArrayList<Event> list = EventFactory.getInstance().searchEventsByFilter(cucina,citta,pranzo_cena);
 

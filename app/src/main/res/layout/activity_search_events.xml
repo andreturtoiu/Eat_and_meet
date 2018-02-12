@@ -25,28 +25,27 @@
             android:id="@+id/spinner_cucina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/tipo_cucina"
+            android:entries="@array/tipo_cucina_search"
             android:prompt="@string/cooking_type" />
-        <RadioGroup
-            android:id="@+id/radio_pranzo_cena"
+        <LinearLayout
+            android:id="@+id/checkbox_pranzo_cena"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/radio_pranzo"
+            <CheckBox
+                android:id="@+id/check_pranzo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Pranzo"
-                android:checked="true"/>
+                android:text="Pranzo"/>
 
-            <RadioButton
-                android:id="@+id/radio_cena"
+            <CheckBox
+                android:id="@+id/check_cena"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cena" />
-        </RadioGroup>
+        </LinearLayout>
 
         <Button
             android:id="@+id/search_button"
