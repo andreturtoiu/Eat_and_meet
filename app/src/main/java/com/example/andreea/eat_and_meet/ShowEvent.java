@@ -127,7 +127,7 @@ public class ShowEvent extends AppCompatActivity{
                     @Override
                     public void onClick(View view) {
                         AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
-                        builder1.setMessage("Sei sicuro?");
+                        builder1.setMessage("Posti disponibili: "+(evento.getMaxBookings() - evento.getPartecipanti().size())+"\nSei sicuro?");
                         builder1.setCancelable(true);
                         builder1.setPositiveButton(
                                 "Sì",

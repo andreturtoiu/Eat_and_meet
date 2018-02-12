@@ -103,6 +103,9 @@ public class Event implements Serializable {
         this.partecipanti.remove((Integer) idUser);
     }
 
+    public void setMaxBookings(int max){
+        this.maxBookings = max;
+    }
     public int getMaxBookings(){
         return this.maxBookings;
     }
