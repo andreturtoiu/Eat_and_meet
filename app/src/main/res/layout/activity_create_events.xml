@@ -19,7 +19,7 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="332dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
@@ -33,7 +33,7 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="332dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="#f2f2f2"
@@ -46,7 +46,7 @@
 
     <EditText
         android:id="@+id/editTextindirizzo"
-        android:layout_width="332dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:background="#f2f2f2"
@@ -62,19 +62,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editText3"
+        <TextView
+            android:id="@+id/dateTextView"
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
             android:background="#f2f2f2"
             android:ems="10"
-            android:hint="Data: gg/mm/aaa"
-            android:inputType="date"
+            android:text="Data: gg/mm/aaa"
             android:paddingBottom="10dp"
             android:paddingStart="10dp"
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            />
 
         <TextView
             android:id="@+id/timeTextView"
@@ -99,17 +101,17 @@
         android:layout_marginBottom="20dp"
         android:layout_marginTop="10dp"
         android:background="#f2f2f2"
-        android:paddingStart="10dp"
+        android:paddingStart="20dp"
         android:text="Tipo Cucina"
         android:textAlignment="viewStart" />
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="339dp"
+        android:layout_width="match_parent"
         android:layout_height="26dp"
         android:layout_marginBottom="20dp"
         android:entries="@array/tipo_cucina"
-        android:paddingStart="10dp" />
+        android:paddingStart="20dp" />
 
     <RadioGroup
         android:layout_width="fill_parent"
@@ -120,7 +122,7 @@
             android:id="@+id/radio_pranzo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="65dp"
             android:background="#f2f2f2"
             android:onClick="onRadioButtonClicked"
             android:paddingRight="10dp"
@@ -130,7 +132,7 @@
             android:id="@+id/radio_cena"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="65dp"
+            android:layout_marginLeft="50dp"
             android:background="#f2f2f2"
             android:onClick="onRadioButtonClicked"
             android:paddingRight="10dp"
