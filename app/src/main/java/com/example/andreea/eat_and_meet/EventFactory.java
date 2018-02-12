@@ -51,6 +51,31 @@ public class EventFactory {
         this.listaEventi.remove(position);
     }
 
+    public void unSubscribeFromEvent(int idEvent,int idUser){
+        for(Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.unSubscribe(idUser);
+            }
+        }
+    }
+
+    public void SubscribeToEvent(int idEvent,int idUser){
+        for(Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.Subscribe(idUser);
+            }
+        }
+    }
+
+    public boolean isEventFull(int idEvent){
+        for (Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.isFull();
+            }
+        }
+        return true;
+    }
+
     public ArrayList<Event> getEventList(){
         return this.listaEventi;
     }
@@ -79,10 +104,11 @@ public class EventFactory {
         ArrayList<Event> filter_cucina = new ArrayList<Event>();
         ArrayList<Event> filter_citta = new ArrayList<Event>();
         ArrayList<Event> filter_pranzo_cena = new ArrayList<Event>();
+        ArrayList<Event> filter_free = new ArrayList<Event>();
         //Filtro per cucina;
         if(cucina != null)
             for(Event e:listaEventi)
-                if (e.getCucina().equals(cucina))
+                if (e.getCucina().equals(cucina) || cucina.equals("Nessuna Preferenza"))
                     filter_cucina.add(e);
         //Filtro citta
         if(citta != null)
@@ -91,10 +117,15 @@ public class EventFactory {
                     filter_citta.add(e);
         //Filtro pranzo_cena
         for(Event e:filter_citta)
-            if (e.getPranzo_cena()==pranzo_cena)
+            if (e.getPranzo_cena()==pranzo_cena || pranzo_cena == -1)
                 filter_pranzo_cena.add(e);
+        //Filtro liberi
+        for(Event e:filter_pranzo_cena){
+            if(!e.isFull())
+                filter_free.add(e);
+        }
         //Ritorno selezione
-        return filter_pranzo_cena;
+        return filter_free;
     }
 
     public LinearLayout newEventView (Event e, View.OnClickListener ocl, Context c){
@@ -117,90 +148,239 @@ public class EventFactory {
     private EventFactory() {
         Event e;
         Calendar c = Calendar.getInstance();
+        //Evento 0
+        e = new Event();
+        e.setUser(0);
+        e.setTitolo("Evento 0");
+        e.setDescrizione("Descrizione 0");
+        e.setCucina("Italiana");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 0");
         c.set(2018,1,1,12,0);
-        //Evento 1
-        e = new Event( 0,0,"Evento  0","Descrizione  0","Italiana",c,Event.PRANZO,"Via  0");
+        e.setData(c);
         e.addPartecipante(1);
         e.addPartecipante(2);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
+        listaEventi.add(e);
+        //Evento 1
+        e = new Event();
+        e.setUser(0);
+        e.setTitolo("Evento 1");
+        e.setDescrizione("Descrizione 1");
+        e.setCucina("Indiana");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 1");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
+        e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 2
-        e = new Event( 1,0,"Evento  1","Descrizione  1","Cucina  1",c,Event.PRANZO,"Via  1");
+        e = new Event();
+        e.setUser(0);
+        e.setTitolo("Evento 2");
+        e.setDescrizione("Descrizione  2");
+        e.setCucina("Francese");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 2");
+        c.set(2018,1,1,12,0);
+        e.setData(c);
+        e.addPartecipante(2);
+        e.addPartecipante(3);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 3
-        e = new Event( 2,0,"Evento  2","Descrizione  2","Cucina  2",c,Event.PRANZO,"Via  2");
-        e.addPartecipante(2);
-        e.addPartecipante(3);
+        e = new Event();
+        e.setUser(0);
+        e.setTitolo("Evento 3");
+        e.setDescrizione("Descrizione  3");
+        e.setCucina("Cinese");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 3");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 4
-        e = new Event( 3,0,"Evento  3","Descrizione  3","Cucina  3",c,Event.PRANZO,"Via  3");
+        e = new Event();
+        e.setUser(0);
+        e.setTitolo("Evento 4");
+        e.setDescrizione("Descrizione  4");
+        e.setCucina("Tedesca");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 4");
+        c.set(2018,1,1,12,0);
+        e.setData(c);
+        e.addPartecipante(1);
+        e.addPartecipante(3);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 5
-        e = new Event( 4,0,"Evento  4","Descrizione  4","Cucina  4",c,Event.PRANZO,"Via  4");
-        e.addPartecipante(1);
-        e.addPartecipante(3);
+        e = new Event();
+        e.setUser(1);
+        e.setTitolo("Evento 5");
+        e.setDescrizione("Descrizione 5");
+        e.setCucina("Messicana");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 5");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 6
-        e = new Event( 5,1,"Evento  5","Descrizione  5","Cucina  5",c,Event.PRANZO,"Via  5");
+        e = new Event();
+        e.setUser(1);
+        e.setTitolo("Evento 6");
+        e.setDescrizione("Descrizione 6");
+        e.setCucina("Giapponese");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 6");
+        c.set(2018,1,1,12,0);
+        e.setData(c);
+        e.addPartecipante(0);
+        e.addPartecipante(2);
+        e.addPartecipante(3);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 7
-        e = new Event( 6,1,"Evento  6","Descrizione  6","Cucina  6",c,Event.PRANZO,"Via  6");
-        e.addPartecipante(0);
-        e.addPartecipante(2);
-        e.addPartecipante(3);
+        e = new Event();
+        e.setUser(1);
+        e.setTitolo("Evento 7");
+        e.setDescrizione("Descrizione 7");
+        e.setCucina("Italiana");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 7");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 8
-        e = new Event( 7,1,"Evento  7","Descrizione  7","Cucina  7",c,Event.PRANZO,"Via  7");
+        e = new Event();
+        e.setUser(2);
+        e.setTitolo("Evento 8");
+        e.setDescrizione("Descrizione 8");
+        e.setCucina("Francese");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 8");
+        c.set(2018,1,1,12,0);
+        e.setData(c);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 9
-        e = new Event( 8,2,"Evento  8","Descrizione  8","Cucina  8",c,Event.PRANZO,"Via  8");
+        e = new Event();
+        e.setUser(2);
+        e.setTitolo("Evento 9");
+        e.setDescrizione("Descrizione 9");
+        e.setCucina("Indiana");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 9");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
+        e.addPartecipante(0);
+        e.addPartecipante(3);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 10
-        e = new Event( 9,2,"Evento  9","Descrizione  9","Cucina  9",c,Event.PRANZO,"Via  9");
-        e.addPartecipante(0);
+        e = new Event();
+        e.setUser(2);
+        e.setTitolo("Evento 10");
+        e.setDescrizione("Descrizione 10");
+        e.setCucina("Cinese");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 10");
+        c.set(2018,1,1,12,0);
+        e.setData(c);
+        e.addPartecipante(1);
         e.addPartecipante(3);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 11
-        e = new Event(10,2,"Evento 10","Descrizione 10","Cucina 10",c,Event.PRANZO,"Via 10");
-        e.addPartecipante(1);
-        e.addPartecipante(3);
+        e = new Event();
+        e.setUser(2);
+        e.setTitolo("Evento 11");
+        e.setDescrizione("Descrizione 11");
+        e.setCucina("Giapponese");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 11");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 12
-        e = new Event(11,2,"Evento 11","Descrizione 11","Cucina 11",c,Event.PRANZO,"Via 11");
-        e.addFoto(R.drawable.logo);
-        listaEventi.add(e);
-        //Evento 13
-        e = new Event(12,3,"Evento 12","Descrizione 12","Cucina 12",c,Event.PRANZO,"Via 12");
+        e = new Event();
+        e.setUser(2);
+        e.setTitolo("Evento 12");
+        e.setDescrizione("Descrizione 12");
+        e.setCucina("Tedesca");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 12");
+        c.set(2018,1,1,12,0);
+        e.setData(c);
         e.addPartecipante(0);
         e.addPartecipante(1);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
-        //Evento 14
-        e = new Event(13,3,"Evento 13","Descrizione 13","Cucina 13",c,Event.PRANZO,"Via 13");
+        //Evento 13
+        e = new Event();
+        e.setUser(3);
+        e.setTitolo("Evento 13");
+        e.setDescrizione("Descrizione 13");
+        e.setCucina("Messicana");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 13");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
         e.addPartecipante(0);
         e.addPartecipante(2);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
-        //Evento 15
-        e = new Event(14,3,"Evento 14","Descrizione 14","Cucina 14",c,Event.PRANZO,"Via 14");
+        //Evento 14
+        e = new Event();
+        e.setUser(3);
+        e.setTitolo("Evento 14");
+        e.setDescrizione("Descrizione 14");
+        e.setCucina("Italiana");
+        e.setPranzo_cena(Event.PRANZO);
+        e.setIndirizzo("Via 14");
+        c.set(2018,1,1,12,0);
+        e.setData(c);
         e.addPartecipante(1);
         e.addPartecipante(3);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
-        //Evento 16
-        e = new Event(15,3,"Evento 15","Descrizione 15","Cucina 15",c,Event.PRANZO,"Via 15");
+        //Evento 15
+        e = new Event();
+        e.setUser(3);
+        e.setTitolo("Evento 15");
+        e.setDescrizione("Descrizione 15");
+        e.setCucina("Italiana");
+        e.setPranzo_cena(Event.CENA);
+        e.setIndirizzo("Via 15");
+        c.set(2018,1,1,19,0);
+        e.setData(c);
         e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
         listaEventi.add(e);
+
+        //Generazione ID sequenziali
+        int i = 0;
+        for(Event ev:listaEventi){
+            ev.setId(i++);
+        }
     }
 
 }
