@@ -56,8 +56,12 @@ public class HomePage extends AppCompatActivity {
                         Intent t = new Intent(HomePage.this, HomePage.class);
                         startActivity(t);
                     }else if (item.getItemId() == R.id.create_event) {
+                        Intent t = new Intent(HomePage.this, CreateEvent.class);
+                        startActivity(t);
 
                         } else if (item.getItemId() == R.id.search_events) {
+                        Intent t = new Intent(HomePage.this,SearchEvents.class);
+                        startActivity(t);
 
                         } else if (item.getItemId() == R.id.notifies) {
 
@@ -65,6 +69,8 @@ public class HomePage extends AppCompatActivity {
                                 Intent t = new Intent(HomePage.this, Login_activity.class);
                                 startActivity(t);
                         }else if (item.getItemId() == R.id.imageView){
+                            Intent t = new Intent (HomePage.this, LoggedProfile.class);
+                            startActivity(t);
 
                         }
 
