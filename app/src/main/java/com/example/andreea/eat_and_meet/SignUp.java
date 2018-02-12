@@ -1,5 +1,6 @@
 package com.example.andreea.eat_and_meet;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.UTFDataFormatException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -101,16 +103,22 @@ public class SignUp extends AppCompatActivity {
                 if(checkInput()){
 
                     UpdatePerson();
-                    if(utenti.addUser(person)) {
-                        Intent login = new Intent(SignUp.this, Login_activity.class);
-                        startActivity(login);
-                    }
-                    else  {
+                    utenti.addUser(person);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                    View popview = getLayoutInflater().inflate(R.layout.signup_dialog, null);
+                    Button confirm = (Button) popview.findViewById(R.id.ConfirmButton);
+                    confirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent login = new Intent(SignUp.this, Login_activity.class);
+                            startActivity(login);
+                        }
+                    });
 
-                        Intent login = new Intent(SignUp.this, Login_activity.class);
-                        startActivity(login);
+                    builder.setView(popview);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
 
-                    }
 
                 }
             }
@@ -121,7 +129,7 @@ public class SignUp extends AppCompatActivity {
 
 
 
-/*
+
 
     @Override
     public void onResume(){
@@ -129,7 +137,7 @@ public class SignUp extends AppCompatActivity {
         isResumed = true;
 
     }
-*/
+
     private boolean checkInput(){
 
         int errors=0;
@@ -180,7 +188,14 @@ public class SignUp extends AppCompatActivity {
                 emailText.setError("Inserisci un formato valido");
                 errors++;
             }
-            else emailText.setError(null);
+            else {
+                if(utenti.isUserRegistered(emailText.toString())) {
+                    emailText.setError("Utente già registrato");
+                    errors++;
+                }
+                else emailText.setError(null);
+            }
+
         }
 
         if(passwordText.getText() == null || passwordText.getText().length() == 0){
