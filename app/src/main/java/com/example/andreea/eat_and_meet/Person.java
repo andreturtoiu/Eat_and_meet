@@ -42,10 +42,11 @@ public class Person implements Serializable {
 
     }
 
-    public Person(String name,String  surname,String  birthdate,String  password,String  email,String  address,String  city,String  phoneNumber){
+    public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,String  phoneNumber){
 
         this.setName(name);
         this.setSurname(surname);
+        this.birthdate=birthdate;
         this.setPassword(password);
         this.setEmail(email);
         this.setAddress(address);

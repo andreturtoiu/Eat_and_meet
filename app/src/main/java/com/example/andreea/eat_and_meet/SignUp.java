@@ -23,7 +23,7 @@ import java.util.Locale;
 
 public class SignUp extends AppCompatActivity {
 
-
+    PersonFactory utenti = PersonFactory.getInstance();
     Person person;
     EditText nameText, surnameText, birthText, emailText, passwordText, addressText, cityText, phoneText;
     Button saveButton;
@@ -101,9 +101,16 @@ public class SignUp extends AppCompatActivity {
                 if(checkInput()){
 
                     UpdatePerson();
-                    Intent login = new Intent(SignUp.this, Login_activity.class);
-                    startActivity(login);
+                    if(utenti.addUser(person)) {
+                        Intent login = new Intent(SignUp.this, Login_activity.class);
+                        startActivity(login);
+                    }
+                    else  {
 
+                        Intent login = new Intent(SignUp.this, Login_activity.class);
+                        startActivity(login);
+
+                    }
 
                 }
             }
