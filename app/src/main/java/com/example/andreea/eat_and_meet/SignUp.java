@@ -120,6 +120,7 @@ public class SignUp extends AppCompatActivity {
                     dialog.show();
 
 
+
                 }
             }
         });
