@@ -51,6 +51,31 @@ public class EventFactory {
         this.listaEventi.remove(position);
     }
 
+    public void unSubscribeFromEvent(int idEvent,int idUser){
+        for(Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.unSubscribe(idUser);
+            }
+        }
+    }
+
+    public void SubscribeToEvent(int idEvent,int idUser){
+        for(Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.Subscribe(idUser);
+            }
+        }
+    }
+
+    public boolean isEventFull(int idEvent){
+        for (Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.isFull();
+            }
+        }
+        return true;
+    }
+
     public ArrayList<Event> getEventList(){
         return this.listaEventi;
     }
@@ -82,7 +107,7 @@ public class EventFactory {
         //Filtro per cucina;
         if(cucina != null)
             for(Event e:listaEventi)
-                if (e.getCucina().equals(cucina))
+                if (e.getCucina().equals(cucina) || cucina.equals("Nessuna Preferenza"))
                     filter_cucina.add(e);
         //Filtro citta
         if(citta != null)
@@ -91,7 +116,7 @@ public class EventFactory {
                     filter_citta.add(e);
         //Filtro pranzo_cena
         for(Event e:filter_citta)
-            if (e.getPranzo_cena()==pranzo_cena)
+            if (e.getPranzo_cena()==pranzo_cena || pranzo_cena == -1)
                 filter_pranzo_cena.add(e);
         //Ritorno selezione
         return filter_pranzo_cena;

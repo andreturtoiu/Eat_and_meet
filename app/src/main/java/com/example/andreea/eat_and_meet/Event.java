@@ -20,6 +20,7 @@ public class Event implements Serializable {
 
     private int id;
     private int user;
+    private int maxBookings;
     private int pranzo_cena; //0 = pranzo, 1 = cena
     private String titolo;
     private String descrizione;
@@ -42,6 +43,7 @@ public class Event implements Serializable {
         this.cucina = cucina;
         this.data = data;
         this.indirizzo = indirizzo;
+        this.maxBookings = 5;
     }
 
     public void setId(int id){
@@ -95,6 +97,22 @@ public class Event implements Serializable {
         for(Integer i:partecipanti)
             if (i == userID) return true;
         return false;
+    }
+
+    public void unSubscribe(int idUser) {
+        this.partecipanti.remove((Integer) idUser);
+    }
+
+    public int getMaxBookings(){
+        return this.maxBookings;
+    }
+
+    public void Subscribe(int idUser) {
+        this.partecipanti.add(idUser);
+    }
+
+    public boolean isFull(){
+        return !(this.partecipanti.size() < maxBookings);
     }
 }
 

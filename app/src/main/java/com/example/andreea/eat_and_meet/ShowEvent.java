@@ -84,10 +84,77 @@ public class ShowEvent extends AppCompatActivity{
             });
         }
         else {
-            if (evento.isBooked(0)) //Sono iscritto. Voglio annullare
+            if (evento.isBooked(0)){                //Sono iscritto. Voglio annullare
                 btn.setText("Annulla Iscrizione");
-            else
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+                        builder1.setMessage("Sei sicuro?");
+                        builder1.setCancelable(true);
+                        builder1.setPositiveButton(
+                                "Sì",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Intent intent = new Intent(ShowEvent.this,HomePage.class);
+                                        EventFactory.getInstance().unSubscribeFromEvent(evento.getId(),0); //GLOBALE
+                                        startActivity(intent);
+
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                "No",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+
+
+
+                    }
+                });
+            }
+
+            else{
                 btn.setText("Iscriviti"); //Non sono iscritto. Voglio iscrivermi
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+                        builder1.setMessage("Sei sicuro?");
+                        builder1.setCancelable(true);
+                        builder1.setPositiveButton(
+                                "Sì",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        Intent intent = new Intent(ShowEvent.this,HomePage.class);
+                                        EventFactory.getInstance().SubscribeToEvent(evento.getId(),0); //GLOBALE
+                                        startActivity(intent);
+
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        builder1.setNegativeButton(
+                                "No",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        AlertDialog alert11 = builder1.create();
+                        alert11.show();
+                    }
+                });
+            }
+
         }
         LinearLayout ll = (LinearLayout) findViewById(R.id.showEventBody);
         ll.addView(btn);
