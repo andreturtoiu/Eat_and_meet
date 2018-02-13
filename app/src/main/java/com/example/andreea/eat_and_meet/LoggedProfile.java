@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 public class LoggedProfile  extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.general_user_profile);
 
     }
 }

@@ -26,24 +26,14 @@ public class Event implements Serializable {
     private String descrizione;
     private String cucina;
     private Calendar data;
-    private String indirizzo;
+    private String via;
+    private String city;
     private ArrayList<Integer> foto = new ArrayList<>();
     private ArrayList<Integer> partecipanti = new ArrayList<>();
 
     public Event(){
         this.setTitolo("");
         this.setDescrizione("");
-    }
-
-    public Event(int id,int user,String titolo,String descrizione,String cucina,Calendar data,int pranzo_cena,String indirizzo){
-        this.id = id;
-        this.user = user;
-        this.titolo = titolo;
-        this.descrizione = descrizione;
-        this.cucina = cucina;
-        this.data = data;
-        this.indirizzo = indirizzo;
-        this.maxBookings = 5;
     }
 
     public void setId(int id){
@@ -90,8 +80,13 @@ public class Event implements Serializable {
     public int getPranzo_cena() {return this.pranzo_cena;}
     public void setPranzo_cena(int pranzo_cena){this.pranzo_cena = pranzo_cena;}
 
-    public String getIndirizzo() { return this.indirizzo; }
-    public void setIndirizzo(String indirizzo) { this.indirizzo = indirizzo; }
+    public String getVia() { return this.via; }
+    public void setVia(String via) { this.via = via; }
+
+    public String getCity(){ return this.city;}
+    public void setCity(String city){ this.city = city; }
+
+    public String getIndirizzo(){ return (this.via+", "+this.city);}
 
     public boolean isBooked(int userID){
         for(Integer i:partecipanti)

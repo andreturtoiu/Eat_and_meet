@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,10 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_events2);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         findViewById(R.id.pickImageBtn).setOnClickListener(this);
     }
