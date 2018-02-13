@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
  */
 
 public class ShowEvent extends AppCompatActivity{
+
+    private static final int PHOTO_DIM = 200;
 
     private Event evento;
 
@@ -62,11 +65,14 @@ public class ShowEvent extends AppCompatActivity{
 
         ArrayList<Integer> fotoList = evento.getFotoList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
+
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
             ImageView foto = new ImageView(this);
+
             foto.setImageResource(i);
             //Imposto dimensione
-            foto.setLayoutParams(new LinearLayout.LayoutParams(200,200));
+
+            foto.setLayoutParams(new LinearLayout.LayoutParams(PHOTO_DIM,PHOTO_DIM));
             ss.addView(foto);
         }
         String source = (String) intent.getSerializableExtra("SOURCE");
