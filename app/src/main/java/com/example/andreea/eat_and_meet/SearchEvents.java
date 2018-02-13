@@ -1,7 +1,9 @@
 package com.example.andreea.eat_and_meet;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -40,13 +42,27 @@ public class SearchEvents extends AppCompatActivity {
 
             String cucina = spinner.getSelectedItem().toString();
             int pranzo_cena;
-            if (pranzo.isChecked() && cena.isChecked()){
-                pranzo_cena = -1;
+            if (pranzo.isChecked() && cena.isChecked())pranzo_cena = -1;
+            else if (pranzo.isChecked()) pranzo_cena = Event.PRANZO;
+            else if (cena.isChecked()) pranzo_cena = Event.CENA;
+            else{
+                //Nessuna selezione
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(SearchEvents.this);
+                builder1.setMessage("Seleziona una preferenza Pranzo/Cena");
+                builder1.setCancelable(true);
+                builder1.setNegativeButton(
+                        "Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+                return;
             }
-            else {
-                if (pranzo.isChecked()) pranzo_cena = Event.PRANZO;
-                else pranzo_cena = Event.CENA;
-            }
+
+
 
             String citta = text_citta.getText().toString();
             ArrayList<Event> list = EventFactory.getInstance().searchEventsByFilter(cucina,citta,pranzo_cena);
