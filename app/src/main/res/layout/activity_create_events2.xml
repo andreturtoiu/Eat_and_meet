@@ -10,13 +10,14 @@
     android:paddingLeft="40dp"
     android:paddingRight="40dp">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="160dp"
-        android:layout_height="27dp"
-        android:text="Descrizione Evento"
-        android:layout_marginTop="20dp"
-        />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <EditText
         android:id="@+id/editText5"
