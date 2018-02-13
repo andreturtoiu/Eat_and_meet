@@ -73,7 +73,7 @@ public class Login_activity extends AppCompatActivity {
                 email.setError(null);
                 if(person.getPassword().equals(password.getText().toString())) {
 
-                    users.setLoggedUser(person);
+                    users.setLoggedUser(person.getEmail());
                     password.setError(null);
                 }
                 else {

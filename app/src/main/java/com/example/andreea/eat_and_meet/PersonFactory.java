@@ -12,7 +12,7 @@ public class PersonFactory {
 
     private static PersonFactory singleton;
     private ArrayList<Person> listaUtenti = new ArrayList<Person>();
-    private Person loggedUser;
+    private String loggedUser;
 
     public static PersonFactory getInstance(){
 
@@ -93,12 +93,12 @@ public class PersonFactory {
 
     }
 
-    public void setLoggedUser(Person p){
+    public void setLoggedUser(String email){
 
-        loggedUser = p;
+        loggedUser = email;
     }
 
-    public Person getLoggedUser() {
+    public String getLoggedUser() {
         return loggedUser;
     }
 }
