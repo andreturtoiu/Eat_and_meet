@@ -111,10 +111,16 @@ public class EventFactory {
                 if (e.getCucina().equals(cucina) || cucina.equals("Nessuna Preferenza"))
                     filter_cucina.add(e);
         //Filtro citta
-        if(citta != null)
-            for(Event e:filter_cucina)
-                if (e.getIndirizzo().contains(citta))
-                    filter_citta.add(e);
+        if(citta != null){
+            if(citta.equals(""))
+                citta = "Roma"; //citta = PersonFactory.getIstance().citta utente loggato
+
+                for(Event e:filter_cucina)
+                    if (e.getCity().equals(citta))
+                        filter_citta.add(e);
+
+        }
+
         //Filtro pranzo_cena
         for(Event e:filter_citta)
             if (e.getPranzo_cena()==pranzo_cena || pranzo_cena == -1)
@@ -124,8 +130,14 @@ public class EventFactory {
             if(!e.isFull())
                 filter_free.add(e);
         }
+        //Filtro miei
+        ArrayList<Event> filter_final = new ArrayList<Event>();
+        for(Event e:filter_free)
+            if(e.getUser()!=0) //Cambiare con utente loggato
+                filter_final.add(e);
         //Ritorno selezione
-        return filter_free;
+        return filter_final;
+
     }
 
     public LinearLayout newEventView (Event e, View.OnClickListener ocl, Context c){
@@ -155,7 +167,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 0");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 0");
+        e.setVia("Via 0");
+        e.setCity("Roma");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addPartecipante(1);
@@ -170,7 +183,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 1");
         e.setCucina("Indiana");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 1");
+        e.setVia("Via 1");
+        e.setCity("Cagliari");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -183,7 +197,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione  2");
         e.setCucina("Francese");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 2");
+        e.setVia("Via 2");
+        e.setCity("Milano");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addPartecipante(2);
@@ -198,7 +213,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione  3");
         e.setCucina("Cinese");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 3");
+        e.setVia("Via 3");
+        e.setCity("Roma");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -211,7 +227,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione  4");
         e.setCucina("Tedesca");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 4");
+        e.setVia("Via 4");
+        e.setCity("Torino");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addPartecipante(1);
@@ -226,7 +243,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 5");
         e.setCucina("Messicana");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 5");
+        e.setVia("Via 5");
+        e.setCity("Firenze");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -239,7 +257,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 6");
         e.setCucina("Giapponese");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 6");
+        e.setVia("Via 6");
+        e.setCity("Pisa");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addPartecipante(0);
@@ -255,7 +274,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 7");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 7");
+        e.setVia("Via 7");
+        e.setCity("Pisa");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -268,7 +288,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 8");
         e.setCucina("Francese");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 8");
+        e.setVia("Via 8");
+        e.setCity("Cagliari");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -281,7 +302,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 9");
         e.setCucina("Indiana");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 9");
+        e.setVia("Via 9");
+        e.setCity("Cagliari");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addPartecipante(0);
@@ -296,7 +318,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 10");
         e.setCucina("Cinese");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 10");
+        e.setVia("Via 10");
+        e.setCity("Milano");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addPartecipante(1);
@@ -311,7 +334,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 11");
         e.setCucina("Giapponese");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 11");
+        e.setVia("Via 11");
+        e.setCity("Roma");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -324,7 +348,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 12");
         e.setCucina("Tedesca");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 12");
+        e.setVia("Via 12");
+        e.setCity("Firenze");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addPartecipante(0);
@@ -339,7 +364,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 13");
         e.setCucina("Messicana");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 13");
+        e.setVia("Via 13");
+        e.setCity("Roma");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addPartecipante(0);
@@ -354,7 +380,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 14");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.PRANZO);
-        e.setIndirizzo("Via 14");
+        e.setVia("Via 14");
+        e.setCity("Pisa");
         c.set(2018,1,1,12,0);
         e.setData(c);
         e.addPartecipante(1);
@@ -369,7 +396,8 @@ public class EventFactory {
         e.setDescrizione("Descrizione 15");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setIndirizzo("Via 15");
+        e.setVia("Via 15");
+        e.setCity("Roma");
         c.set(2018,1,1,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
