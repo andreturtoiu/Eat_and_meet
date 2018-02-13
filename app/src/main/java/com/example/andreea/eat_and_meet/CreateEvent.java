@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -34,7 +35,6 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_create_events);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
-
 
         Button prosegui = (Button) findViewById(R.id.prosegui);
         //Iscrivo la mainActivity all'evento di click del bottone
@@ -78,11 +78,15 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         });
 
 
-
         toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("Crea Evento");
         ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+
+
+
     }
 
     public void onRadioButtonClicked(View view) {
