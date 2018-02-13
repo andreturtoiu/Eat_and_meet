@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Login_activity"
+            android:name=".LoggedProfile"
             android:label="@string/title_activity_home_page"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
