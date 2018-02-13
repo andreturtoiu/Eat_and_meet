@@ -12,6 +12,7 @@ public class PersonFactory {
 
     private static PersonFactory singleton;
     private ArrayList<Person> listaUtenti = new ArrayList<Person>();
+    private Person loggedUser;
 
     public static PersonFactory getInstance(){
 
@@ -78,6 +79,26 @@ public class PersonFactory {
         return flag;
     }
 
+    public Person getUserByEmail(String email){
 
+        Person person = null;
 
+        for (Person p:listaUtenti){
+            if(p.getEmail().equals(email)) {
+                person=p;
+            }
+
+        }
+        return person;
+
+    }
+
+    public void setLoggedUser(Person p){
+
+        loggedUser = p;
+    }
+
+    public Person getLoggedUser() {
+        return loggedUser;
+    }
 }
