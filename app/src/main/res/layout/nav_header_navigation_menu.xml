@@ -23,6 +23,7 @@
     <TextView
         android:layout_width="233dp"
         android:layout_height="wrap_content"
+        android:id="@+id/name"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Nome Cognome"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
