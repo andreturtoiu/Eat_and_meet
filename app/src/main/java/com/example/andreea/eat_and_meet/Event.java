@@ -19,7 +19,7 @@ public class Event implements Serializable {
     public static final int CENA = 1;
 
     private int id;
-    private int user;
+    private String user;
     private int maxBookings;
     private int pranzo_cena; //0 = pranzo, 1 = cena
     private String titolo;
@@ -29,20 +29,18 @@ public class Event implements Serializable {
     private String via;
     private String city;
     private ArrayList<Integer> foto = new ArrayList<>();
-    private ArrayList<Integer> partecipanti = new ArrayList<>();
+    private ArrayList<String> partecipanti = new ArrayList<>();
 
     public Event(){
         this.setTitolo("");
         this.setDescrizione("");
     }
 
-    public void setId(int id){
-        this.id = id;
-    }
+    public void setId(int id){ this.id = id; }
     public int getId(){ return this.id; }
 
-    public void setUser(int user) { this.user = user; }
-    public int getUser() { return this.user; }
+    public void setUser(String user) { this.user = user; }
+    public String getUser() { return this.user; }
 
     public void setTitolo(String titolo){
         this.titolo = titolo;
@@ -61,10 +59,10 @@ public class Event implements Serializable {
     public void addFoto(int id){ this.foto.add(id); }
     public ArrayList<Integer> getFotoList(){ return this.foto; }
 
-    public void addPartecipante(int user){
+    public void addPartecipante(String user){
         partecipanti.add(user);
     }
-    public ArrayList<Integer> getPartecipanti(){
+    public ArrayList<String> getPartecipanti(){
         return this.partecipanti;
     }
 
@@ -88,15 +86,13 @@ public class Event implements Serializable {
 
     public String getIndirizzo(){ return (this.via+", "+this.city);}
 
-    public boolean isBooked(int userID){
-        for(Integer i:partecipanti)
-            if (i == userID) return true;
+    public boolean isBooked(String userMail){
+        for(String i:partecipanti)
+            if (i.equals(userMail)) return true;
         return false;
     }
 
-    public void unSubscribe(int idUser) {
-        this.partecipanti.remove((Integer) idUser);
-    }
+    public void unSubscribe(String idUser) { this.partecipanti.remove(idUser); }
 
     public void setMaxBookings(int max){
         this.maxBookings = max;
@@ -105,8 +101,8 @@ public class Event implements Serializable {
         return this.maxBookings;
     }
 
-    public void Subscribe(int idUser) {
-        this.partecipanti.add(idUser);
+    public void Subscribe(String userMail) {
+        this.partecipanti.add(userMail);
     }
 
     public boolean isFull(){
