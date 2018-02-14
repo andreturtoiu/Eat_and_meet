@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -35,11 +36,19 @@ public class LoggedProfile  extends AppCompatActivity{
         Calendar birth = loggedUser.getBirthdate();
 
 
+        String strdate = null;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        if (birth != null) {
+            strdate = sdf.format(birth.getTime());
+        }
+
         TextView name = (TextView) findViewById(R.id.nameProfile);
         name.setText(loggedUser.getName()+loggedUser.getSurname());
 
         TextView birthday = (TextView)findViewById(R.id.birthdateProfile);
-        birthday.setText("RISOLVERE");
+        birthday.setText(strdate + "Data sbagliata");
 
         TextView address = (TextView) findViewById(R.id.addressProfile);
         address.setText(loggedUser.getAddress()+"," + loggedUser.getCity());

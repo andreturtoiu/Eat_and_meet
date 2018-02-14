@@ -1,0 +1,233 @@
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision fa3cd1a4b3af12513cc5853966859d71e27a0206)
++++ .idea/modules.xml	(revision )
+@@ -2,7 +2,7 @@
+ <project version="4">
+   <component name="ProjectModuleManager">
+     <modules>
+-      <module fileurl="file://$PROJECT_DIR$/Eat_and_meet.iml" filepath="$PROJECT_DIR$/Eat_and_meet.iml" />
++      <module fileurl="file://$PROJECT_DIR$/Eat_and_Meet.iml" filepath="$PROJECT_DIR$/Eat_and_Meet.iml" />
+       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+     </modules>
+   </component>
+Index: app/src/main/java/com/example/andreea/eat_and_meet/HomePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/andreea/eat_and_meet/HomePage.java	(revision fa3cd1a4b3af12513cc5853966859d71e27a0206)
++++ app/src/main/java/com/example/andreea/eat_and_meet/HomePage.java	(revision )
+@@ -44,22 +44,31 @@
+         setContentView(R.layout.activity_home_page);
+         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         setSupportActionBar(toolbar);
++        Person loggedUser;
++        String emailUser;
+ 
+ 
+         navigationView= (NavigationView) findViewById(R.id.nav_view);
+         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+         View headerview = navigationView.getHeaderView(0);
++
++        emailUser = PersonFactory.getInstance().getLoggedUser();
++        loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
++
++
+         TextView profilename = (TextView) headerview.findViewById(R.id.name);
+-        // profilename.setText("your name") SETTARE IL NOME
++        profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
+ 
+ 
+         headerview.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
++                String email = PersonFactory.getInstance().getLoggedUser();
+                 Intent t1 = new Intent(HomePage.this, LoggedProfile.class);
+                 startActivity(t1);
+             }
+         });
++
+         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+             @Override
+             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+Index: app/src/main/java/com/example/andreea/eat_and_meet/LoggedProfile.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/andreea/eat_and_meet/LoggedProfile.java	(revision fa3cd1a4b3af12513cc5853966859d71e27a0206)
++++ app/src/main/java/com/example/andreea/eat_and_meet/LoggedProfile.java	(revision )
+@@ -1,16 +1,56 @@
+ package com.example.andreea.eat_and_meet;
+ 
++import android.app.Activity;
++import android.content.Intent;
+ import android.os.Bundle;
++import android.support.v4.app.ActivityCompat;
+ import android.support.v7.app.AppCompatActivity;
++import android.widget.RelativeLayout;
++import android.widget.TextView;
++
++import org.w3c.dom.Text;
++
++import java.io.Serializable;
++import java.util.ArrayList;
++import java.util.Calendar;
++
+ 
+ /**
+  * Created by Andreea on 12/02/2018.
+  */
+ 
++
+ public class LoggedProfile  extends AppCompatActivity{
++
++    private String emailUser;
++    private Person loggedUser;
++
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+-        setContentView(R.layout.general_user_profile);
++        setContentView(R.layout.activity_profile);
++
++        emailUser = PersonFactory.getInstance().getLoggedUser();
++        loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
++
++        Calendar birth = loggedUser.getBirthdate();
++
++
++        TextView name = (TextView) findViewById(R.id.nameProfile);
++        name.setText(loggedUser.getName()+loggedUser.getSurname());
++
++        TextView birthday = (TextView)findViewById(R.id.birthdateProfile);
++        birthday.setText("RISOLVERE");
++
++        TextView address = (TextView) findViewById(R.id.addressProfile);
++        address.setText(loggedUser.getAddress()+"," + loggedUser.getCity());
++
++
++        TextView email = (TextView) findViewById(R.id.emailProfile);
++        email.setText(loggedUser.getEmail());
++
++        TextView phone = (TextView) findViewById(R.id.telphoneProfile);
++        phone.setText(loggedUser.getPhoneNumber());
++
+ 
+     }
+ }
+Index: app/src/main/java/com/example/andreea/eat_and_meet/PersonFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/andreea/eat_and_meet/PersonFactory.java	(revision fa3cd1a4b3af12513cc5853966859d71e27a0206)
++++ app/src/main/java/com/example/andreea/eat_and_meet/PersonFactory.java	(revision )
+@@ -52,7 +52,7 @@
+         p = new Person("Riccardo", "Mameli", c, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892");
+         listaUtenti.add(p);
+         //Utente 3
+-        c.set(1995,3, 13);
++        c.set(1995,5, 13);
+         p = new Person("Andreea", "Turtoiu", c, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633");
+         listaUtenti.add(p);
+         //Utente 4
+@@ -101,4 +101,6 @@
+     public String getLoggedUser() {
+         return loggedUser;
+     }
++
++
+ }
+Index: app/src/main/res/layout/activity_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_profile.xml	(revision fa3cd1a4b3af12513cc5853966859d71e27a0206)
++++ app/src/main/res/layout/activity_profile.xml	(revision )
+@@ -29,7 +29,6 @@
+             android:layout_below="@+id/picProfile"
+             android:layout_centerHorizontal="true"
+             android:fontFamily="sans-serif"
+-            android:text="Nome Cognome"
+             android:textColor="@android:color/black"
+             android:textSize="24sp" />
+ 
+@@ -43,7 +42,6 @@
+             android:fontFamily="sans-serif-medium"
+             android:gravity="center"
+             android:lines="2"
+-            android:text="Data di nascita"
+             android:textSize="16sp" />
+ 
+         <TextView
+@@ -54,7 +52,6 @@
+             android:layout_centerHorizontal="true"
+             android:layout_marginBottom="4dp"
+             android:fontFamily="sans-serif-light"
+-            android:text="Indirizzo - Città"
+             android:textSize="16sp" />
+ 
+         <TextView
+@@ -65,7 +62,6 @@
+             android:layout_centerHorizontal="true"
+             android:layout_marginBottom="16dp"
+             android:fontFamily="sans-serif-light"
+-            android:text="Email"
+             android:textSize="16sp" />
+ 
+         <TextView
+@@ -76,7 +72,6 @@
+             android:layout_centerHorizontal="true"
+             android:layout_marginBottom="16dp"
+             android:fontFamily="sans-serif-light"
+-            android:text="Numero di Telefono"
+             android:textSize="16sp" />
+ 
+         <Space
+@@ -102,7 +97,7 @@
+         android:background="@drawable/profile_backgournd"
+         android:elevation="2dp"
+         android:paddingBottom="16dp">
+-
++<!--
+         <RelativeLayout
+             android:id="@+id/aboutYouCont"
+             android:layout_width="match_parent"
+@@ -182,7 +177,7 @@
+ 
+ 
+         </RelativeLayout>
+-
++-->
+     </RelativeLayout>
+ 
+ </android.support.design.widget.CoordinatorLayout>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(revision fa3cd1a4b3af12513cc5853966859d71e27a0206)
++++ app/src/main/res/layout/activity_login.xml	(revision )
+@@ -56,6 +56,7 @@
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:hint="Email"
++                android:text="atur@ium.it"
+                 android:textColor="#000000"
+                 android:background="#f2f2f2"
+                 android:layout_marginStart="15dp"
+@@ -71,6 +72,7 @@
+                 android:layout_width="match_parent"
+                 android:layout_height="40dp"
+                 android:hint="Password"
++                android:text="12_1211"
+                 android:background="#f2f2f2"
+                 android:layout_marginStart="15dp"
+                 android:layout_marginEnd="15dp"
