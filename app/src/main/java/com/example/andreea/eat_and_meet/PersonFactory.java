@@ -52,7 +52,7 @@ public class PersonFactory {
         p = new Person("Riccardo", "Mameli", c, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892");
         listaUtenti.add(p);
         //Utente 3
-        c.set(1995,3, 13);
+        c.set(1995,5, 13);
         p = new Person("Andreea", "Turtoiu", c, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633");
         listaUtenti.add(p);
         //Utente 4
@@ -101,4 +101,6 @@ public class PersonFactory {
     public String getLoggedUser() {
         return loggedUser;
     }
+
+
 }

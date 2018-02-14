@@ -29,7 +29,6 @@
             android:layout_below="@+id/picProfile"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
-            android:text="Nome Cognome"
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
@@ -43,7 +42,6 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:lines="2"
-            android:text="Data di nascita"
             android:textSize="16sp" />
 
         <TextView
@@ -54,7 +52,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="4dp"
             android:fontFamily="sans-serif-light"
-            android:text="Indirizzo - Città"
             android:textSize="16sp" />
 
         <TextView
@@ -65,7 +62,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif-light"
-            android:text="Email"
             android:textSize="16sp" />
 
         <TextView
@@ -76,7 +72,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="16dp"
             android:fontFamily="sans-serif-light"
-            android:text="Numero di Telefono"
             android:textSize="16sp" />
 
         <Space
@@ -102,7 +97,7 @@
         android:background="@drawable/profile_backgournd"
         android:elevation="2dp"
         android:paddingBottom="16dp">
-
+<!--
         <RelativeLayout
             android:id="@+id/aboutYouCont"
             android:layout_width="match_parent"
@@ -182,7 +177,7 @@
 
 
         </RelativeLayout>
-
+-->
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

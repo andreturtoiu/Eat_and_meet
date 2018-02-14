@@ -44,22 +44,31 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Person loggedUser;
+        String emailUser;
 
 
         navigationView= (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         View headerview = navigationView.getHeaderView(0);
+
+        emailUser = PersonFactory.getInstance().getLoggedUser();
+        loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
+
+
         TextView profilename = (TextView) headerview.findViewById(R.id.name);
-        // profilename.setText("your name") SETTARE IL NOME
+        profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
 
 
         headerview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String email = PersonFactory.getInstance().getLoggedUser();
                 Intent t1 = new Intent(HomePage.this, LoggedProfile.class);
                 startActivity(t1);
             }
         });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
