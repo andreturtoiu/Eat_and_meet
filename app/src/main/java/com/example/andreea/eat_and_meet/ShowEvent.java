@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -65,14 +66,17 @@ public class ShowEvent extends AppCompatActivity{
 
         ArrayList<Integer> fotoList = evento.getFotoList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
-
+        int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
+        //for(int i=0;i<10;i++){
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
             ImageView foto = new ImageView(this);
-
+            //foto.setImageResource(R.drawable.logo);
             foto.setImageResource(i);
             //Imposto dimensione
-
-            foto.setLayoutParams(new LinearLayout.LayoutParams(PHOTO_DIM,PHOTO_DIM));
+            foto.setLayoutParams(lp);
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            //foto.setLayoutParams(new LinearLayout.LayoutParams(lp.height, ViewGroup.LayoutParams.MATCH_PARENT));
             ss.addView(foto);
         }
         String source = (String) intent.getSerializableExtra("SOURCE");

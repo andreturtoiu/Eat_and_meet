@@ -35,7 +35,8 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".EditEvent"
-            android:label="Modifica Evento"/>
+            android:label="Modifica Evento"
+            android:parentActivityName=".ShowEvent"/>
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home_page"
