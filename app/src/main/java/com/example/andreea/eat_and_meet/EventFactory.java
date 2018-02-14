@@ -51,7 +51,7 @@ public class EventFactory {
         this.listaEventi.remove(position);
     }
 
-    public void unSubscribeFromEvent(int idEvent,int idUser){
+    public void unSubscribeFromEvent(int idEvent,String idUser){
         for(Event e:listaEventi){
             if (e.getId()==idEvent){
                 e.unSubscribe(idUser);
@@ -59,7 +59,7 @@ public class EventFactory {
         }
     }
 
-    public void SubscribeToEvent(int idEvent,int idUser){
+    public void SubscribeToEvent(int idEvent,String idUser){
         for(Event e:listaEventi){
             if (e.getId()==idEvent){
                 e.Subscribe(idUser);
@@ -80,17 +80,17 @@ public class EventFactory {
         return this.listaEventi;
     }
 
-    public ArrayList<Event> getEventsByUser(int userID){
+    public ArrayList<Event> getEventsByUser(String userID){
         ArrayList<Event> l = new ArrayList<>();
         for(Event e:listaEventi){
-            if (e.getUser() == userID){
+            if (e.getUser().equals(userID)){
                 l.add(e);
             }
         }
         return l;
     }
 
-    public ArrayList<Event> getBookingsByUser(int userID){ //PLACEHOLDER
+    public ArrayList<Event> getBookingsByUser(String userID){
         ArrayList<Event> l = new ArrayList<>();
         for(Event e:listaEventi){
             if (e.isBooked(userID)){
@@ -133,7 +133,7 @@ public class EventFactory {
         //Filtro miei
         ArrayList<Event> filter_final = new ArrayList<Event>();
         for(Event e:filter_free)
-            if(e.getUser()!=0) //Cambiare con utente loggato
+            if(!PersonFactory.getInstance().getLoggedUser().equals(e.getUser()))
                 filter_final.add(e);
         //Ritorno selezione
         return filter_final;
@@ -162,7 +162,7 @@ public class EventFactory {
         Calendar c = Calendar.getInstance();
         //Evento 0
         e = new Event();
-        e.setUser(0);
+        e.setUser("dcont@ium.it");
         e.setTitolo("Evento 0");
         e.setDescrizione("Descrizione 0");
         e.setCucina("Italiana");
@@ -171,14 +171,14 @@ public class EventFactory {
         e.setCity("Roma");
         c.set(2018,1,1,12,0);
         e.setData(c);
-        e.addPartecipante(1);
-        e.addPartecipante(2);
+        e.addPartecipante("rmam@ium.it");
+        e.addPartecipante("atur@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 1
         e = new Event();
-        e.setUser(0);
+        e.setUser("dcont@ium.it");
         e.setTitolo("Evento 1");
         e.setDescrizione("Descrizione 1");
         e.setCucina("Indiana");
@@ -192,7 +192,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 2
         e = new Event();
-        e.setUser(0);
+        e.setUser("dcont@ium.it");
         e.setTitolo("Evento 2");
         e.setDescrizione("Descrizione  2");
         e.setCucina("Francese");
@@ -201,14 +201,14 @@ public class EventFactory {
         e.setCity("Milano");
         c.set(2018,1,1,12,0);
         e.setData(c);
-        e.addPartecipante(2);
-        e.addPartecipante(3);
+        e.addPartecipante("atur@ium.it");
+        e.addPartecipante("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 3
         e = new Event();
-        e.setUser(0);
+        e.setUser("dcont@ium.it");
         e.setTitolo("Evento 3");
         e.setDescrizione("Descrizione  3");
         e.setCucina("Cinese");
@@ -222,7 +222,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 4
         e = new Event();
-        e.setUser(0);
+        e.setUser("dcont@ium.it");
         e.setTitolo("Evento 4");
         e.setDescrizione("Descrizione  4");
         e.setCucina("Tedesca");
@@ -231,14 +231,14 @@ public class EventFactory {
         e.setCity("Torino");
         c.set(2018,1,1,12,0);
         e.setData(c);
-        e.addPartecipante(1);
-        e.addPartecipante(3);
+        e.addPartecipante("rmam@ium.it");
+        e.addPartecipante("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 5
         e = new Event();
-        e.setUser(1);
+        e.setUser("rmam@ium.it");
         e.setTitolo("Evento 5");
         e.setDescrizione("Descrizione 5");
         e.setCucina("Messicana");
@@ -252,7 +252,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 6
         e = new Event();
-        e.setUser(1);
+        e.setUser("rmam@ium.it");
         e.setTitolo("Evento 6");
         e.setDescrizione("Descrizione 6");
         e.setCucina("Giapponese");
@@ -261,15 +261,15 @@ public class EventFactory {
         e.setCity("Pisa");
         c.set(2018,1,1,12,0);
         e.setData(c);
-        e.addPartecipante(0);
-        e.addPartecipante(2);
-        e.addPartecipante(3);
+        e.addPartecipante("dcont@ium.it");
+        e.addPartecipante("atur@ium.it");
+        e.addPartecipante("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 7
         e = new Event();
-        e.setUser(1);
+        e.setUser("rmam@ium.it");
         e.setTitolo("Evento 7");
         e.setDescrizione("Descrizione 7");
         e.setCucina("Italiana");
@@ -283,7 +283,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 8
         e = new Event();
-        e.setUser(2);
+        e.setUser("atur@ium.it");
         e.setTitolo("Evento 8");
         e.setDescrizione("Descrizione 8");
         e.setCucina("Francese");
@@ -297,7 +297,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 9
         e = new Event();
-        e.setUser(2);
+        e.setUser("atur@ium.it");
         e.setTitolo("Evento 9");
         e.setDescrizione("Descrizione 9");
         e.setCucina("Indiana");
@@ -306,14 +306,14 @@ public class EventFactory {
         e.setCity("Cagliari");
         c.set(2018,1,1,19,0);
         e.setData(c);
-        e.addPartecipante(0);
-        e.addPartecipante(3);
+        e.addPartecipante("dcont@ium.it");
+        e.addPartecipante("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 10
         e = new Event();
-        e.setUser(2);
+        e.setUser("atur@ium.it");
         e.setTitolo("Evento 10");
         e.setDescrizione("Descrizione 10");
         e.setCucina("Cinese");
@@ -322,14 +322,14 @@ public class EventFactory {
         e.setCity("Milano");
         c.set(2018,1,1,12,0);
         e.setData(c);
-        e.addPartecipante(1);
-        e.addPartecipante(3);
+        e.addPartecipante("rmam@ium.it");
+        e.addPartecipante("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 11
         e = new Event();
-        e.setUser(2);
+        e.setUser("atur@ium.it");
         e.setTitolo("Evento 11");
         e.setDescrizione("Descrizione 11");
         e.setCucina("Giapponese");
@@ -343,7 +343,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 12
         e = new Event();
-        e.setUser(2);
+        e.setUser("atur@ium.it");
         e.setTitolo("Evento 12");
         e.setDescrizione("Descrizione 12");
         e.setCucina("Tedesca");
@@ -352,14 +352,14 @@ public class EventFactory {
         e.setCity("Firenze");
         c.set(2018,1,1,12,0);
         e.setData(c);
-        e.addPartecipante(0);
-        e.addPartecipante(1);
+        e.addPartecipante("dcont@ium.it");
+        e.addPartecipante("rmam@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 13
         e = new Event();
-        e.setUser(3);
+        e.setUser("msta@ium.it");
         e.setTitolo("Evento 13");
         e.setDescrizione("Descrizione 13");
         e.setCucina("Messicana");
@@ -368,14 +368,14 @@ public class EventFactory {
         e.setCity("Roma");
         c.set(2018,1,1,19,0);
         e.setData(c);
-        e.addPartecipante(0);
-        e.addPartecipante(2);
+        e.addPartecipante("dcont@ium.it");
+        e.addPartecipante("atur@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 14
         e = new Event();
-        e.setUser(3);
+        e.setUser("msta@ium.it");
         e.setTitolo("Evento 14");
         e.setDescrizione("Descrizione 14");
         e.setCucina("Italiana");
@@ -384,14 +384,14 @@ public class EventFactory {
         e.setCity("Pisa");
         c.set(2018,1,1,12,0);
         e.setData(c);
-        e.addPartecipante(1);
-        e.addPartecipante(3);
+        e.addPartecipante("rmam@ium.it");
+        e.addPartecipante("atur@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 15
         e = new Event();
-        e.setUser(3);
+        e.setUser("msta@ium.it");
         e.setTitolo("Evento 15");
         e.setDescrizione("Descrizione 15");
         e.setCucina("Italiana");

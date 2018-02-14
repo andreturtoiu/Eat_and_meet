@@ -21,7 +21,8 @@ public class MyEvents extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View myBookings = LayoutInflater.from(getActivity()).inflate(R.layout.activity_event_list, null);
-        ArrayList<Event> eventi = EventFactory.getInstance().getEventsByUser(0); //INSERIRE VARIABILE GLOBALE UTENTE
+        String logged_user = PersonFactory.getInstance().getLoggedUser();
+        ArrayList<Event> eventi = EventFactory.getInstance().getEventsByUser(logged_user); //INSERIRE VARIABILE GLOBALE UTENTE
         LinearLayout ll = myBookings.findViewById(R.id.event_container);
         for(Event e : eventi){
             //Genero Layout Evento
