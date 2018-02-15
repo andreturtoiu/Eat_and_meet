@@ -1,16 +1,23 @@
 package com.example.andreea.eat_and_meet;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Michele on 08/02/2018.
@@ -19,6 +26,9 @@ import java.util.ArrayList;
 public class EditEvent extends AppCompatActivity {
     Event evento;
     EditText info;
+
+    DatePickerDialog datePickerDialog;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_event);
@@ -40,8 +50,11 @@ public class EditEvent extends AppCompatActivity {
         TextView partecipanti = (TextView) findViewById(R.id.IscrittiId);
         partecipanti.setText(evento.getPartecipanti().size()+"");
         TextView data = (TextView) findViewById(R.id.DataId);
-        data.setText(evento.getData());
-
+        data.setText(evento.showDateOnly());
+        data.setOnClickListener(new EditDate());
+        TextView time = (TextView) findViewById(R.id.TimeId);
+        time.setText(evento.showTimeOnly());
+        time.setOnClickListener(new EditTime());
         findViewById(R.id.ConfirmEditButton).setOnClickListener(new ConfirmBtn());
         findViewById(R.id.AbortEditButton).setOnClickListener(new AbortBtn());
 
@@ -59,6 +72,54 @@ public class EditEvent extends AppCompatActivity {
     }
     class ConfirmBtn implements View.OnClickListener {
         public void onClick(View v) {
+            final String loggedUser = PersonFactory.getInstance().getLoggedUser();
+            if(!evento.isTimeValid()){
+                //errore non valido
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(EditEvent.this);
+                builder1.setMessage("Gli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
+                builder1.setCancelable(true);
+                builder1.setNegativeButton(
+                        "Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+                return;
+            }
+            final Event e = EventFactory.getInstance().isDateReserved(evento,loggedUser);
+            if(e != null){
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(EditEvent.this);
+                builder1.setMessage("Hai già un impegno per l'evento: "+e.getTitolo());
+                builder1.setCancelable(false);
+                builder1.setPositiveButton(
+                        "Mostra Evento",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(EditEvent.this,ShowEvent.class);
+                                String loggedUser = PersonFactory.getInstance().getLoggedUser();
+                                intent.putExtra("EVENT_EXTRA",e);
+                                startActivity(intent);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+                return;
+            }
+
             Intent intent = new Intent(EditEvent.this, ShowEvent.class);
             evento.setDescrizione(info.getText().toString());
             EventFactory.getInstance().editEvent(evento);
@@ -75,6 +136,59 @@ public class EditEvent extends AppCompatActivity {
 
         }
     }
+
+    class EditDate implements  View.OnClickListener{
+        public void onClick(View v){
+            //Mi prendo l'ora attuale
+            final Calendar c = evento.getDataCalendar();
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            int month = c.get(Calendar.MONTH);
+            int year = c.get(Calendar.YEAR);
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+            //Creo una dialog per prendere l'ora impostandogli l'ora attuale e iscrivendo
+            //la main activity all'evento di pick dell'ora
+            datePickerDialog = new DatePickerDialog(EditEvent.this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+                            TextView date = (TextView) findViewById(R.id.DataId);
+                            // set day of month , month and year value in the edit text
+                            date.setText(dayOfMonth + "/"
+                                    + (monthOfYear + 1) + "/" + year);
+                            int hour = c.get(Calendar.HOUR_OF_DAY);
+                            int minute = c.get(Calendar.MINUTE);
+                            evento.setData(year,monthOfYear,dayOfMonth,hour,minute);
+                        }
+                    }, year, month, day);
+            datePickerDialog.show();
+        }
+    }
+
+    class EditTime implements TimePickerDialog.OnTimeSetListener, View.OnClickListener{
+        public void onClick(View v){
+            final Calendar c = evento.getDataCalendar();
+            int hour = c.get(Calendar.HOUR_OF_DAY);
+            int minute = c.get(Calendar.MINUTE);
+            //Creo una dialog per prendere l'ora impostandogli l'ora attuale e iscrivendo
+            //la main activity all'evento di pick dell'ora
+            TimePickerDialog dialog = new TimePickerDialog(EditEvent.this, this, hour, minute, true);
+            dialog.show();
+        }
+        public void onTimeSet(TimePicker timepicker, int hour, int minutes){
+            int day = evento.getDataCalendar().get(Calendar.DAY_OF_MONTH);
+            int month = evento.getDataCalendar().get(Calendar.MONTH);
+            int year = evento.getDataCalendar().get(Calendar.YEAR);
+            TextView textView = (TextView) findViewById(R.id.TimeId);
+            textView.setText(String.format("%d:%d", hour, minutes));
+            evento.setData(year,month,day,hour,minutes);
+
+        }
+    }
+
+
 
 
 }

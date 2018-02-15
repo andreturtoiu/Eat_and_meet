@@ -100,6 +100,28 @@ public class EventFactory {
         return l;
     }
 
+    public Event isDateReserved(Event e,String email){
+
+        int day = e.getDataCalendar().get(Calendar.DAY_OF_MONTH);
+        int month = e.getDataCalendar().get(Calendar.MONTH);
+        int year = e.getDataCalendar().get(Calendar.YEAR);
+        //Verifico che l'utente non abbia eventi in quella data per pranzo_cena
+        for(Event ev:this.listaEventi){
+            int d = ev.getDataCalendar().get(Calendar.DAY_OF_MONTH);
+            int m = ev.getDataCalendar().get(Calendar.MONTH);
+            int y = ev.getDataCalendar().get(Calendar.YEAR);
+            //Controllo se sono nello stesso giorno
+            if(day == d && month == m && year == y && e.getPranzo_cena() == ev.getPranzo_cena() && e.getId() != ev.getId()){
+                //Controllo l'organizzatore
+                if (ev.getUser().equals(email)) return ev;
+                //Controllo i partecipanti
+                if (ev.getPartecipanti().contains(email)) return ev;
+            }
+        }
+
+        return null;
+    }
+
     public ArrayList<Event> searchEventsByFilter(String cucina,String citta,int pranzo_cena){
         ArrayList<Event> filter_cucina = new ArrayList<Event>();
         ArrayList<Event> filter_citta = new ArrayList<Event>();
@@ -168,7 +190,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 0");
         e.setCity("Roma");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,1,12,0);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -177,6 +199,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 1
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 1");
         e.setDescrizione("Descrizione 1");
@@ -184,13 +207,14 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 1");
         e.setCity("Cagliari");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,2,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 2
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 2");
         e.setDescrizione("Descrizione  2");
@@ -198,7 +222,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 2");
         e.setCity("Milano");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,3,12,0);
         e.setData(c);
         e.addPartecipante("atur@ium.it");
         e.addPartecipante("msta@ium.it");
@@ -207,6 +231,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 3
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 3");
         e.setDescrizione("Descrizione  3");
@@ -214,13 +239,14 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 3");
         e.setCity("Roma");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,4,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 4
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 4");
         e.setDescrizione("Descrizione  4");
@@ -228,7 +254,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 4");
         e.setCity("Torino");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,5,12,0);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("msta@ium.it");
@@ -237,6 +263,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 5
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("rmam@ium.it");
         e.setTitolo("Evento 5");
         e.setDescrizione("Descrizione 5");
@@ -244,13 +271,14 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 5");
         e.setCity("Firenze");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,6,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 6
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("rmam@ium.it");
         e.setTitolo("Evento 6");
         e.setDescrizione("Descrizione 6");
@@ -258,7 +286,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 6");
         e.setCity("Pisa");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,7,12,0);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -268,6 +296,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 7
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("rmam@ium.it");
         e.setTitolo("Evento 7");
         e.setDescrizione("Descrizione 7");
@@ -275,13 +304,14 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 7");
         e.setCity("Pisa");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,8,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 8
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("atur@ium.it");
         e.setTitolo("Evento 8");
         e.setDescrizione("Descrizione 8");
@@ -289,13 +319,14 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 8");
         e.setCity("Cagliari");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,9,12,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 9
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("atur@ium.it");
         e.setTitolo("Evento 9");
         e.setDescrizione("Descrizione 9");
@@ -303,7 +334,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 9");
         e.setCity("Cagliari");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,10,19,0);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("msta@ium.it");
@@ -312,6 +343,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 10
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("atur@ium.it");
         e.setTitolo("Evento 10");
         e.setDescrizione("Descrizione 10");
@@ -319,7 +351,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 10");
         e.setCity("Milano");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,11,12,0);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("msta@ium.it");
@@ -328,6 +360,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 11
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("atur@ium.it");
         e.setTitolo("Evento 11");
         e.setDescrizione("Descrizione 11");
@@ -335,13 +368,14 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 11");
         e.setCity("Roma");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,12,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 12
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("atur@ium.it");
         e.setTitolo("Evento 12");
         e.setDescrizione("Descrizione 12");
@@ -349,7 +383,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 12");
         e.setCity("Firenze");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,13,12,0);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("rmam@ium.it");
@@ -358,6 +392,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 13
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("msta@ium.it");
         e.setTitolo("Evento 13");
         e.setDescrizione("Descrizione 13");
@@ -365,7 +400,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 13");
         e.setCity("Roma");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,14,19,0);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -374,6 +409,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 14
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("msta@ium.it");
         e.setTitolo("Evento 14");
         e.setDescrizione("Descrizione 14");
@@ -381,7 +417,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 14");
         e.setCity("Pisa");
-        c.set(2018,1,1,12,0);
+        c.set(2018,3,15,12,0);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -390,6 +426,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 15
         e = new Event();
+        c = Calendar.getInstance();
         e.setUser("msta@ium.it");
         e.setTitolo("Evento 15");
         e.setDescrizione("Descrizione 15");
@@ -397,7 +434,7 @@ public class EventFactory {
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via 15");
         e.setCity("Roma");
-        c.set(2018,1,1,19,0);
+        c.set(2018,3,16,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
