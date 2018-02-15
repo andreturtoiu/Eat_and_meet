@@ -1,14 +1,6 @@
 package com.example.andreea.eat_and_meet;
 
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -16,7 +8,7 @@ import java.util.Calendar;
  * Created by Quontini on 12/02/2018.
  */
 
-public class PersonFactory{
+public class PersonFactory {
 
     private static PersonFactory singleton;
     private ArrayList<Person> listaUtenti = new ArrayList<Person>();
@@ -52,57 +44,28 @@ public class PersonFactory{
         Person p;
         Calendar c = Calendar.getInstance();
         c.set(1994,1, 3);
-        ArrayList<RatingLoggedProfile> r = new ArrayList<RatingLoggedProfile>();
-        r.add(new RatingLoggedProfile("rmam@ium.it", "Testo Esperienza1", 3));
-        r.add(new RatingLoggedProfile("atur@ium.it", "Testo Esperienza2", 5));
         //Utente 1
-        p = new Person("Davide", "Contini", c, "pippopop", "dcont@ium.it", "Via Garibaldi 121", "Santa Giusta", "3485595491",r);
+        p = new Person("Davide", "Contini", c, "pippopop", "dcont@ium.it", "Via Garibaldi 121", "Santa Giusta", "3485595491");
         listaUtenti.add(p);
-
         //Utente 2
-        ArrayList<RatingLoggedProfile> r1 = new ArrayList<RatingLoggedProfile>();
-        r1.add(new RatingLoggedProfile("ajon@ium.it", "Testo Esperienza1", 3));
-        r1.add(new RatingLoggedProfile("dcont@ium.it", "Testo Esperienza2", 4));
-        Calendar c1 = Calendar.getInstance();
-        c1.set(1996,8, 30);
-        p = new Person("Riccardo", "Mameli", c1, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892",r1);
+        c.set(1996,8, 30);
+        p = new Person("Riccardo", "Mameli", c, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892");
         listaUtenti.add(p);
         //Utente 3
-
-        ArrayList<RatingLoggedProfile> r2 = new ArrayList<RatingLoggedProfile>();
-        r2.add(new RatingLoggedProfile("ajon@ium.it", "Testo Esperienza1", 3));
-        r2.add(new RatingLoggedProfile("msta@ium.it", "Testo Esperienza2", 4));
-        Calendar c2 = Calendar.getInstance();
-        c2.set(1995,5, 13);
-        p = new Person("Andreea", "Turtoiu", c2, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633",r2);
+        c.set(1995,5, 13);
+        p = new Person("Andreea", "Turtoiu", c, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633");
         listaUtenti.add(p);
-
         //Utente 4
-        ArrayList<RatingLoggedProfile> r3 = new ArrayList<RatingLoggedProfile>();
-        r3.add(new RatingLoggedProfile("ajon@ium.it", "Testo Esperienza1", 3));
-        r3.add(new RatingLoggedProfile("dcont@ium.it", "Testo Esperienza2", 5));
-        Calendar c3 = Calendar.getInstance();
-        c3.set(1989,7, 24);
-        p = new Person("Michele", "Staffiere", c3, "Ert453", "msta@ium.it", "Via Vai 67", "Cagliari", "3333233231",r3);
+        c.set(1989,7, 24);
+        p = new Person("Michele", "Staffiere", c, "Ert453", "msta@ium.it", "Via Vai 67", "Cagliari", "3333233231");
         listaUtenti.add(p);
-
         //Utente 5
-        ArrayList<RatingLoggedProfile> r4 = new ArrayList<RatingLoggedProfile>();
-        r4.add(new RatingLoggedProfile("ajon@ium.it", "Testo Esperienza1", 3));
-        r4.add(new RatingLoggedProfile("msta@ium.it", "Testo Esperienza2", 4));
-        Calendar c4 = Calendar.getInstance();
-        c4.set(1999,10, 4);
-        p = new Person("Tizio", "Caio", c4, "Ca_t1zio", "tcai@ium.it", "Via Fasulla 123", "Carbonia", "34411231313",r4);
+        c.set(1999,10, 4);
+        p = new Person("Tizio", "Caio", c, "Ca_t1zio", "tcai@ium.it", "Via Fasulla 123", "Carbonia", "34411231313");
         listaUtenti.add(p);
-
-
         //Utente 6
-        ArrayList<RatingLoggedProfile> r5 = new ArrayList<RatingLoggedProfile>();
-        r5.add(new RatingLoggedProfile("ajon@ium.it", "Testo Esperienza1", 3));
-        r5.add(new RatingLoggedProfile("msta@ium.it", "Testo Esperienza2", 4));
-        Calendar c5 = Calendar.getInstance();
-        c5.set(1980,11, 21);
-        p = new Person("Aldo", "Jones", c5, "SkyLab", "ajon@ium.it", "Via Washinton 53", "Pizzo Calabro", "577590838",r5);
+        c.set(1980,11, 21);
+        p = new Person("Aldo", "Jones", c, "SkyLab", "ajon@ium.it", "Via Washinton 53", "Pizzo Calabro", "577590838");
         listaUtenti.add(p);
     }
 

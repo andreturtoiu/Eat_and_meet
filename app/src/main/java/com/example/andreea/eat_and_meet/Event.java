@@ -70,10 +70,27 @@ public class Event implements Serializable {
     public void setCucina(String cucina) { this.cucina = cucina; }
 
     public String getData() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
         return sdf.format(this.data.getTime());
     }
+
+    public String showDateOnly() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(this.data.getTime());
+    }
+
+    public String showTimeOnly(){
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        return sdf.format(this.data.getTime());
+    }
+
+    public Calendar getDataCalendar(){ return this.data; }
+
     public void setData(Calendar data) { this.data = data; }
+    public void setData(int year,int month, int day, int hour, int min){
+        this.data = Calendar.getInstance();
+        this.data.set(year,month,day,hour,min);
+    }
 
     public int getPranzo_cena() {return this.pranzo_cena;}
     public void setPranzo_cena(int pranzo_cena){this.pranzo_cena = pranzo_cena;}
@@ -108,5 +125,22 @@ public class Event implements Serializable {
     public boolean isFull(){
         return !(this.partecipanti.size() < maxBookings);
     }
+
+    public boolean isTimeValid(){
+        int hour = this.data.get(Calendar.HOUR_OF_DAY);
+        int minute = this.data.get(Calendar.MINUTE);
+        int orario = (hour*100) + minute;
+        int minPranzo = 1100; int maxPranzo = 1600;
+        int minCena = 1700; int maxCena = 2200;
+
+        switch(this.pranzo_cena){
+            case PRANZO:
+                return (minPranzo <= orario) && (orario <= maxPranzo);
+            case CENA:
+                return (minCena <= orario) && (orario <= maxCena);
+        }
+        return false;
+    }
+
 }
 
