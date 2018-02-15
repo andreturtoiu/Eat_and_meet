@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -65,32 +66,35 @@ public class ShowEvent extends AppCompatActivity{
 
         ArrayList<Integer> fotoList = evento.getFotoList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
-
+        int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
+        //for(int i=0;i<10;i++){
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
             ImageView foto = new ImageView(this);
-
+            //foto.setImageResource(R.drawable.logo);
             foto.setImageResource(i);
             //Imposto dimensione
-
-            foto.setLayoutParams(new LinearLayout.LayoutParams(PHOTO_DIM,PHOTO_DIM));
+            foto.setLayoutParams(lp);
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            //foto.setLayoutParams(new LinearLayout.LayoutParams(lp.height, ViewGroup.LayoutParams.MATCH_PARENT));
             ss.addView(foto);
         }
         String source = (String) intent.getSerializableExtra("SOURCE");
         Button btn = (Button) new Button(this);
-
-        if(evento.getUser() == 0) { // Sono il proprietario. Cambiare "0" con "logged_User"
+        final String logged_user = PersonFactory.getInstance().getLoggedUser();
+        if(evento.getUser().equals(logged_user)) { // Sono il proprietario
             btn.setText("Mostra Partecipanti");
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(ShowEvent.this,ShowBookedUsersList.class);
-                    intent.putExtra("BOOKED_USERS",evento.getPartecipanti());
+                    intent.putExtra("EVENT_EXTRA",evento);
                     startActivity(intent);
                 }
             });
         }
         else {
-            if (evento.isBooked(0)){                //Sono iscritto. Voglio annullare
+            if (evento.isBooked(logged_user)){                //Sono iscritto. Voglio annullare
                 btn.setText("Annulla Iscrizione");
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -103,7 +107,7 @@ public class ShowEvent extends AppCompatActivity{
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Intent intent = new Intent(ShowEvent.this,HomePage.class);
-                                        EventFactory.getInstance().unSubscribeFromEvent(evento.getId(),0); //GLOBALE
+                                        EventFactory.getInstance().unSubscribeFromEvent(evento.getId(),logged_user); //GLOBALE
                                         startActivity(intent);
 
                                         dialog.cancel();
@@ -140,7 +144,7 @@ public class ShowEvent extends AppCompatActivity{
                                 new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         Intent intent = new Intent(ShowEvent.this,HomePage.class);
-                                        EventFactory.getInstance().SubscribeToEvent(evento.getId(),0); //GLOBALE
+                                        EventFactory.getInstance().SubscribeToEvent(evento.getId(),logged_user); //GLOBALE
                                         startActivity(intent);
 
                                         dialog.cancel();
@@ -169,7 +173,8 @@ public class ShowEvent extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        if(evento.getUser() == 0)
+        String logged_user = PersonFactory.getInstance().getLoggedUser();
+        if(evento.getUser().equals(logged_user))
             getMenuInflater().inflate(R.menu.menu_show_events, menu);
         return true;
     }

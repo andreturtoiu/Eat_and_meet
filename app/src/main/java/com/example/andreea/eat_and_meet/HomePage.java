@@ -25,7 +25,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomePage extends AppCompatActivity {
 
@@ -33,6 +36,7 @@ public class HomePage extends AppCompatActivity {
     NavigationView navigationView;
     FragmentManager FM;
     FragmentTransaction FT;
+    LinearLayout pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +44,30 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        Person loggedUser;
+        String emailUser;
 
 
         navigationView= (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        View headerview = navigationView.getHeaderView(0);
+
+        emailUser = PersonFactory.getInstance().getLoggedUser();
+        loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
 
 
+        TextView profilename = (TextView) headerview.findViewById(R.id.name);
+        profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
+
+
+        headerview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = PersonFactory.getInstance().getLoggedUser();
+                Intent t1 = new Intent(HomePage.this, LoggedProfile.class);
+                startActivity(t1);
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -68,10 +90,6 @@ public class HomePage extends AppCompatActivity {
                         } else if (item.getItemId() == R.id.logout) {
                                 Intent t = new Intent(HomePage.this, Login_activity.class);
                                 startActivity(t);
-                        }else if (item.getItemId() == R.id.imageView){
-                            Intent t = new Intent (HomePage.this, LoggedProfile.class);
-                            startActivity(t);
-
                         }
 
                             return false;
@@ -117,7 +135,9 @@ public class HomePage extends AppCompatActivity {
 
 
     }
-    
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -156,4 +176,7 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
+
 }
+
+

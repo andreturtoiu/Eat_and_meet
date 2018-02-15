@@ -31,10 +31,12 @@
             android:name=".ShowEvent"
             android:label="Descrizione Evento"
             android:parentActivityName=".HomePage"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".EditEvent"
-            android:label="Modifica Evento"/>
+            android:label="Modifica Evento"
+            android:parentActivityName=".ShowEvent"/>
         <activity
             android:name=".HomePage"
             android:label="@string/title_activity_home_page"
@@ -62,7 +64,8 @@
         </activity>
         <activity
             android:name=".ShowBookedUsersList"
-            android:label="Partecipanti" />
+            android:label="Partecipanti"
+            android:parentActivityName=".ShowEvent"/>
 
     </application>
 
