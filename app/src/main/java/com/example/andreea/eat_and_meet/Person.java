@@ -2,6 +2,14 @@ package com.example.andreea.eat_and_meet;
 
 
 
+import android.content.Context;
+
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,7 +28,6 @@ public class Person implements Serializable {
     private String address;
     private String city;
     private String phoneNumber;
-    private int foto;
 
 
     public Person(){
@@ -35,7 +42,7 @@ public class Person implements Serializable {
 
     }
 
-    public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,String  phoneNumber, int foto){
+    public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,String  phoneNumber){
 
         this.setName(name);
         this.setSurname(surname);
@@ -45,7 +52,6 @@ public class Person implements Serializable {
         this.setAddress(address);
         this.setCity(city);
         this.setPhoneNumber(phoneNumber);
-        this.setFoto(foto);
 
     }
 
@@ -111,7 +117,42 @@ public class Person implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public void setFoto(int foto) { this.foto=foto; }
+    public static void saveSerializable(Context context, Person person, String fileName) {
+        try {
+            FileOutputStream fileOutputStream = context.openFileOutput(fileName, Context.MODE_APPEND);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-    public int getFoto() { return foto; }
+            objectOutputStream.writeObject(person);
+
+            objectOutputStream.close();
+            fileOutputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Person> readSerializable(Context context, String fileName) {
+        ArrayList<Person> registeredUsers =  new ArrayList<>();
+        Person person;
+
+        try {
+
+            FileInputStream fileInputStream = context.openFileInput(fileName);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            person = (Person) objectInputStream.readObject();
+            while (person != null) {
+                registeredUsers.add(person);
+                person = (Person) objectInputStream.readObject();
+            }
+
+            objectInputStream.close();
+            fileInputStream.close();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return registeredUsers;
+    }
+
+
 }
