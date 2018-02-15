@@ -54,10 +54,11 @@ public class ShowBookedUsersList extends AppCompatActivity {
         name.setText(p.getName()+" "+p.getSurname());
         name.setId(View.generateViewId());
         delete.setId(View.generateViewId());
-        photo.setImageResource(R.drawable.ic_menu_camera);
+        photo.setImageResource(p.getFoto());
         photo.setId(View.generateViewId());
         eventView.setId(View.generateViewId());
         //Aggiungo listener
+        photo.setOnClickListener(new ShowProfile(p.getEmail()));
         delete.setOnClickListener(new RemoveUser(p.getEmail()));
         return eventView;
     }
