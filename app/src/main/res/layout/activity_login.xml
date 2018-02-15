@@ -53,37 +53,36 @@
                 />
 
             <AutoCompleteTextView
+                android:id="@+id/userEmail"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:background="#f2f2f2"
+                android:drawableLeft="@drawable/ic_user_icon"
+                android:drawablePadding="5dp"
                 android:hint="Email"
+                android:paddingStart="10dp"
                 android:text="atur@ium.it"
                 android:textColor="#000000"
-                android:background="#f2f2f2"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:drawableLeft="@drawable/ic_user_icon"
-                android:textSize="14sp"
-                android:drawablePadding="5dp"
-                android:paddingStart="10dp"
-                android:id="@+id/userEmail"
-                android:layout_marginBottom="10dp"
-                />
+                android:textSize="14sp" />
+
             <AutoCompleteTextView
+                android:id="@+id/userPassword"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:hint="Password"
-                android:text="12_1211"
-                android:background="#f2f2f2"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:drawableLeft="@drawable/ic_pass_icon"
-                android:textSize="14sp"
-                android:drawablePadding="5dp"
-                android:paddingStart="10dp"
-                android:inputType="textPassword"
-                android:id="@+id/userPassword"
                 android:layout_marginBottom="10dp"
-                />
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:background="#f2f2f2"
+                android:drawableLeft="@drawable/ic_pass_icon"
+                android:drawablePadding="5dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:text="12_1211"
+                android:textSize="14sp" />
 
             <Button
                 android:layout_width="wrap_content"

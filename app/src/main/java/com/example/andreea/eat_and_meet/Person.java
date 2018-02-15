@@ -28,6 +28,7 @@ public class Person implements Serializable {
     private String address;
     private String city;
     private String phoneNumber;
+    private ArrayList<RatingLoggedProfile> ratings;
 
 
     public Person(){
@@ -39,10 +40,12 @@ public class Person implements Serializable {
         this.setAddress("");
         this.setCity("");
         this.setPhoneNumber("");
+        this.setRatings(null);
 
     }
 
-    public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,String  phoneNumber){
+    public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,
+                  String  phoneNumber, ArrayList<RatingLoggedProfile> ratingsList){
 
         this.setName(name);
         this.setSurname(surname);
@@ -52,6 +55,7 @@ public class Person implements Serializable {
         this.setAddress(address);
         this.setCity(city);
         this.setPhoneNumber(phoneNumber);
+        this.setRatings(ratingsList);
 
     }
 
@@ -116,6 +120,11 @@ public class Person implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public ArrayList<RatingLoggedProfile> getRatings(){ return this.ratings;}
+
+    public void setRatings(ArrayList<RatingLoggedProfile> ratings){this.ratings = ratings;}
+
 
     public static void saveSerializable(Context context, Person person, String fileName) {
         try {

@@ -39,7 +39,7 @@
             android:layout_below="@id/nameProfile"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-light"
             android:gravity="center"
             android:lines="2"
             android:textSize="16sp" />
@@ -86,98 +86,64 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="340dp"
-        android:layout_height="266dp"
+        android:layout_width="365dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/descriptionProfile"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="315dp"
+        android:layout_marginTop="325dp"
         android:background="@drawable/profile_backgournd"
         android:elevation="2dp"
         android:paddingBottom="16dp">
-<!--
+
+
         <RelativeLayout
-            android:id="@+id/aboutYouCont"
+            android:id="@+id/aboutYouRect"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="70dp">
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#BDBDBD" />
-
-            <ImageView
-                android:id="@+id/otherUser"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/utente1" />
-
-            <RatingBar
-                android:id="@+id/ratingBarUser"
-                style="@style/Widget.AppCompat.RatingBar.Indicator"
-                android:layout_width="175dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/view"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="9dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="1.0" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true">
 
             <TextView
-                android:id="@+id/contentRating"
+                android:id="@+id/aboutYou"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/otherUser"
-                android:layout_marginTop="14dp"
-                android:text="sdkfdjvsasdkjkljdkadjksjf"
-                android:textColor="#000" />
-
-            <RelativeLayout
-                android:id="@+id/aboutYouRect"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/ratingBarUser"
-                android:layout_alignParentStart="true">
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:fontFamily="sans-serif"
+                android:text="Dicono su di te"
+                android:textColor="@android:color/black"
+                android:textSize="20dp" />
 
-                <TextView
-                    android:id="@+id/aboutYou"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:fontFamily="sans-serif"
-                    android:text="Dicono su di te"
-                    android:textColor="@android:color/black"
-                    android:textSize="20dp" />
-
-                <RatingBar
-                    android:id="@+id/ratingBarGeneral"
-                    style="@android:style/Widget.Material.RatingBar.Indicator"
-                    android:layout_width="175dp"
-                    android:layout_height="50dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginTop="7dp"
-                    android:isIndicator="true"
-                    android:numStars="5"
-                    android:rating="3"
-                    android:stepSize="1.0" />
-
-
-            </RelativeLayout>
+            <RatingBar
+                android:id="@+id/ratingBarGeneral"
+                style="@android:style/Widget.Material.RatingBar.Indicator"
+                android:layout_width="175dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="7dp"
+                android:isIndicator="true" />
 
 
         </RelativeLayout>
--->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/aboutYouContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="70dp">
+
+        </LinearLayout>
+        </ScrollView>
+
     </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>
