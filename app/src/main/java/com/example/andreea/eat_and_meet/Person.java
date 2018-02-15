@@ -3,6 +3,7 @@ package com.example.andreea.eat_and_meet;
 
 
 import android.content.Context;
+import android.widget.RatingBar;
 
 
 import java.io.FileInputStream;
@@ -28,6 +29,8 @@ public class Person implements Serializable {
     private String address;
     private String city;
     private String phoneNumber;
+    private ArrayList<RatingLoggedProfile> ratings;
+    private int foto;
 
 
     public Person(){
@@ -39,10 +42,13 @@ public class Person implements Serializable {
         this.setAddress("");
         this.setCity("");
         this.setPhoneNumber("");
+        this.ratings = new ArrayList<RatingLoggedProfile>(0);
+
 
     }
 
-    public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,String  phoneNumber){
+    public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,
+                  String  phoneNumber, ArrayList<RatingLoggedProfile> ratingsList, int foto){
 
         this.setName(name);
         this.setSurname(surname);
@@ -52,7 +58,8 @@ public class Person implements Serializable {
         this.setAddress(address);
         this.setCity(city);
         this.setPhoneNumber(phoneNumber);
-
+        this.setRatings(ratingsList);
+        this.setFoto(foto);
     }
 
     public String getName() {
@@ -117,42 +124,15 @@ public class Person implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public static void saveSerializable(Context context, Person person, String fileName) {
-        try {
-            FileOutputStream fileOutputStream = context.openFileOutput(fileName, Context.MODE_APPEND);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+    public ArrayList<RatingLoggedProfile> getRatings(){ return this.ratings;}
 
-            objectOutputStream.writeObject(person);
-
-            objectOutputStream.close();
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void setRatings(ArrayList<RatingLoggedProfile> ratings){
+        this.ratings = ratings;
     }
 
-    public static ArrayList<Person> readSerializable(Context context, String fileName) {
-        ArrayList<Person> registeredUsers =  new ArrayList<>();
-        Person person;
+    public void setFoto(int foto) { this.foto=foto; }
 
-        try {
-
-            FileInputStream fileInputStream = context.openFileInput(fileName);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            person = (Person) objectInputStream.readObject();
-            while (person != null) {
-                registeredUsers.add(person);
-                person = (Person) objectInputStream.readObject();
-            }
-
-            objectInputStream.close();
-            fileInputStream.close();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return registeredUsers;
-    }
+    public int getFoto () {return this.foto;}
 
 
 }

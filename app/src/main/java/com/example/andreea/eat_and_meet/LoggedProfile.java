@@ -3,9 +3,11 @@ package com.example.andreea.eat_and_meet;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -44,6 +46,8 @@ public class LoggedProfile  extends AppCompatActivity{
         int YY = birth.get(Calendar.YEAR);
         String strdate =  String.format("%d",dd)   + "/" + String.format("%d",mm) + "/" + String.format("%d",YY);
 
+        ImageView img = (ImageView) findViewById(R.id.picProfile);
+        img.setImageResource(loggedUser.getFoto());
         TextView name = (TextView) findViewById(R.id.nameProfile);
         name.setText(loggedUser.getName()+loggedUser.getSurname());
 
