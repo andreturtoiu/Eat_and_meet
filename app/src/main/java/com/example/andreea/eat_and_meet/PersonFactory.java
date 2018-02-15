@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 public class PersonFactory {
 
+
     private static PersonFactory singleton;
     private ArrayList<Person> listaUtenti = new ArrayList<Person>();
     private String loggedUser;
