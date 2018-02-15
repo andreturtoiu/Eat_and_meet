@@ -45,27 +45,27 @@ public class PersonFactory {
         Calendar c = Calendar.getInstance();
         c.set(1994,1, 3);
         //Utente 1
-        p = new Person("Davide", "Contini", c, "pippopop", "dcont@ium.it", "Via Garibaldi 121", "Santa Giusta", "3485595491");
+        p = new Person("Davide", "Contini", c, "pippopop", "dcont@ium.it", "Via Garibaldi 121", "Santa Giusta", "3485595491", R.drawable.utente1);
         listaUtenti.add(p);
         //Utente 2
         c.set(1996,8, 30);
-        p = new Person("Riccardo", "Mameli", c, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892");
+        p = new Person("Riccardo", "Mameli", c, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892", R.drawable.utente2);
         listaUtenti.add(p);
         //Utente 3
         c.set(1995,3, 13);
-        p = new Person("Andreea", "Turtoiu", c, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633");
+        p = new Person("Andreea", "Turtoiu", c, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633", R.drawable.utente3);
         listaUtenti.add(p);
         //Utente 4
         c.set(1989,7, 24);
-        p = new Person("Michele", "Staffiere", c, "Ert453", "msta@ium.it", "Via Vai 67", "Cagliari", "3333233231");
+        p = new Person("Michele", "Staffiere", c, "Ert453", "msta@ium.it", "Via Vai 67", "Cagliari", "3333233231", R.drawable.utente4);
         listaUtenti.add(p);
         //Utente 5
         c.set(1999,10, 4);
-        p = new Person("Tizio", "Caio", c, "Ca_t1zio", "tcai@ium.it", "Via Fasulla 123", "Carbonia", "34411231313");
+        p = new Person("Tizio", "Caio", c, "Ca_t1zio", "tcai@ium.it", "Via Fasulla 123", "Carbonia", "34411231313", R.drawable.utente5);
         listaUtenti.add(p);
         //Utente 6
         c.set(1980,11, 21);
-        p = new Person("Aldo", "Jones", c, "SkyLab", "ajon@ium.it", "Via Washinton 53", "Pizzo Calabro", "577590838");
+        p = new Person("Aldo", "Jones", c, "SkyLab", "ajon@ium.it", "Via Washinton 53", "Pizzo Calabro", "577590838", R.drawable.utente5);
         listaUtenti.add(p);
     }
 
