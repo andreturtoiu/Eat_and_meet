@@ -2,10 +2,17 @@ package com.example.andreea.eat_and_meet;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
@@ -29,14 +36,57 @@ public class LoggedProfile  extends AppCompatActivity{
     private String emailUser;
     private Person loggedUser;
     private ArrayList<String> aboutYou= new ArrayList<String>();
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
 
         emailUser = PersonFactory.getInstance().getLoggedUser();
         loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                drawerLayout.closeDrawers();
+
+                if (item.getItemId()== R.id.events) {
+                    Intent t = new Intent(LoggedProfile.this, HomePage.class);
+                    startActivity(t);
+                }else if (item.getItemId() == R.id.create_event) {
+                    Intent t = new Intent(LoggedProfile.this, CreateEvent.class);
+                    startActivity(t);
+
+                } else if (item.getItemId() == R.id.search_events) {
+                    Intent t = new Intent(LoggedProfile.this,SearchEvents.class);
+                    startActivity(t);
+
+                } else if (item.getItemId() == R.id.notifies) {
+
+
+                } else if (item.getItemId() == R.id.logout) {
+                    Intent t = new Intent(LoggedProfile.this, Login_activity.class);
+                    startActivity(t);
+                }else if (item.getItemId() == R.id.imageView){
+                    Intent t = new Intent (LoggedProfile.this, LoggedProfile.class);
+                    startActivity(t);
+                }
+
+                return false;
+            }
+        });
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("Profilo");
+        ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
         Calendar birth = loggedUser.getBirthdate();
 
@@ -49,7 +99,7 @@ public class LoggedProfile  extends AppCompatActivity{
         ImageView img = (ImageView) findViewById(R.id.picProfile);
         img.setImageResource(loggedUser.getFoto());
         TextView name = (TextView) findViewById(R.id.nameProfile);
-        name.setText(loggedUser.getName()+loggedUser.getSurname());
+        name.setText(loggedUser.getName()+ " "+ loggedUser.getSurname());
 
         TextView birthday = (TextView)findViewById(R.id.birthdateProfile);
         birthday.setText(strdate);
@@ -83,7 +133,10 @@ public class LoggedProfile  extends AppCompatActivity{
             rl.addView(inner);
         }
 
+
+
     }
+
 
     public LinearLayout newRatingView (RatingLoggedProfile r, Context c){
         LinearLayout ratingView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_rating, null);
