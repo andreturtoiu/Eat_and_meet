@@ -139,7 +139,6 @@ public class EventFactory {
         return filter_final;
 
     }
-
     public LinearLayout newEventView (Event e, View.OnClickListener ocl, Context c){
         LinearLayout eventView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_event, null);
         TextView title = (TextView) eventView.findViewById(R.id.template_event_title);

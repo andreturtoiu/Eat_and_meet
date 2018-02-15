@@ -70,10 +70,17 @@ public class Event implements Serializable {
     public void setCucina(String cucina) { this.cucina = cucina; }
 
     public String getData() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - hh:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
         return sdf.format(this.data.getTime());
     }
+
+    public Calendar getDataCalendar(){ return this.data; }
+
     public void setData(Calendar data) { this.data = data; }
+    public void setData(int year,int month, int day, int hour, int min){
+        this.data = Calendar.getInstance();
+        this.data.set(year,month,day,hour,min);
+    }
 
     public int getPranzo_cena() {return this.pranzo_cena;}
     public void setPranzo_cena(int pranzo_cena){this.pranzo_cena = pranzo_cena;}
