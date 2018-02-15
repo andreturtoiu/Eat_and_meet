@@ -26,8 +26,6 @@ import java.util.ArrayList;
 
 public class ShowEvent extends AppCompatActivity{
 
-    private static final int PHOTO_DIM = 200;
-
     private Event evento;
 
     Intent intentDelete;
@@ -136,31 +134,63 @@ public class ShowEvent extends AppCompatActivity{
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
-                        builder1.setMessage("Posti disponibili: "+(evento.getMaxBookings() - evento.getPartecipanti().size())+"\nSei sicuro?");
-                        builder1.setCancelable(true);
-                        builder1.setPositiveButton(
-                                "Sì",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        Intent intent = new Intent(ShowEvent.this,HomePage.class);
-                                        EventFactory.getInstance().SubscribeToEvent(evento.getId(),logged_user); //GLOBALE
-                                        startActivity(intent);
+                        final Event e = EventFactory.getInstance().isDateReserved(evento,logged_user);
+                        if(e == null) {
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+                            builder1.setMessage("Posti disponibili: " + (evento.getMaxBookings() - evento.getPartecipanti().size()) + "\nSei sicuro?");
+                            builder1.setCancelable(true);
+                            builder1.setPositiveButton(
+                                    "Sì",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Intent intent = new Intent(ShowEvent.this, HomePage.class);
+                                            EventFactory.getInstance().SubscribeToEvent(evento.getId(), logged_user); //GLOBALE
+                                            startActivity(intent);
 
-                                        dialog.cancel();
-                                    }
-                                });
+                                            dialog.cancel();
+                                        }
+                                    });
 
-                        builder1.setNegativeButton(
-                                "No",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
+                            builder1.setNegativeButton(
+                                    "No",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
 
-                        AlertDialog alert11 = builder1.create();
-                        alert11.show();
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
+                        }
+                        else{
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+                            builder1.setMessage("Hai già un impegno per l'evento: "+e.getTitolo());
+                            builder1.setCancelable(false);
+                            builder1.setPositiveButton(
+                                    "Mostra Evento",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Intent intent = new Intent(ShowEvent.this,ShowEvent.class);
+                                            //Intent intent = new Intent(ShowEvent.this,HomePage.class);
+                                            intent.putExtra("EVENT_EXTRA",e);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            startActivity(intent);
+
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            builder1.setNegativeButton(
+                                    "Ok",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    });
+
+                            AlertDialog alert11 = builder1.create();
+                            alert11.show();
+                        }
                     }
                 });
             }

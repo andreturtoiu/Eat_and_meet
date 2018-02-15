@@ -439,6 +439,21 @@ public class EventFactory {
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
+        //Evento 16
+        e = new Event();
+        c = Calendar.getInstance();
+        e.setUser("atur@ium.it");
+        e.setTitolo("Evento 16");
+        e.setDescrizione("Descrizione 16");
+        e.setCucina("Italiana");
+        e.setPranzo_cena(Event.CENA);
+        e.setVia("Via 16");
+        e.setCity("Roma");
+        c.set(2018,3,16,20,0);
+        e.setData(c);
+        e.addFoto(R.drawable.logo);
+        e.setMaxBookings(4);
+        listaEventi.add(e);
 
         //Generazione ID sequenziali
         int i = 0;
