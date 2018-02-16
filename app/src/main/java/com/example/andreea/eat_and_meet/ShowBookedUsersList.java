@@ -68,9 +68,9 @@ public class ShowBookedUsersList extends AppCompatActivity {
         String u;
         @Override
         public void onClick(View v){
-            /*Intent showEvent = new Intent(ShowBookedUsersList.this,ShowEvent.class);
-            showEvent.putExtra("EVENT_EXTRA",u);
-            startActivity(showEvent);*/
+            Intent showProfile = new Intent(ShowBookedUsersList.this,UserProfile.class);
+            showProfile.putExtra("EMAIL_EXTRA",u);
+            startActivity(showProfile);
         }
         public ShowProfile(String u){
             this.u = u;
@@ -110,5 +110,6 @@ public class ShowBookedUsersList extends AppCompatActivity {
             this.u = u;
         }
     }
+
 }
 
