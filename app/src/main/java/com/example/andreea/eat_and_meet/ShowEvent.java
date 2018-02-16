@@ -41,11 +41,13 @@ public class ShowEvent extends AppCompatActivity{
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("EVENT_EXTRA");
         if (!(obj instanceof Event)) return;
+        boolean confirmRequest = intent.getBooleanExtra("CONFIRM_REQUEST",false);
+        boolean confirmUnsubscribe = intent.getBooleanExtra("CONFIRM_UNSUBSCRIBE",false);
 
+        if(confirmRequest || confirmUnsubscribe) dialogConfirm();
 
         evento = (Event) obj;
 
@@ -263,4 +265,20 @@ public class ShowEvent extends AppCompatActivity{
             }
         }
     }
+
+    private void dialogConfirm(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+        builder1.setMessage("Richiesta inviata con successo");
+        builder1.setCancelable(true);
+        builder1.setNegativeButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
 }
