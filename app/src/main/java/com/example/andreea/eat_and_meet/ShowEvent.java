@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class ShowEvent extends AppCompatActivity{
 
     private Event evento;
-
+    String logged_user;
     Intent intentDelete;
     Intent intentEdit;
 
@@ -41,11 +41,13 @@ public class ShowEvent extends AppCompatActivity{
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("EVENT_EXTRA");
         if (!(obj instanceof Event)) return;
+        boolean confirmRequest = intent.getBooleanExtra("CONFIRM_REQUEST",false);
+        boolean confirmUnsubscribe = intent.getBooleanExtra("CONFIRM_UNSUBSCRIBE",false);
 
+        if(confirmRequest || confirmUnsubscribe) dialogConfirm();
 
         evento = (Event) obj;
 
@@ -66,20 +68,18 @@ public class ShowEvent extends AppCompatActivity{
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
         int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
-        //for(int i=0;i<10;i++){
+
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
             ImageView foto = new ImageView(this);
-            //foto.setImageResource(R.drawable.logo);
             foto.setImageResource(i);
             //Imposto dimensione
             foto.setLayoutParams(lp);
             foto.setScaleType(ImageView.ScaleType.FIT_XY);
-            //foto.setLayoutParams(new LinearLayout.LayoutParams(lp.height, ViewGroup.LayoutParams.MATCH_PARENT));
             ss.addView(foto);
         }
         String source = (String) intent.getSerializableExtra("SOURCE");
         Button btn = (Button) new Button(this);
-        final String logged_user = PersonFactory.getInstance().getLoggedUser();
+        logged_user = PersonFactory.getInstance().getLoggedUser();
         if(evento.getUser().equals(logged_user)) { // Sono il proprietario
             btn.setText("Mostra Partecipanti");
             btn.setOnClickListener(new View.OnClickListener() {
@@ -94,105 +94,15 @@ public class ShowEvent extends AppCompatActivity{
         else {
             if (evento.isBooked(logged_user)){                //Sono iscritto. Voglio annullare
                 btn.setText("Annulla Iscrizione");
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
-                        builder1.setMessage("Sei sicuro?");
-                        builder1.setCancelable(true);
-                        builder1.setPositiveButton(
-                                "Sì",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        Intent intent = new Intent(ShowEvent.this,HomePage.class);
-                                        EventFactory.getInstance().unSubscribeFromEvent(evento.getId(),logged_user); //GLOBALE
-                                        startActivity(intent);
-
-                                        dialog.cancel();
-                                    }
-                                });
-
-                        builder1.setNegativeButton(
-                                "No",
-                                new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                    }
-                                });
-
-                        AlertDialog alert11 = builder1.create();
-                        alert11.show();
-
-
-
-                    }
-                });
+                btn.setOnClickListener(new UnSubscribeListener());
             }
-
+            else if (evento.hasRequest(logged_user)){
+                btn.setText("Annulla richiesta iscrizione");
+                btn.setOnClickListener(new UnSubscribeListener());
+            }
             else{
                 btn.setText("Iscriviti"); //Non sono iscritto. Voglio iscrivermi
-                btn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        final Event e = EventFactory.getInstance().isDateReserved(evento,logged_user);
-                        if(e == null) {
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
-                            builder1.setMessage("Posti disponibili: " + (evento.getMaxBookings() - evento.getPartecipanti().size()) + "\nSei sicuro?");
-                            builder1.setCancelable(true);
-                            builder1.setPositiveButton(
-                                    "Sì",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            Intent intent = new Intent(ShowEvent.this, HomePage.class);
-                                            EventFactory.getInstance().SubscribeToEvent(evento.getId(), logged_user); //GLOBALE
-                                            startActivity(intent);
-
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                            builder1.setNegativeButton(
-                                    "No",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                            AlertDialog alert11 = builder1.create();
-                            alert11.show();
-                        }
-                        else{
-                            AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
-                            builder1.setMessage("Hai già un impegno per l'evento: "+e.getTitolo());
-                            builder1.setCancelable(false);
-                            builder1.setPositiveButton(
-                                    "Mostra Evento",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            Intent intent = new Intent(ShowEvent.this,ShowEvent.class);
-                                            //Intent intent = new Intent(ShowEvent.this,HomePage.class);
-                                            intent.putExtra("EVENT_EXTRA",e);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                            startActivity(intent);
-
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                            builder1.setNegativeButton(
-                                    "Ok",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            dialog.cancel();
-                                        }
-                                    });
-
-                            AlertDialog alert11 = builder1.create();
-                            alert11.show();
-                        }
-                    }
-                });
+                btn.setOnClickListener(new SubscribeListener());
             }
 
         }
@@ -255,4 +165,120 @@ public class ShowEvent extends AppCompatActivity{
 
         }
     }
+    class UnSubscribeListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+            builder1.setMessage("Sei sicuro?");
+            builder1.setCancelable(true);
+            builder1.setPositiveButton(
+                    "Sì",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(ShowEvent.this,ShowEvent.class);
+                            EventFactory.getInstance().unSubscribeFromEvent(evento.getId(),logged_user); //GLOBALE
+                            intent.putExtra("EVENT_EXTRA",EventFactory.getInstance().getEventById(evento.getId()));
+                            intent.putExtra("CONFIRM_UNSUBSCRIBE",true);
+                            finish();
+                            startActivity(intent);
+
+                            dialog.cancel();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
+    }
+
+    class SubscribeListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            final Event e = EventFactory.getInstance().isDateReserved(evento,logged_user);
+            if(e == null) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+                builder1.setMessage("Posti disponibili: " + (evento.getMaxBookings() - evento.getPartecipanti().size()) + "\nSei sicuro?");
+                builder1.setCancelable(true);
+                builder1.setPositiveButton(
+                        "Sì",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(ShowEvent.this, ShowEvent.class);
+                                EventFactory.getInstance().RequestSubscribeToEvent(evento.getId(), logged_user); //GLOBALE
+                                intent.putExtra("EVENT_EXTRA",EventFactory.getInstance().getEventById(evento.getId()));
+                                intent.putExtra("CONFIRM_REQUEST",true);
+                                finish();
+                                startActivity(intent);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+            }
+            else{
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+                builder1.setMessage("Hai già un impegno per l'evento: "+e.getTitolo());
+                builder1.setCancelable(false);
+                builder1.setPositiveButton(
+                        "Mostra Evento",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(ShowEvent.this,ShowEvent.class);
+                                intent.putExtra("EVENT_EXTRA",e);
+                                finish();
+                                startActivity(intent);
+
+                                dialog.cancel();
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "Ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+            }
+        }
+    }
+
+    private void dialogConfirm(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
+        builder1.setMessage("Richiesta inviata con successo");
+        builder1.setCancelable(true);
+        builder1.setNegativeButton(
+                "Ok",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
 }

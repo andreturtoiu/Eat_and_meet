@@ -30,6 +30,7 @@ public class Event implements Serializable {
     private String city;
     private ArrayList<Integer> foto = new ArrayList<>();
     private ArrayList<String> partecipanti = new ArrayList<>();
+    private ArrayList<String> richieste = new ArrayList<>();
 
     public Event(){
         this.setTitolo("");
@@ -95,6 +96,11 @@ public class Event implements Serializable {
     public int getPranzo_cena() {return this.pranzo_cena;}
     public void setPranzo_cena(int pranzo_cena){this.pranzo_cena = pranzo_cena;}
 
+    public void addRequest(String email){
+        this.richieste.add(email);
+    }
+    public ArrayList<String> getRichieste(){ return this.richieste; }
+
     public String getVia() { return this.via; }
     public void setVia(String via) { this.via = via; }
 
@@ -109,7 +115,16 @@ public class Event implements Serializable {
         return false;
     }
 
-    public void unSubscribe(String idUser) { this.partecipanti.remove(idUser); }
+    public boolean hasRequest(String userMail){
+        for(String i:richieste)
+            if (i.equals(userMail)) return true;
+        return false;
+    }
+
+    public void unSubscribe(String idUser) {
+        this.partecipanti.remove(idUser);
+        this.richieste.remove(idUser);
+    }
 
     public void setMaxBookings(int max){
         this.maxBookings = max;
@@ -141,6 +156,7 @@ public class Event implements Serializable {
         }
         return false;
     }
+
 
 }
 

@@ -67,6 +67,14 @@ public class EventFactory {
         }
     }
 
+    public void RequestSubscribeToEvent(int idEvent,String idUser){
+        for(Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.addRequest(idUser);
+            }
+        }
+    }
+
     public boolean isEventFull(int idEvent){
         for (Event e:listaEventi){
             if (e.getId()==idEvent){
@@ -147,16 +155,21 @@ public class EventFactory {
         for(Event e:filter_citta)
             if (e.getPranzo_cena()==pranzo_cena || pranzo_cena == -1)
                 filter_pranzo_cena.add(e);
-        //Filtro liberi
+        //Filtro liberi e almeno due giorni
+        long giorni;
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE,2);
         for(Event e:filter_pranzo_cena){
-            if(!e.isFull())
+            if(!e.isFull() && c.before(e.getDataCalendar()))
                 filter_free.add(e);
         }
         //Filtro miei
         ArrayList<Event> filter_final = new ArrayList<Event>();
+        String loggedUser = PersonFactory.getInstance().getLoggedUser();
         for(Event e:filter_free)
-            if(!PersonFactory.getInstance().getLoggedUser().equals(e.getUser()))
+            if(!loggedUser.equals(e.getUser()) && !e.isBooked(loggedUser) && !e.hasRequest(loggedUser))
                 filter_final.add(e);
+
         //Ritorno selezione
         return filter_final;
 
