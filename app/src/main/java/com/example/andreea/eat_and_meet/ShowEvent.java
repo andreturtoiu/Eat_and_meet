@@ -44,12 +44,14 @@ public class ShowEvent extends AppCompatActivity{
         Intent intent = getIntent();
         Serializable obj = intent.getSerializableExtra("EVENT_EXTRA");
         if (!(obj instanceof Event)) return;
-        boolean confirmRequest = intent.getBooleanExtra("CONFIRM_REQUEST",false);
-        boolean confirmUnsubscribe = intent.getBooleanExtra("CONFIRM_UNSUBSCRIBE",false);
-
-        if(confirmRequest || confirmUnsubscribe) dialogConfirm();
 
         evento = (Event) obj;
+
+        boolean confirmRequest = intent.getBooleanExtra("CONFIRM_REQUEST",false);
+        boolean confirmUnsubscribe = intent.getBooleanExtra("CONFIRM_UNSUBSCRIBE",false);
+        if(confirmRequest) dialogConfirm("Inviata richiesta d'iscrizione all'evento "+evento.getTitolo());
+        if(confirmUnsubscribe) dialogConfirm("Hai annullato la tua iscrizione all'evento "+evento.getTitolo());
+
 
         TextView titolo = (TextView) findViewById(R.id.TitoloId);
         titolo.setText(evento.getTitolo());
@@ -266,9 +268,9 @@ public class ShowEvent extends AppCompatActivity{
         }
     }
 
-    private void dialogConfirm(){
+    private void dialogConfirm(String message){
         AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
-        builder1.setMessage("Richiesta inviata con successo");
+        builder1.setMessage(message);
         builder1.setCancelable(true);
         builder1.setNegativeButton(
                 "Ok",

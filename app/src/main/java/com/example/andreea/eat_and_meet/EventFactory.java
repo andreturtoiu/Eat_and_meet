@@ -108,6 +108,16 @@ public class EventFactory {
         return l;
     }
 
+    public ArrayList<Event> getPendingRequestsByUser(String userID){
+        ArrayList<Event> l = new ArrayList<>();
+        for(Event e:listaEventi){
+            if (e.hasRequest(userID)){
+                l.add(e);
+            }
+        }
+        return l;
+    }
+
     public Event isDateReserved(Event e,String email){
 
         int day = e.getDataCalendar().get(Calendar.DAY_OF_MONTH);

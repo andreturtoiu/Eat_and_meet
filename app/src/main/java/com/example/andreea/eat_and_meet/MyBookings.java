@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,18 @@ public class MyBookings extends Fragment {
         String logged_user = PersonFactory.getInstance().getLoggedUser();
         ArrayList<Event> eventi = EventFactory.getInstance().getBookingsByUser(logged_user); //INSERIRE VARIABILE GLOBALE UTENTE
         LinearLayout ll = myBookings.findViewById(R.id.event_container);
+        //Verifico eventuali attese di conferma
+        ArrayList<Event> richieste = EventFactory.getInstance().getPendingRequestsByUser(logged_user);
+        if(richieste.size()>0){
+            TextView requestWarning = new TextView(getActivity());
+            String message = "Hai " + richieste.size() +" eventi in attesa di conferma";
+            if(richieste.size() == 1) message = message.replace("eventi","evento");
+            requestWarning.setText(message);
+            requestWarning.setOnClickListener(new HandleRequest(richieste));
+            requestWarning.setGravity(Gravity.CENTER_HORIZONTAL);
+            ll.addView(requestWarning);
+        }
+        //
         for(Event e : eventi){
             //Genero Layout Evento
             LinearLayout lle = EventFactory.getInstance().newEventView(e,new HandleEvent(e),getActivity());
@@ -48,5 +62,17 @@ public class MyBookings extends Fragment {
         }
     }
 
+    class HandleRequest implements View.OnClickListener{
+        ArrayList<Event> l;
+        @Override
+        public void onClick(View v){
+            Intent showEventList = new Intent(getActivity(),ShowEventList.class);
+            showEventList.putExtra("EVENT_LIST",l);
+            startActivity(showEventList);
+        }
+        public HandleRequest(ArrayList<Event> l){
+            this.l = l;
+        }
+    }
 }
 
