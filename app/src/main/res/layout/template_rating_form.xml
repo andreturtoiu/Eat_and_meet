@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RatingBar
+        android:id="@+id/ratingBarGeneral2"
+        style="@android:style/Widget.Material.RatingBar.Indicator"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:rating="0"
+        android:stepSize="1.0" />
+
+
+    <EditText
+        android:id="@+id/writeYourExp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="50dp"
+        android:hint="Scrivi qui la tua esperienza"></EditText>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/register_button"
+        android:text="Invia"
+        android:textColor="@color/white" />
+</LinearLayout>

@@ -130,6 +130,10 @@ public class Person implements Serializable {
         this.ratings = ratings;
     }
 
+    public void addRatings(RatingLoggedProfile r){
+        this.ratings.add(r);
+    }
+
     public void setFoto(int foto) { this.foto=foto; }
 
     public int getFoto () {return this.foto;}

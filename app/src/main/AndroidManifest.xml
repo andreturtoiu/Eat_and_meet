@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LoggedProfile"
-            android:label="@string/title_activity_home_page"
+            android:label="Profilo"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Login_activity"
@@ -39,7 +39,7 @@
             android:parentActivityName=".ShowEvent"/>
         <activity
             android:name=".HomePage"
-            android:label="@string/title_activity_home_page"
+            android:label= "Home page"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".NavigationMenu"
@@ -66,6 +66,11 @@
             android:name=".ShowBookedUsersList"
             android:label="Partecipanti"
             android:parentActivityName=".ShowEvent"/>
+
+        <activity
+            android:name=".UserProfile"
+            android:label="Profilo"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 

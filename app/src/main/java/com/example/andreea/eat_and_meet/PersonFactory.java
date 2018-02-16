@@ -102,7 +102,7 @@ public class PersonFactory{
         r5.add(new RatingLoggedProfile("msta@ium.it", "ajon@ium.it","Testo Esperienza2", 4));
         Calendar c5 = Calendar.getInstance();
         c5.set(1980,11, 21);
-        p = new Person("Aldo", "Jones", c5, "SkyLab", "ajon@ium.it", "Via Washinton 53", "Pizzo Calabro", "577590838",r5,R.drawable.utente4);
+        p = new Person("Aldo", "Jones", c5, "SkyLab", "ajon@ium.it", "Via Washinton 53", "Pizzo Calabro", "577590838",r5,R.drawable.utente1);
         listaUtenti.add(p);
     }
 

@@ -38,6 +38,7 @@ public class LoggedProfile  extends AppCompatActivity{
     private ArrayList<String> aboutYou= new ArrayList<String>();
     DrawerLayout drawerLayout;
     NavigationView navigationView;
+    private String emailFrom;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,36 +89,32 @@ public class LoggedProfile  extends AppCompatActivity{
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        //Prende la data
         Calendar birth = loggedUser.getBirthdate();
-
-
         int dd = birth.get(Calendar.DAY_OF_MONTH);
         int mm = birth.get(Calendar.MONTH);
         int YY = birth.get(Calendar.YEAR);
         String strdate =  String.format("%d",dd)   + "/" + String.format("%d",mm) + "/" + String.format("%d",YY);
 
+        //Informazioni dell'utente loggato
         ImageView img = (ImageView) findViewById(R.id.picProfile);
         img.setImageResource(loggedUser.getFoto());
         TextView name = (TextView) findViewById(R.id.nameProfile);
         name.setText(loggedUser.getName()+ " "+ loggedUser.getSurname());
-
         TextView birthday = (TextView)findViewById(R.id.birthdateProfile);
         birthday.setText(strdate);
-
         TextView address = (TextView) findViewById(R.id.addressProfile);
         address.setText(loggedUser.getAddress()+"," + loggedUser.getCity());
-
-
         TextView email = (TextView) findViewById(R.id.emailProfile);
         email.setText(loggedUser.getEmail());
-
         TextView phone = (TextView) findViewById(R.id.telphoneProfile);
         phone.setText(loggedUser.getPhoneNumber());
 
-
+        //Ratings relativi all'utente loggato
         ArrayList<RatingLoggedProfile> r = loggedUser.getRatings();
         LinearLayout rl = (LinearLayout) findViewById(R.id.aboutYouContainer);
 
+        //Stelle barra generale con la media delle recensioni
         RatingBar ratingBarGeneral = (RatingBar) findViewById(R.id.ratingBarGeneral);
         float stars = 0;  //numero di stelle della barra generale;
         int size = r.size();
@@ -128,17 +125,32 @@ public class LoggedProfile  extends AppCompatActivity{
 
         ratingBarGeneral.setRating(avgStars);
 
+
+       //Rating di ciascun utente
        for(int i = 0; i < size; i++){
-            LinearLayout inner = newRatingView(r.get(i),this);
-            rl.addView(inner);
+           emailFrom = r.get(i).getEmailFrom();
+           LinearLayout inner = newRatingView(r.get(i),this,new Inner(emailFrom));
+           rl.addView(inner);
+       }
+
+
+}
+
+    class Inner implements View.OnClickListener {
+        String emailFrom;
+        public Inner(String emailFrom){
+            this.emailFrom = emailFrom;
         }
 
-
+        public void onClick(View v) {
+            Intent intent = new Intent(LoggedProfile.this, UserProfile.class);
+            intent.putExtra("EMAIL_EXTRA",emailFrom);
+            startActivity(intent);
+        }
 
     }
 
-
-    public LinearLayout newRatingView (RatingLoggedProfile r, Context c){
+    public LinearLayout newRatingView (RatingLoggedProfile r, Context c, View.OnClickListener i ){
         LinearLayout ratingView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_rating, null);
         ratingView.setId(View.generateViewId());
 
@@ -146,15 +158,17 @@ public class LoggedProfile  extends AppCompatActivity{
         RatingBar rating = ratingView.findViewById(R.id.ratingBarUser);
         TextView aboutYou = ratingView.findViewById(R.id.contentRating);
 
-        img.setImageResource(R.drawable.utente1);
+        int imgRes = PersonFactory.getInstance().getUserByEmail(r.getEmailFrom()).getFoto();
+        img.setImageResource(imgRes);
         img.setId(View.generateViewId());
+
 
         rating.setId(View.generateViewId());
         rating.setRating(r.getNumStars());
 
         aboutYou.setId(View.generateViewId());
-        aboutYou.setText(r.getAboutYou());
-
+         aboutYou.setText(r.getAboutYou());
+        ratingView.setOnClickListener(i);
         return ratingView;
     }
 }
