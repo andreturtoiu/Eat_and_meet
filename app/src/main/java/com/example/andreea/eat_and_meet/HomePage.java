@@ -44,12 +44,14 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         Person loggedUser;
         String emailUser;
 
 
         navigationView= (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         View headerview = navigationView.getHeaderView(0);
 
         emailUser = PersonFactory.getInstance().getLoggedUser();
@@ -58,6 +60,8 @@ public class HomePage extends AppCompatActivity {
 
         TextView profilename = (TextView) headerview.findViewById(R.id.name);
         profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
+        ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
+        img.setImageResource(loggedUser.getFoto());
 
 
         headerview.setOnClickListener(new View.OnClickListener() {

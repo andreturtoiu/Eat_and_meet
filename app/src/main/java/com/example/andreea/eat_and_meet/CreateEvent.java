@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -36,15 +37,39 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
+        Person loggedUser;
+        String emailUser;
+
         Button prosegui = (Button) findViewById(R.id.prosegui);
         //Iscrivo la mainActivity all'evento di click del bottone
         prosegui.setOnClickListener(this);
 
         findViewById(R.id.timeTextView).setOnClickListener(this);
         findViewById(R.id.dateTextView).setOnClickListener(this);
+
         navigationView= (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout1);
 
+        emailUser = PersonFactory.getInstance().getLoggedUser();
+        loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
+
+        View headerview = navigationView.getHeaderView(0);
+        TextView profilename = (TextView) headerview.findViewById(R.id.name);
+        profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
+
+
+        ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
+        img.setImageResource(loggedUser.getFoto());
+
+
+        headerview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = PersonFactory.getInstance().getLoggedUser();
+                Intent t1 = new Intent(CreateEvent.this, LoggedProfile.class);
+                startActivity(t1);
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -72,20 +97,15 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
                     startActivity(t);
 
                 }
-
                 return false;
             }
         });
-
 
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("Crea Evento");
         ActionBarDrawerToggle toggle= new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name,R.string.app_name);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-
-
-
 
     }
 
