@@ -67,6 +67,14 @@ public class EventFactory {
         }
     }
 
+    public void RequestSubscribeToEvent(int idEvent,String idUser){
+        for(Event e:listaEventi){
+            if (e.getId()==idEvent){
+                e.addRequest(idUser);
+            }
+        }
+    }
+
     public boolean isEventFull(int idEvent){
         for (Event e:listaEventi){
             if (e.getId()==idEvent){
@@ -159,7 +167,7 @@ public class EventFactory {
         ArrayList<Event> filter_final = new ArrayList<Event>();
         String loggedUser = PersonFactory.getInstance().getLoggedUser();
         for(Event e:filter_free)
-            if(!loggedUser.equals(e.getUser()) && !e.isBooked(loggedUser))
+            if(!loggedUser.equals(e.getUser()) && !e.isBooked(loggedUser) && !e.hasRequest(loggedUser))
                 filter_final.add(e);
 
         //Ritorno selezione

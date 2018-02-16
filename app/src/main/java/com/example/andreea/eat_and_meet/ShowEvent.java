@@ -94,6 +94,10 @@ public class ShowEvent extends AppCompatActivity{
                 btn.setText("Annulla Iscrizione");
                 btn.setOnClickListener(new UnSubscribeListener());
             }
+            else if (evento.hasRequest(logged_user)){
+                btn.setText("Annulla richiesta iscrizione");
+                btn.setOnClickListener(new UnSubscribeListener());
+            }
             else{
                 btn.setText("Iscriviti"); //Non sono iscritto. Voglio iscrivermi
                 btn.setOnClickListener(new SubscribeListener());
@@ -170,8 +174,11 @@ public class ShowEvent extends AppCompatActivity{
                     "Sì",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            Intent intent = new Intent(ShowEvent.this,HomePage.class);
+                            Intent intent = new Intent(ShowEvent.this,ShowEvent.class);
                             EventFactory.getInstance().unSubscribeFromEvent(evento.getId(),logged_user); //GLOBALE
+                            intent.putExtra("EVENT_EXTRA",EventFactory.getInstance().getEventById(evento.getId()));
+                            intent.putExtra("CONFIRM_UNSUBSCRIBE",true);
+                            finish();
                             startActivity(intent);
 
                             dialog.cancel();
@@ -205,8 +212,8 @@ public class ShowEvent extends AppCompatActivity{
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(ShowEvent.this, ShowEvent.class);
-                                EventFactory.getInstance().SubscribeToEvent(evento.getId(), logged_user); //GLOBALE
-                                intent.putExtra("EVENT_EXTRA",evento);
+                                EventFactory.getInstance().RequestSubscribeToEvent(evento.getId(), logged_user); //GLOBALE
+                                intent.putExtra("EVENT_EXTRA",EventFactory.getInstance().getEventById(evento.getId()));
                                 intent.putExtra("CONFIRM_REQUEST",true);
                                 finish();
                                 startActivity(intent);
