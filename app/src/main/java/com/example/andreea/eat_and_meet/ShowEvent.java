@@ -66,15 +66,13 @@ public class ShowEvent extends AppCompatActivity{
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
         int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
-        //for(int i=0;i<10;i++){
+
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
             ImageView foto = new ImageView(this);
-            //foto.setImageResource(R.drawable.logo);
             foto.setImageResource(i);
             //Imposto dimensione
             foto.setLayoutParams(lp);
             foto.setScaleType(ImageView.ScaleType.FIT_XY);
-            //foto.setLayoutParams(new LinearLayout.LayoutParams(lp.height, ViewGroup.LayoutParams.MATCH_PARENT));
             ss.addView(foto);
         }
         String source = (String) intent.getSerializableExtra("SOURCE");
@@ -171,9 +169,8 @@ public class ShowEvent extends AppCompatActivity{
                                     new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
                                             Intent intent = new Intent(ShowEvent.this,ShowEvent.class);
-                                            //Intent intent = new Intent(ShowEvent.this,HomePage.class);
                                             intent.putExtra("EVENT_EXTRA",e);
-                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            finish();
                                             startActivity(intent);
 
                                             dialog.cancel();
