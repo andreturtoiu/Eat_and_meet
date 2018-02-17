@@ -1,6 +1,8 @@
 package com.example.andreea.eat_and_meet;
 
+import android.graphics.Bitmap;
 import android.location.Address;
+import android.net.Uri;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Created by Michele on 03/02/2018.
@@ -31,6 +34,7 @@ public class Event implements Serializable {
     private ArrayList<Integer> foto = new ArrayList<>();
     private ArrayList<String> partecipanti = new ArrayList<>();
     private ArrayList<String> richieste = new ArrayList<>();
+    private List<String> fotoUriList;
 
     public Event(){
         this.setTitolo("");
@@ -157,6 +161,12 @@ public class Event implements Serializable {
         return false;
     }
 
+    public List<String> getFotoUriList() {
+        return fotoUriList;
+    }
 
+    public void setFotoUriList(List<String> fotoUriList) {
+        this.fotoUriList = fotoUriList;
+    }
 }
 

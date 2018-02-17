@@ -20,6 +20,7 @@ public class EventFactory {
     //Pattern Design Singleton
     private static EventFactory singleton;
     private String connectionString;
+    private Event partialEvent;
 
     public static EventFactory getInstance() {
         if (singleton == null) {
@@ -485,4 +486,15 @@ public class EventFactory {
         }
     }
 
+    public void setPartialEvent(Event partialEvent) {
+        this.partialEvent = partialEvent;
+    }
+
+    public Event getPartialEvent() {
+        return partialEvent;
+    }
+
+    public void addEvent(Event event) {
+        this.listaEventi.add(event);
+    }
 }

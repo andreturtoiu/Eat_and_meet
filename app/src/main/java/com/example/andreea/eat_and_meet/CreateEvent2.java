@@ -12,13 +12,17 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateEvent2 extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_PICK_IMAGE = 1;
+    private List<String> fotoUriList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +34,9 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         ab.setDisplayHomeAsUpEnabled(true);
 
         findViewById(R.id.pickImageBtn).setOnClickListener(this);
+        findViewById(R.id.create_event_btn).setOnClickListener(this);
+
+        fotoUriList = new ArrayList<String>();
     }
 
     @Override
@@ -43,6 +50,10 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
 
             //Lancio l'activity dandogli un identificativo che mi servirà a prendermi il risultato
             startActivityForResult(intent, REQUEST_PICK_IMAGE);
+        }
+
+        if (view.getId() == R.id.create_event_btn) {
+            saveEvent();
         }
     }
 
@@ -67,6 +78,8 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
                 return;
             }
 
+            fotoUriList.add(data.getData().toString());
+
             //Creo una ImageView con l'immagine appena presa
             ImageView imageView = new ImageView(this);
             imageView.setImageBitmap(bitmap);
@@ -75,12 +88,35 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
             int size = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 100, getResources().getDisplayMetrics());
             //Imposto le dimensioni e i margini dell'immagine
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
-            params.setMargins(20, 0, 20,0);
+            params.setMargins(20, 0, 20, 0);
             imageView.setLayoutParams(params);
 
             //Aggiungo l'immagine al linear layout dentro la scrollview
             ViewGroup container = (ViewGroup) findViewById(R.id.imageContainer);
             container.addView(imageView);
         }
+    }
+
+    private void saveEvent() {
+        //Prendo l'evento parziale salvato nella factory e lo aggiorno con le nuove
+        //informazioni inserite
+
+        String description = ((EditText) findViewById(R.id.eventDescription)).getText().toString();
+
+        EventFactory factory = EventFactory.getInstance();
+
+        Event event = factory.getPartialEvent();
+        event.setDescrizione(description);
+        event.setFotoUriList(fotoUriList);
+
+        factory.addEvent(event);
+
+        //Setto l'evento parziale a null perché lo sto salvando nella lista eventi
+        factory.setPartialEvent(null);
+
+        Intent intent = new Intent(this, HomePage.class);
+        //Questo flag serve a togliere le activity di creazione evento dalla cronologia delle activity
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }
