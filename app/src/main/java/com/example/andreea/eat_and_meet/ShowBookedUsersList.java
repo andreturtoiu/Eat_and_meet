@@ -47,20 +47,21 @@ public class ShowBookedUsersList extends AppCompatActivity {
     }
 
     public LinearLayout newBookedUserView (Person p, Context c){
-        LinearLayout eventView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_booked_user, null);
-        TextView name = (TextView) eventView.findViewById(R.id.template_booked_user_name);
-        TextView delete = (TextView) eventView.findViewById(R.id.template_delete_booked_user);
-        ImageView photo = (ImageView) eventView.findViewById(R.id.template_booked_user_avatar);
+        LinearLayout userView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_booked_user, null);
+        TextView name = (TextView) userView.findViewById(R.id.template_booked_user_name);
+        TextView delete = (TextView) userView.findViewById(R.id.template_delete_booked_user);
+        ImageView photo = (ImageView) userView.findViewById(R.id.template_booked_user_avatar);
         name.setText(p.getName()+" "+p.getSurname());
         name.setId(View.generateViewId());
         delete.setId(View.generateViewId());
         photo.setImageResource(p.getFoto());
         photo.setId(View.generateViewId());
-        eventView.setId(View.generateViewId());
+        userView.setId(View.generateViewId());
         //Aggiungo listener
-        photo.setOnClickListener(new ShowProfile(p.getEmail()));
+        //photo.setOnClickListener(new ShowProfile(p.getEmail()));
+        userView.setOnClickListener(new ShowProfile(p.getEmail()));
         delete.setOnClickListener(new RemoveUser(p.getEmail()));
-        return eventView;
+        return userView;
     }
     //Linkare a Profilo Utente
     //Necessario XML per visualizzare profilo utente

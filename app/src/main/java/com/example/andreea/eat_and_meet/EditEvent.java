@@ -4,18 +4,25 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -26,8 +33,9 @@ import java.util.Calendar;
 public class EditEvent extends AppCompatActivity {
     Event evento;
     EditText info;
-
+    private static final int REQUEST_PICK_IMAGE = 1;
     DatePickerDialog datePickerDialog;
+    LinearLayout.LayoutParams fotoParams;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,11 +68,19 @@ public class EditEvent extends AppCompatActivity {
 
         ArrayList<Integer> fotoList = evento.getFotoList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
+        int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
+        fotoParams = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
+
+        ImageButton addFoto = (ImageButton) findViewById(R.id.pickImageBtn);
+        addFoto.setLayoutParams(fotoParams);
+        addFoto.setOnClickListener(new AddFotoListener());
+
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
             ImageView foto = new ImageView(this);
             foto.setImageResource(i);
             //Imposto dimensione
-            foto.setLayoutParams(new LinearLayout.LayoutParams(200,200));
+            foto.setLayoutParams(fotoParams);
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
             ss.addView(foto);
         }
 
@@ -185,6 +201,56 @@ public class EditEvent extends AppCompatActivity {
             textView.setText(String.format("%d:%d", hour, minutes));
             evento.setData(year,month,day,hour,minutes);
 
+        }
+    }
+
+    class AddFotoListener implements View.OnClickListener{
+        public void onClick(View view) {
+
+                //Creo un intent che lancia un'activity per selezionare un'immagine dalla galleria
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+
+                //Setto il tipo di file da cercare
+                intent.setType("image/*");
+
+                //Lancio l'activity dandogli un identificativo che mi servirà a prendermi il risultato
+                startActivityForResult(intent, REQUEST_PICK_IMAGE);
+
+        }
+
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Controllo se ha preso correttamente l'immagine
+        if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
+            //L'Uri è un indirizzo che identifica l'immagine all'interno del device
+            Uri selectedimg = data.getData();
+            Bitmap bitmap = null;
+            try {
+                //Bitmap sono immagini non compresse
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedimg);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //Se non è riuscito a prendere l'immagine annullo
+            if (bitmap == null) {
+                return;
+            }
+
+            //Creo una ImageView con l'immagine appena presa
+            ImageView imageView = new ImageView(EditEvent.this);
+            imageView.setImageBitmap(bitmap);
+
+
+            imageView.setLayoutParams(fotoParams);
+
+            //Aggiungo l'immagine al linear layout dentro la scrollview
+            LinearLayout container = (LinearLayout) findViewById(R.id.SlideshowId);
+            container.addView(imageView);
         }
     }
 

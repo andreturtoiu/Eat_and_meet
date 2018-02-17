@@ -55,7 +55,8 @@
             android:label="Cerca Eventi" />
         <activity
             android:name=".ShowEventList"
-            android:label="Eventi Trovati" />
+            android:label="Lista Eventi"
+            android:parentActivityName=".HomePage"/>
         <activity
             android:name=".CreateEvent2"
             android:label="Descrizione Evento"
