@@ -119,7 +119,7 @@ public class LoggedProfile  extends AppCompatActivity{
         float stars = 0;  //numero di stelle della barra generale;
         int size = r.size();
         for(int i = 0; i < size; i++){
-            stars = stars + r.get(i).getNumStars();
+            stars = stars + r.get(i).getRating();
         }
         float avgStars = stars/r.size();
 
@@ -164,7 +164,7 @@ public class LoggedProfile  extends AppCompatActivity{
 
 
         rating.setId(View.generateViewId());
-        rating.setRating(r.getNumStars());
+        rating.setRating(r.getRating());
 
         aboutYou.setId(View.generateViewId());
          aboutYou.setText(r.getAboutYou());

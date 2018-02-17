@@ -99,7 +99,7 @@
         <RelativeLayout
             android:id="@+id/relativeLayout"
             android:layout_width="340dp"
-            android:layout_height="266dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/descriptionProfile"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="10dp"
@@ -147,7 +147,8 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
 
                 <LinearLayout
                     android:id="@+id/aboutYouContainer"
@@ -199,12 +200,8 @@
 
             <RatingBar
                 android:id="@+id/ratingBarGeneral2"
-                style="@android:style/Widget.Material.RatingBar.Indicator"
-                android:layout_width="175dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="0"
                 android:stepSize="1.0" />
 
 

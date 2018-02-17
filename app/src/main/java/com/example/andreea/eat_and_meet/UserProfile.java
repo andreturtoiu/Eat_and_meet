@@ -1,5 +1,6 @@
 package com.example.andreea.eat_and_meet;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,12 +63,12 @@ public class UserProfile extends AppCompatActivity{
 
         //Stelle barra generale con la media delle recensioni
         RatingBar ratingBarGeneral = (RatingBar) findViewById(R.id.ratingBarGeneral);
-        final float[] stars = {0};  //numero di stelle della barra generale;
+        float stars = 0;  //numero di stelle della barra generale;
         int size = r.size();
         for(int i = 0; i < size; i++){
-            stars[0] = stars[0] + r.get(i).getNumStars();
+            stars = stars + r.get(i).getRating();
         }
-        float avgStars = stars[0] /r.size();
+        float avgStars = stars /r.size();
 
         ratingBarGeneral.setRating(avgStars);
 
@@ -86,13 +87,11 @@ public class UserProfile extends AppCompatActivity{
         Button invia = (Button) findViewById(R.id.button);
 
 
+
         ratingBarGeneral2.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            int stars;
+
             public void onRatingChanged(RatingBar ratingBar, float rating,
                                         boolean fromUser) {
-
-                stars = ratingBarGeneral2.getNumStars();
-                ratingBarGeneral2.setNumStars(stars);
 
             }
         });
@@ -105,11 +104,27 @@ public class UserProfile extends AppCompatActivity{
             @Override
             public void onClick(View v) {
              //   if(checkRate(ratingBarGeneral2,inputText)){
-                    int stars = ratingBarGeneral2.getNumStars();
+                    float rating = ratingBarGeneral2.getRating();
                     String text = inputText.getText().toString();
-                    RatingLoggedProfile r = new RatingLoggedProfile(emailFrom,emailUser,text,stars);
+                    RatingLoggedProfile r = new RatingLoggedProfile(emailFrom,emailUser,text,rating);
                     updateRatings(user,r);
-               // }
+
+                View popview = getLayoutInflater().inflate(R.layout.rate_dialog, null);
+                Button confirm = (Button) popview.findViewById(R.id.confirmButton);
+                confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent rate = new Intent(UserProfile.this, UserProfile.class);
+                        rate.putExtra("EMAIL_EXTRA",emailUser);
+                        startActivity(rate);
+                    }
+                });
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
+                builder.setView(popview);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                // }
             }
         });
 
@@ -119,12 +134,6 @@ public class UserProfile extends AppCompatActivity{
     }
 
 
-    public class Stars{
-        int stars;
-        public Stars(int stars){
-            this.stars = stars;
-        }
-    }
 
     private void updateRatings(Person p,RatingLoggedProfile r){
         p.addRatings(r);
@@ -177,7 +186,7 @@ public class UserProfile extends AppCompatActivity{
 
 
         rating.setId(View.generateViewId());
-        rating.setRating(r.getNumStars());
+        rating.setRating(r.getRating());
 
         aboutYou.setId(View.generateViewId());
         aboutYou.setText(r.getAboutYou());
