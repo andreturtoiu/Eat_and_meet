@@ -12,22 +12,22 @@ public class RatingLoggedProfile{
     private String emailFrom; //chi ha scritto la recensione
     private String emailTo; //Sul profilo di chi
     private String aboutYou;
-    int numStars;
+    float rating;
 
 
     public RatingLoggedProfile(){
         this.setEmailFrom("");
         this.setEmailTo("");
         this.setAboutYou("");
-        this.setNumStars(0);
+        this.setRating(0);
 
     }
 
-    public  RatingLoggedProfile(String emailFrom,String emailTo,String aboutYou, int numStars){
+    public  RatingLoggedProfile(String emailFrom,String emailTo,String aboutYou, float rating){
         setEmailFrom(emailFrom);
         setEmailTo(emailTo);
         setAboutYou(aboutYou);
-        setNumStars(numStars);
+        setRating(rating);
     }
 
     public void setEmailFrom(String emailFrom){this.emailFrom = emailFrom;}
@@ -36,9 +36,9 @@ public class RatingLoggedProfile{
     public void setEmailTo(String emailTo){this.emailTo = emailTo;}
     public String getEmailTo(){return this.emailTo;}
 
-    public int getNumStars(){return this.numStars;}
-    public void setNumStars(int numStars) {
-        this.numStars = numStars;
+    public float getRating(){return this.rating;}
+    public void setRating(float rating) {
+        this.rating = rating;
     }
 
     public String getAboutYou(){return this.aboutYou;}
