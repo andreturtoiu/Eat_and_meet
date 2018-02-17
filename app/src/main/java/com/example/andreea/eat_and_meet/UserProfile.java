@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -179,7 +181,7 @@ public class UserProfile extends AppCompatActivity{
         ImageView img = ratingView.findViewById(R.id.otherUser);
         RatingBar rating = ratingView.findViewById(R.id.ratingBarUser);
         TextView aboutYou = ratingView.findViewById(R.id.contentRating);
-
+        TextView name = ratingView.findViewById(R.id.nameUser);
         int imgRes = PersonFactory.getInstance().getUserByEmail(r.getEmailFrom()).getFoto();
         img.setImageResource(imgRes);
         img.setId(View.generateViewId());
@@ -190,6 +192,9 @@ public class UserProfile extends AppCompatActivity{
 
         aboutYou.setId(View.generateViewId());
         aboutYou.setText(r.getAboutYou());
+
+        name.setText( PersonFactory.getInstance().getUserByEmail(r.getEmailFrom()).getName() + " " +
+                PersonFactory.getInstance().getUserByEmail(r.getEmailFrom()).getSurname()  );
         ratingView.setOnClickListener(i);
         return ratingView;
     }

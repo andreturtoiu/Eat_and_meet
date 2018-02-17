@@ -4,15 +4,32 @@
     android:layout_height="wrap_content"
     android:id="@+id/aboutYouCont">
 
-        <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/otherUser"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/utente1" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+
+                <ImageView
+                    android:id="@+id/otherUser"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="5dp"
+                    android:src="@drawable/utente1" />
+
+                <TextView
+                    android:id="@+id/nameUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/otherUser"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="8dp"
+                    android:text="nome" />
 
                 <RatingBar
                     android:id="@+id/ratingBarUser"
@@ -20,18 +37,30 @@
                     android:layout_width="175dp"
                     android:layout_height="50dp"
                     android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginEnd="17dp"
-                    android:isIndicator="true" />
+                    android:layout_below="@+id/view"
+                    android:layout_marginEnd="21dp"
+                    android:isIndicator="true"
+                    />
+
 
                 <TextView
                     android:id="@+id/contentRating"
                     android:layout_width="match_parent"
+                    android:gravity="left"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:layout_alignParentEnd="true"
+                    android:layout_alignStart="@+id/ratingBarUser"
                     android:layout_below="@+id/ratingBarUser"
+                    android:layout_marginTop="55dp"
+                    android:layout_marginLeft="100dp"
+                    android:text="content"
                     android:textColor="#000" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:background="#000"
+                    android:id="@+id/view" />
+
+
         </RelativeLayout>
 
 </LinearLayout>

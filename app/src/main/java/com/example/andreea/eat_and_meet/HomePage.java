@@ -44,7 +44,7 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        Intent intent = getIntent();
         Person loggedUser;
         String emailUser;
 
@@ -57,7 +57,6 @@ public class HomePage extends AppCompatActivity {
         emailUser = PersonFactory.getInstance().getLoggedUser();
         loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
 
-
         TextView profilename = (TextView) headerview.findViewById(R.id.name);
         profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
         ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
@@ -69,6 +68,7 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View v) {
                 String email = PersonFactory.getInstance().getLoggedUser();
                 Intent t1 = new Intent(HomePage.this, LoggedProfile.class);
+                t1.putExtra("EMAIL_EXTRA",email);
                 startActivity(t1);
             }
         });

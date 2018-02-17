@@ -4,19 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/events"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_events"
             android:title="Eventi" />
         <item
             android:id="@+id/create_event"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_create_events"
             android:title="Crea evento" />
         <item
             android:id="@+id/search_events"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_search_event"
             android:title="Cerca Evento" />
         <item
             android:id="@+id/notifies"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_notifications_none"
             android:title="Notifiche" />
     </group>
 
@@ -24,7 +24,7 @@
         <menu>
             <item
                 android:id="@+id/logout"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_logout"
                 android:title="Logout" />
 
         </menu>

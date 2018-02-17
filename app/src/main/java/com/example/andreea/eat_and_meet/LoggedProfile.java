@@ -157,7 +157,7 @@ public class LoggedProfile  extends AppCompatActivity{
         ImageView img = ratingView.findViewById(R.id.otherUser);
         RatingBar rating = ratingView.findViewById(R.id.ratingBarUser);
         TextView aboutYou = ratingView.findViewById(R.id.contentRating);
-
+        TextView name = ratingView.findViewById(R.id.nameUser);
         int imgRes = PersonFactory.getInstance().getUserByEmail(r.getEmailFrom()).getFoto();
         img.setImageResource(imgRes);
         img.setId(View.generateViewId());
@@ -166,8 +166,12 @@ public class LoggedProfile  extends AppCompatActivity{
         rating.setId(View.generateViewId());
         rating.setRating(r.getRating());
 
+        name.setText(PersonFactory.getInstance().getUserByEmail(r.getEmailFrom()).getName() + " " +
+        PersonFactory.getInstance().getUserByEmail(r.getEmailFrom()).getSurname());
+        name.setId(View.generateViewId());
+
         aboutYou.setId(View.generateViewId());
-         aboutYou.setText(r.getAboutYou());
+        aboutYou.setText(r.getAboutYou());
         ratingView.setOnClickListener(i);
         return ratingView;
     }
