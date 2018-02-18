@@ -169,5 +169,9 @@ public class Event implements Serializable {
         this.fotoUriList = fotoUriList;
     }
     public void addFotoUri(BitmapDataObject bm) {this.fotoUriList.add(bm);}
+
+    public void setFotoList(ArrayList<Integer> fotoList) {
+        this.foto = fotoList;
+    }
 }
 

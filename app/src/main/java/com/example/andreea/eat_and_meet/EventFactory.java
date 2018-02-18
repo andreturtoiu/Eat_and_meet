@@ -43,6 +43,7 @@ public class EventFactory {
         for(Event e:listaEventi)
             if (e.getId() == id){
                 e.setDescrizione(evento.getDescrizione());
+                e.setFotoList(evento.getFotoList());
                 e.setFotoUriList(evento.getFotoUriList());
                 e.setData(evento.getDataCalendar());
             }

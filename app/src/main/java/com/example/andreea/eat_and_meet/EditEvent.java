@@ -67,36 +67,8 @@ public class EditEvent extends AppCompatActivity {
         findViewById(R.id.ConfirmEditButton).setOnClickListener(new ConfirmBtn());
         findViewById(R.id.AbortEditButton).setOnClickListener(new AbortBtn());
 
-        ArrayList<Integer> fotoList = evento.getFotoList();
-        List<BitmapDataObject> fotoUriList = evento.getFotoUriList();
-        LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
-        int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
-        fotoParams = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
 
-        ImageButton addFoto = (ImageButton) findViewById(R.id.pickImageBtn);
-        addFoto.setLayoutParams(fotoParams);
-        addFoto.setOnClickListener(new AddFotoListener());
-
-        for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
-            ImageView foto = new ImageView(this);
-            foto.setImageResource(i);
-            //Imposto dimensione
-            foto.setLayoutParams(fotoParams);
-            foto.setScaleType(ImageView.ScaleType.FIT_XY);
-            ss.addView(foto);
-        }
-
-        for(BitmapDataObject bm:fotoUriList){
-            ImageView foto = new ImageView(this);
-            //Uri path = Uri.parse(uri);
-            //foto.setImageURI(path);
-            foto.setImageBitmap(bm.getBitmap());
-            //Imposto dimensione
-            foto.setLayoutParams(fotoParams);
-            foto.setScaleType(ImageView.ScaleType.FIT_XY);
-            ss.addView(foto);
-        }
-
+        loadFoto();
 
     }
     class ConfirmBtn implements View.OnClickListener {
@@ -268,7 +240,91 @@ public class EditEvent extends AppCompatActivity {
         }
     }
 
+    public void loadFoto(){
+        LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
 
+        int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
+        fotoParams = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
+
+        ImageButton addFoto = (ImageButton) findViewById(R.id.pickImageBtn);
+        ss.removeAllViews();
+
+        addFoto.setLayoutParams(fotoParams);
+        addFoto.setOnClickListener(new AddFotoListener());
+        ss.addView(addFoto);
+
+        ArrayList<Integer> fotoList = evento.getFotoList();
+        List<BitmapDataObject> fotoUriList = evento.getFotoUriList();
+
+        for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
+            ImageView foto = new ImageView(this);
+            foto.setImageResource(i);
+            //Imposto dimensione
+            foto.setLayoutParams(fotoParams);
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            foto.setOnClickListener(new FotoListener(i));
+
+            ss.addView(foto);
+        }
+
+        for(BitmapDataObject bm:fotoUriList){
+            ImageView foto = new ImageView(this);
+            //Uri path = Uri.parse(uri);
+            //foto.setImageURI(path);
+            foto.setImageBitmap(bm.getBitmap());
+            //Imposto dimensione
+            foto.setLayoutParams(fotoParams);
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            foto.setOnClickListener(new FotoListener(bm));
+
+            ss.addView(foto);
+        }
+    }
+
+    class FotoListener implements View.OnClickListener{
+        private Integer i;
+        private BitmapDataObject bm;
+        private boolean isBitmap;
+        @Override
+        public void onClick(View view) {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(EditEvent.this);
+            builder1.setMessage("Rimuovere la foto?");
+            builder1.setCancelable(false);
+            builder1.setPositiveButton(
+                    "Sì",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            if(isBitmap){
+                                evento.getFotoUriList().remove(bm);
+                                loadFoto();
+                            }
+                            else{
+                                evento.getFotoList().remove(i);
+                                loadFoto();
+                            }
+                            dialog.cancel();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
+        public FotoListener(int i){
+            this.i = i;
+            this.isBitmap = false;
+        }
+        public FotoListener(BitmapDataObject bm){
+            this.bm = bm;
+            this.isBitmap = true;
+        }
+    }
 
 
 }
