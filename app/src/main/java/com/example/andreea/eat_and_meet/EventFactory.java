@@ -198,7 +198,12 @@ public class EventFactory {
         title.setId(View.generateViewId());
         info.setText(e.getDescrizione());
         info.setId(View.generateViewId());
-        photo.setImageResource(R.drawable.logo);
+        if(e.getFotoList() != null && e.getFotoList().size()>0)
+            photo.setImageResource(e.getFotoList().get(0));
+        else if (e.getFotoUriList() != null && e.getFotoUriList().size()>0)
+            photo.setImageBitmap(e.getFotoUriList().get(0).getBitmap());
+        else
+            photo.setImageResource(R.drawable.logo_2);
         photo.setId(View.generateViewId());
         eventView.setId(View.generateViewId());
         //Aggiungo listener
