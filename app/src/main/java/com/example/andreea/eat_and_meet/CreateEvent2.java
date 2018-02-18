@@ -101,7 +101,15 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         //Prendo l'evento parziale salvato nella factory e lo aggiorno con le nuove
         //informazioni inserite
 
-        String description = ((EditText) findViewById(R.id.eventDescription)).getText().toString();
+        EditText editTextDesc = (EditText) findViewById(R.id.eventDescription);
+        String description = editTextDesc.getText().toString();
+
+        int min_size = 10;
+        if(description.length() < min_size){
+            editTextDesc.setError("Inserire una descrizione di almeno "+min_size);
+            return;
+        }
+        editTextDesc.setError(null);
 
         EventFactory factory = EventFactory.getInstance();
 

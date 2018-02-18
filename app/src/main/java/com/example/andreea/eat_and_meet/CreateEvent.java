@@ -36,7 +36,11 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     private DatePickerDialog datePickerDialog;
     private TextView dateTextView;
     private TextView timeTextView;
+    private EditText titleEditView;
+    private EditText addressEditView;
+    private EditText cityEditView;
     private int day, month, year, hour, minutes;
+    private boolean timeSetBool = false,dateSetBool = false;
 
 
     @Override
@@ -64,6 +68,11 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
         View headerview = navigationView.getHeaderView(0);
         TextView profilename = (TextView) headerview.findViewById(R.id.name);
+        titleEditView = (EditText) findViewById(R.id.editEvent);
+        addressEditView = (EditText) findViewById(R.id.editIndirizzo);
+        cityEditView = (EditText) findViewById(R.id.editCitta);
+        dateTextView = (TextView) findViewById(R.id.dateTextView);
+        timeTextView = (TextView) findViewById(R.id.timeTextView);
         profilename.setText(loggedUser.getName() + " " + loggedUser.getSurname());
 
 
@@ -159,11 +168,13 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         //Controllo se la view che è stata cliccata è il bottone per proseguire
         if (view.getId() == R.id.prosegui) {
+            //if(!checkSet()) return;
             saveEventData();
-
-            //Creo un intent per andare alla prossima activity
-            Intent intent = new Intent(this, CreateEvent2.class);
-            startActivity(intent);
+            if(checkInput()) {
+                //Creo un intent per andare alla prossima activity
+                Intent intent = new Intent(this, CreateEvent2.class);
+                startActivity(intent);
+            }
         }
 
         if (view.getId() == R.id.timeTextView) {
@@ -195,16 +206,16 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     private void saveEventData() {
         //Prendo le informazioni dell'evento dalle view e le salvo dentro la factory
 
-        String title = ((EditText) findViewById(R.id.editEvent)).getText().toString();
-        String address = ((EditText) findViewById(R.id.editIndirizzo)).getText().toString();
-        String city = ((EditText) findViewById(R.id.editCitta)).getText().toString();
+        String title = titleEditView.getText().toString();
+        String address = addressEditView.getText().toString();
+        String city = cityEditView.getText().toString();
 
         Spinner typeSpinner = (Spinner) findViewById(R.id.spinner);
         String type = typeSpinner.getSelectedItem().toString();
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radio_group);
         int checkedRadioButtonId = radioGroup.getCheckedRadioButtonId();
-        int pranzo_cena = checkedRadioButtonId == R.id.check_pranzo ? Event.PRANZO : Event.CENA;
+        int pranzo_cena = checkedRadioButtonId == R.id.radio_pranzo ? Event.PRANZO : Event.CENA;
 
         String userEmail = PersonFactory.getInstance().getLoggedUser();
 
@@ -214,7 +225,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         event.setCity(city);
         event.setCucina(type);
         event.setPranzo_cena(pranzo_cena);
-        event.setData(new GregorianCalendar(year, month, day, hour, minutes));
+        event.setData(year, month, day, hour, minutes);
         event.setUser(userEmail);
         EventFactory.getInstance().setPartialEvent(event);
     }
@@ -223,9 +234,10 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     public void onTimeSet(TimePicker timepicker, int hour, int minutes) {
         this.hour = hour;
         this.minutes = minutes;
+        timeSetBool = true;
 
         //setto il testo della textview con l'ora e minuti presi dalla dialog
-        timeTextView = (TextView) findViewById(R.id.timeTextView);
+
         timeTextView.setText(String.format("%d:%d", hour, minutes));
     }
 
@@ -235,37 +247,77 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         this.month = month;
         this.day = dayOfMonth;
 
-        dateTextView = (TextView) findViewById(R.id.dateTextView);
+        dateSetBool = true;
+
         // set day of month , month and year value in the edit text
         dateTextView.setText(dayOfMonth + "/" + (month + 1) + "/" + year);
 
     }
 
 
-//    private boolean checkInput() {
-//
-//        int errors = 0;
-//
-//        if (titleEditView.getText() == null || titleEditView.getText().length() == 0) {
-//
-//            titleEditView.setError("Inserire il nome dell'evento");
-//            errors++;
-//
-//        } else {
-//            titleEditView.setError(null);
-//        }
-//
-//        if (addressEditView.getText() == null || addressEditView.getText().length() == 0) {
-//
-//            addressEditView.setError("Inserire indirizzo e città");
-//            errors++;
-//
-//        } else {
-//            addressEditView.setError(null);
-//        }
-//
-//
-//        return errors == 0;
-//    }
+    private boolean checkInput() {
+
+        int errors = 0;
+
+        if (titleEditView.getText() == null || titleEditView.getText().length() == 0) {
+
+            titleEditView.setError("Inserire il nome dell'evento");
+            errors++;
+
+        } else {
+            titleEditView.setError(null);
+        }
+
+        if (addressEditView.getText() == null || addressEditView.getText().length() == 0) {
+
+            addressEditView.setError("Inserire indirizzo");
+            errors++;
+
+        } else {
+            addressEditView.setError(null);
+        }
+
+        if (cityEditView.getText() == null || cityEditView.getText().length() == 0) {
+
+            cityEditView.setError("Inserire città");
+            errors++;
+
+        } else {
+            cityEditView.setError(null);
+        }
+
+        if(!timeSetBool) {
+            timeTextView.setError("Seleziona un'orario.\nGli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
+            errors++;
+        }
+        else{
+            if(!EventFactory.getInstance().getPartialEvent().isTimeValid()){
+                timeTextView.setError("Gli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
+                errors++;
+            }
+            else
+                timeTextView.setError(null);
+        }
+
+
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE,3);
+
+        if(!dateSetBool) {
+            dateTextView.setError("Seleziona una data.\nNon si possono creare eventi a meno di 3 giorni dalla data corrente");
+            errors++;
+        }
+        else{
+            if(!EventFactory.getInstance().getPartialEvent().getDataCalendar().after(c)){
+                dateTextView.setError("Non si possono creare eventi a meno di 3 giorni dalla data corrente");
+                errors++;
+            }
+            else
+                dateTextView.setError(null);
+        }
+
+
+        return errors == 0;
+    }
 
 }
