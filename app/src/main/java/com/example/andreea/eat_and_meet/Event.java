@@ -97,7 +97,9 @@ public class Event implements Serializable {
         this.data.set(year,month,day,hour,min);
     }
 
+
     public int getPranzo_cena() {return this.pranzo_cena;}
+    public int getIdPranzo_cena() {return getPranzo_cena() == 0 ? R.id.radio_pranzo : R.id.radio_cena;}
     public void setPranzo_cena(int pranzo_cena){this.pranzo_cena = pranzo_cena;}
 
     public void addRequest(String email){
@@ -159,6 +161,26 @@ public class Event implements Serializable {
                 return (minCena <= orario) && (orario <= maxCena);
         }
         return false;
+    }
+
+    public int getPositionCucina(){
+        switch(getCucina()){
+            case "Italiana":
+                return 0;
+            case "Indiana":
+                return 1;
+            case "Francese":
+                return 2;
+            case "Cinese":
+                return 3;
+            case "Tedesca":
+                return 4;
+            case "Messicana":
+                return 5;
+            case "Giapponese":
+                return 6;
+        }
+        return 0;
     }
 
     public List<BitmapDataObject> getFotoUriList() {
