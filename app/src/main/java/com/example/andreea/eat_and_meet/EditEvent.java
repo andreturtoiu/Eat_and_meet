@@ -25,6 +25,7 @@ import android.widget.TimePicker;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by Michele on 08/02/2018.
@@ -67,6 +68,7 @@ public class EditEvent extends AppCompatActivity {
         findViewById(R.id.AbortEditButton).setOnClickListener(new AbortBtn());
 
         ArrayList<Integer> fotoList = evento.getFotoList();
+        List<BitmapDataObject> fotoUriList = evento.getFotoUriList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
         int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
         fotoParams = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
@@ -78,6 +80,17 @@ public class EditEvent extends AppCompatActivity {
         for(Integer i:fotoList){ //i corrisponde a R.drawable.immagine
             ImageView foto = new ImageView(this);
             foto.setImageResource(i);
+            //Imposto dimensione
+            foto.setLayoutParams(fotoParams);
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            ss.addView(foto);
+        }
+
+        for(BitmapDataObject bm:fotoUriList){
+            ImageView foto = new ImageView(this);
+            //Uri path = Uri.parse(uri);
+            //foto.setImageURI(path);
+            foto.setImageBitmap(bm.getBitmap());
             //Imposto dimensione
             foto.setLayoutParams(fotoParams);
             foto.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -245,6 +258,7 @@ public class EditEvent extends AppCompatActivity {
             ImageView imageView = new ImageView(EditEvent.this);
             imageView.setImageBitmap(bitmap);
 
+            evento.addFotoUri(new BitmapDataObject(bitmap));
 
             imageView.setLayoutParams(fotoParams);
 

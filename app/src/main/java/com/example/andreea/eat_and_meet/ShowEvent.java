@@ -2,7 +2,10 @@ package com.example.andreea.eat_and_meet;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +20,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Michele on 05/02/2018.
@@ -67,6 +73,7 @@ public class ShowEvent extends AppCompatActivity{
         data.setText(evento.getData());
 
         ArrayList<Integer> fotoList = evento.getFotoList();
+        List<BitmapDataObject> fotoUriList = evento.getFotoUriList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
         int dim = (findViewById(R.id.scroll_slideshow)).getLayoutParams().height;
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dim,LinearLayout.LayoutParams.MATCH_PARENT);
@@ -79,6 +86,20 @@ public class ShowEvent extends AppCompatActivity{
             foto.setScaleType(ImageView.ScaleType.FIT_XY);
             ss.addView(foto);
         }
+
+        for(BitmapDataObject bm:fotoUriList){
+            ImageView foto = new ImageView(this);
+            //Uri path = Uri.parse(uri);
+            //foto.setImageURI(path);
+            foto.setImageBitmap(bm.getBitmap());
+
+
+            //Imposto dimensione
+            foto.setLayoutParams(lp);
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+            ss.addView(foto);
+        }
+
         String source = (String) intent.getSerializableExtra("SOURCE");
         Button btn = (Button) new Button(this);
         logged_user = PersonFactory.getInstance().getLoggedUser();

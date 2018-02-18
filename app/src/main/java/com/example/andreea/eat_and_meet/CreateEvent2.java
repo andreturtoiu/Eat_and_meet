@@ -22,7 +22,7 @@ import java.util.List;
 
 public class CreateEvent2 extends AppCompatActivity implements View.OnClickListener {
     private static final int REQUEST_PICK_IMAGE = 1;
-    private List<String> fotoUriList;
+    private List<BitmapDataObject> fotoUriList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.pickImageBtn).setOnClickListener(this);
         findViewById(R.id.create_event_btn).setOnClickListener(this);
 
-        fotoUriList = new ArrayList<String>();
+        fotoUriList = new ArrayList<BitmapDataObject>();
     }
 
     @Override
@@ -78,7 +78,7 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
                 return;
             }
 
-            fotoUriList.add(data.getData().toString());
+            fotoUriList.add(new BitmapDataObject(bitmap));
 
             //Creo una ImageView con l'immagine appena presa
             ImageView imageView = new ImageView(this);

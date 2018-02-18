@@ -41,7 +41,11 @@ public class EventFactory {
     public void editEvent(Event evento){
         int id = evento.getId();
         for(Event e:listaEventi)
-            if (e.getId() == id) e.setDescrizione(evento.getDescrizione());
+            if (e.getId() == id){
+                e.setDescrizione(evento.getDescrizione());
+                e.setFotoUriList(evento.getFotoUriList());
+                e.setData(evento.getDataCalendar());
+            }
     }
 
     public void deleteEventById(int id){
