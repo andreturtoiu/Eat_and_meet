@@ -276,6 +276,10 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         event.setPranzo_cena(pranzo_cena);
         event.setData(year, month, day, hour, minutes);
         event.setUser(userEmail);
+        ArrayList<Double> pos = new ArrayList<>();
+        pos.add(latitude);
+        pos.add(longitude);
+        event.setLocation(pos);
         EventFactory.getInstance().setPartialEvent(event);
     }
 
@@ -384,12 +388,12 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
             addressEditView.setText(address.get(0).getThoroughfare());
             cityEditView.setText(address.get(0).getLocality());
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
         }catch(Exception e)
         {
 
         }
-
-
     }
 
     @Override
@@ -404,7 +408,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onProviderDisabled(String s) {
-        Toast.makeText(CreateEvent.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CreateEvent.this, "Please Enable GPS", Toast.LENGTH_SHORT).show();
 
     }
 
