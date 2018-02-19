@@ -2,14 +2,25 @@ package com.example.andreea.eat_and_meet;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -20,17 +31,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
 
-public class CreateEvent extends AppCompatActivity implements View.OnClickListener, TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener {
+public class CreateEvent extends AppCompatActivity implements View.OnClickListener, TimePickerDialog.OnTimeSetListener,
+        DatePickerDialog.OnDateSetListener ,LocationListener{
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
     private DatePickerDialog datePickerDialog;
@@ -42,6 +57,13 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     private int day, month, year, hour, minutes;
     private boolean timeSetBool = false,dateSetBool = false;
 
+    double latitude;
+    double longitude;
+    Geocoder geocoder;
+    ArrayList<Address> address;
+    LocationManager locationManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +74,9 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
         Person loggedUser;
         String emailUser;
+
+
+
 
         Button prosegui = (Button) findViewById(R.id.prosegui);
         //Iscrivo la mainActivity all'evento di click del bottone
@@ -80,6 +105,31 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         img.setImageResource(loggedUser.getFoto());
 
 
+
+        ///////////////////////
+
+
+        Button geo = (Button)findViewById(R.id.geo);
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
+        }
+
+
+        geo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getLocation();
+            }
+        });
+
+
+        ////////////////
+
+
+
+
         headerview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +140,6 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 drawerLayout.closeDrawers();
 
@@ -318,6 +367,57 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
 
         return errors == 0;
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+       //addressEditView.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
+
+        try {
+            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+            StringBuilder sb = new StringBuilder();
+
+            address = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            for (int i = 0; i < address.get(0).getMaxAddressLineIndex(); i++) {
+                sb.append(address.get(0).getAddressLine(i)).append("\n");
+            }
+
+            addressEditView.setText(address.get(0).getThoroughfare());
+            cityEditView.setText(address.get(0).getLocality());
+        }catch(Exception e)
+        {
+
+        }
+
+
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+        Toast.makeText(CreateEvent.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+
+    }
+
+
+
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
+        }
+        catch(SecurityException e) {
+            e.printStackTrace();
+        }
     }
 
 }
