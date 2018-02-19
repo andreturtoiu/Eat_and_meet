@@ -188,27 +188,27 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        //Prendo l'evento salvato come parziale
-        Event event = EventFactory.getInstance().getPartialEvent();
-
-        //Se l'evento è nullo vuol dire che stiamo visitando questa pagina per la
-        //prima volta
-        if (event != null) {
-            //inserisco le informazioni salvate dentro le varie view
-            EditText titleView = (EditText) findViewById(R.id.editEvent);
-            titleView.setText(event.getTitolo());
-
-            EditText addressView = (EditText) findViewById(R.id.editIndirizzo);
-            addressView.setText(event.getIndirizzo());
-
-            EditText cityView = (EditText) findViewById(R.id.editCitta);
-            cityView.setText(event.getCity());
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//
+//        //Prendo l'evento salvato come parziale
+//        Event event = EventFactory.getInstance().getPartialEvent();
+//
+//        //Se l'evento è nullo vuol dire che stiamo visitando questa pagina per la
+//        //prima volta
+//        if (event != null) {
+//            //inserisco le informazioni salvate dentro le varie view
+//            EditText titleView = (EditText) findViewById(R.id.editEvent);
+//            titleView.setText(event.getTitolo());
+//
+//            EditText addressView = (EditText) findViewById(R.id.editIndirizzo);
+//            addressView.setText(event.getVia());
+//
+//            EditText cityView = (EditText) findViewById(R.id.editCitta);
+//            cityView.setText(event.getCity());
+//        }
+//    }
 
     public void onRadioButtonClicked(View view) {
     }
