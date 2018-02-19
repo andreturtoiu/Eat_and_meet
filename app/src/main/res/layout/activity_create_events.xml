@@ -56,6 +56,20 @@
                 android:paddingStart="20dp"
                 android:paddingTop="10dp" />
 
+
+            <EditText
+                android:id="@+id/editIndirizzo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="#f2f2f2"
+                android:ems="10"
+                android:hint="Indirizzo: Via"
+                android:inputType="textPersonName"
+                android:paddingBottom="10dp"
+                android:paddingStart="20dp"
+                android:paddingTop="10dp" />
+
             <EditText
                 android:id="@+id/editCitta"
                 android:layout_width="match_parent"
@@ -63,20 +77,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="#f2f2f2"
                 android:ems="10"
-                android:hint="Indirizzo: Città"
-                android:inputType="textPersonName"
-                android:paddingBottom="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp" />
-
-            <EditText
-                android:id="@+id/editVia"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:background="#f2f2f2"
-                android:ems="10"
-                android:hint="Indirizzo: Via"
+                android:hint="Indirizzo: città"
                 android:inputType="textPersonName"
                 android:paddingBottom="10dp"
                 android:paddingStart="20dp"
@@ -92,6 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
+                    android:layout_marginRight="10dp"
                     android:background="#f2f2f2"
                     android:clickable="true"
                     android:ems="10"
@@ -120,7 +122,7 @@
             <TextView
                 android:id="@+id/cucinaTextview"
                 android:layout_width="match_parent"
-                android:layout_height="22dp"
+                android:layout_height="17dp"
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:background="#f2f2f2"

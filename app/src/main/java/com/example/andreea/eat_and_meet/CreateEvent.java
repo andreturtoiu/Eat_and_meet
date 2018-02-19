@@ -3,7 +3,6 @@ package com.example.andreea.eat_and_meet;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
@@ -16,14 +15,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.DatePicker;
-
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -73,7 +69,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         View headerview = navigationView.getHeaderView(0);
         TextView profilename = (TextView) headerview.findViewById(R.id.name);
         titleEditView = (EditText) findViewById(R.id.editEvent);
-        addressEditView = (EditText) findViewById(R.id.editVia);
+        addressEditView = (EditText) findViewById(R.id.editIndirizzo);
         cityEditView = (EditText) findViewById(R.id.editCitta);
         dateTextView = (TextView) findViewById(R.id.dateTextView);
         timeTextView = (TextView) findViewById(R.id.timeTextView);
@@ -129,6 +125,18 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        //saveButton = (Button) this.findViewById(R.id.prosegui);
+
+        //saveButton.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //   public void onClick(View v) {
+        //        if(checkInput()){
+        //
+        //        }
+        //    }
+        //});
+
+
     }
 
     @Override
@@ -145,24 +153,11 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
             EditText titleView = (EditText) findViewById(R.id.editEvent);
             titleView.setText(event.getTitolo());
 
-            EditText addressView = (EditText) findViewById(R.id.editVia);
-            addressView.setText(event.getVia());
+            EditText addressView = (EditText) findViewById(R.id.editIndirizzo);
+            addressView.setText(event.getIndirizzo());
 
             EditText cityView = (EditText) findViewById(R.id.editCitta);
             cityView.setText(event.getCity());
-
-//            TextView dateView = (TextView) findViewById(R.id.dateTextView);
-//            dateView.setText(event.showDateOnly());
-//
-//            TextView timeView = (TextView) findViewById(R.id.timeTextView);
-//            timeView.setText(event.showTimeOnly());
-
-            Spinner type = (Spinner) findViewById(R.id.spinner);
-            type.setSelection(event.getPositionCucina());
-
-            RadioGroup radiogroup = (RadioGroup) findViewById(R.id.radio_group);
-            radiogroup.check(event.getIdPranzo_cena());
-
         }
     }
 
