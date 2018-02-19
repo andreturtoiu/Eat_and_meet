@@ -214,13 +214,31 @@ public class EventFactory {
     }
 
     private EventFactory() {
+        //via sicilia
+        ArrayList<Double> position = new ArrayList<>(2);
+        position.add(39.245459);
+        position.add(9.189124);
+
+        //Via roma 8 cagliari
+        ArrayList<Double> position2 = new ArrayList<>(2);
+        position2.add(39.215983);
+        position2.add(9.109543);
+
+        //Via Cagliari 78 quartu
+        ArrayList<Double> position3 = new ArrayList<>(2);
+        position3.add(39.245065);
+        position3.add(9.184190);
+
+        //via silvio pellico 18 quartu
+        ArrayList<Double> position4 = new ArrayList<>(2);
+        position4.add(39.236895);
+        position4.add(9.189380);
+
         Event e;
         Calendar c = Calendar.getInstance();
+
         //Evento 0
         e = new Event();
-        ArrayList<Double> position = new ArrayList<>(2);
-        position.add(39.245449);
-        position.add(9.189008);
         e.setUser("dcont@ium.it");
         e.setTitolo("Serata Fritto Misto");
         e.setDescrizione("Tagliere della Burla con salame, lardo, peperoni in bagna cauda, lonzino tonnato,\n" +
@@ -251,31 +269,27 @@ public class EventFactory {
         e.setMaxBookings(4);
         e.setLocation(position);
         listaEventi.add(e);
+
         //Evento 1
         e = new Event();
-        ArrayList<Double> position2 = new ArrayList<>(2);
-        position.add(39.211658);
-        position.add(9.118163);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 1");
         e.setDescrizione("Descrizione 1");
         e.setCucina("Indiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Diaz 1");
-        e.setCity("Cagliari");
+        e.setVia("Via Sicilia 27");
+        e.setCity("Quartu Sant'Elena");
         c.set(2018,3,2,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
-        e.setLocation(position2);
+        e.setLocation(position);
         listaEventi.add(e);
+
         //Evento 2
         e = new Event();
-        ArrayList<Double> position3 = new ArrayList<>(2);
-        position.add(45.530402);
-        position.add(9.026751);
-        e.setLocation(position3);
+        e.setLocation(position);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Serata della Bourguignonne");
@@ -292,8 +306,8 @@ public class EventFactory {
                 "Acqua, vino della casa e caffè");
         e.setCucina("Francese");
         e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via Castellazzo 64");
-        e.setCity("Milano");
+        e.setVia("Via Sicilia 27");
+        e.setCity("Quartu Sant'Elena");
         c.set(2018,3,3,12,0);
         e.setData(c);
         e.addPartecipante("atur@ium.it");
@@ -301,26 +315,27 @@ public class EventFactory {
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
+
         //Evento 3
         e = new Event();
-        ArrayList<Double> position4 = new ArrayList<>(2);
-        position.add(45.530402);
-        position.add(9.026751);
-        e.setLocation(position4);
+        e.setLocation(position);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 3");
         e.setDescrizione("Descrizione  3");
         e.setCucina("Cinese");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Celio Vibena 3");
-        e.setCity("Roma");
+        e.setVia("Via Sicilia 27");
+        e.setCity("Quartu Sant'Elena");
         c.set(2018,3,4,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
+
         //Evento 4
+
+
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
@@ -328,34 +343,39 @@ public class EventFactory {
         e.setDescrizione("Descrizione  4");
         e.setCucina("Tedesca");
         e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 4");
-        e.setCity("Torino");
+        e.setVia("Via Sicilia 27");
+        e.setCity("Quartu Sant'Elena");
         c.set(2018,3,5,12,0);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
+        e.setLocation(position);
         listaEventi.add(e);
+
         //Evento 5
         e = new Event();
-
+        e.setLocation(position2);
         c = Calendar.getInstance();
         e.setUser("rmam@ium.it");
         e.setTitolo("Evento 5");
         e.setDescrizione("Descrizione 5");
         e.setCucina("Messicana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 5");
-        e.setCity("Firenze");
+        e.setVia("Via Roma, 8");
+        e.setCity("Cagliari");
         c.set(2018,3,6,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
+
+
         //Evento 6
         e = new Event();
         c = Calendar.getInstance();
+        e.setLocation(position2);
         e.setUser("rmam@ium.it");
         e.setTitolo("Pranzo Sapore di Mare");
         e.setDescrizione("Tartare di gamberi crudi e cotti con avocado, punte di asparagi, chantilly al limone e crema di basilico\n" +
@@ -371,8 +391,8 @@ public class EventFactory {
                 "Acqua e caffè");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 6");
-        e.setCity("Pisa");
+        e.setVia("Via Roma, 8");
+        e.setCity("Cagliari");
         c.set(2018,3,7,12,30);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
@@ -381,24 +401,28 @@ public class EventFactory {
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
+
         //Evento 7
         e = new Event();
         c = Calendar.getInstance();
+        e.setLocation(position2);
         e.setUser("rmam@ium.it");
         e.setTitolo("Evento 7");
         e.setDescrizione("Descrizione 7");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 7");
-        e.setCity("Pisa");
+        e.setVia("Via Roma, 8");
+        e.setCity("Cagliari");
         c.set(2018,3,8,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 8
+
         e = new Event();
         c = Calendar.getInstance();
+        e.setLocation(position3);
         e.setUser("atur@ium.it");
         e.setTitolo("Food & Love");
         e.setDescrizione("MENU\n" +
@@ -409,8 +433,8 @@ public class EventFactory {
                 "Vino Bianco e rosso bio, pane fatto in casa da pasta madre, acqua della fonte di Principessa, caffè della moka. .");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setVia("Via Cagliari 78");
+        e.setCity("Quartu Sant'Elena");
         c.set(2018,3,9,20,15);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -434,8 +458,9 @@ public class EventFactory {
                 "birra ghiacciatissima");
         e.setCucina("Brasiliana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setVia("Via Cagliari 78");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position3);
         c.set(2018,3,10,20,0);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
@@ -458,8 +483,9 @@ public class EventFactory {
                 "E da bere.... birra messicana!");
         e.setCucina("Messicana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setVia("Via Cagliari 78");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position3);
         c.set(2018,3,11,20,30);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
@@ -482,8 +508,9 @@ public class EventFactory {
                 "Il tutto accompagnato da un calice di vino rosso, e acqua. Per concludere la serata un buon caffè");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setVia("Via Cagliari 78");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position3);
         c.set(2018,3,12,20,45);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -506,8 +533,9 @@ public class EventFactory {
                 "Acqua, bibite, vino, caffè");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setVia("Via Cagliari 78");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position3);
         c.set(2018,3,13,19,30);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
@@ -534,8 +562,9 @@ public class EventFactory {
                 "Caffè");
         e.setCucina("Messicana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Silvestri 13");
-        e.setCity("Roma");
+        e.setVia("Via Silvio Pellico 18");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position4);
         c.set(2018,3,14,20,30);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
@@ -574,8 +603,9 @@ public class EventFactory {
         e.setDescrizione("Descrizione 15");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 15");
-        e.setCity("Roma");
+        e.setVia("Via Silvio Pellico 18");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position4);
         c.set(2018,3,16,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
@@ -603,8 +633,9 @@ public class EventFactory {
                 "pane");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setVia("Via Cagliari 78");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position3);
         c.set(2018,3,16,20,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);

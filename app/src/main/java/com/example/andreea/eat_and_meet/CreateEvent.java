@@ -105,10 +105,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         img.setImageResource(loggedUser.getFoto());
 
 
-
-        ///////////////////////
-
-
+        //Geolocalizzazione
         Button geo = (Button)findViewById(R.id.geo);
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -375,19 +372,18 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onLocationChanged(Location location) {
-       //addressEditView.setText("Latitude: " + location.getLatitude() + "\n Longitude: " + location.getLongitude());
-
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-            StringBuilder sb = new StringBuilder();
-
             address = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-            for (int i = 0; i < address.get(0).getMaxAddressLineIndex(); i++) {
-                sb.append(address.get(0).getAddressLine(i)).append("\n");
+            if (address != null) {
+                Address returnedAddress = address.get(0);
+                addressEditView.setText(returnedAddress.getAddressLine(0));
+                cityEditView.setText(returnedAddress.getLocality());
             }
-
-            addressEditView.setText(address.get(0).getThoroughfare());
-            cityEditView.setText(address.get(0).getLocality());
+            else {
+                addressEditView.setText("No Address returned!");
+                // addressEditView.setText(returnedAddress.getThoroughfare());
+            }
             latitude = location.getLatitude();
             longitude = location.getLongitude();
         }catch(Exception e)
