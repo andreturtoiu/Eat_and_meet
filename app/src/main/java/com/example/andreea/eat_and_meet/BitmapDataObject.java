@@ -17,7 +17,7 @@ public class BitmapDataObject implements Serializable {
 
     public BitmapDataObject(Bitmap bitmap)
     {
-        currentImage = bitmap;
+        currentImage = Bitmap.createScaledBitmap(bitmap, 200, 200, false);;
     }
 
     private void writeObject(java.io.ObjectOutputStream out) throws IOException {
