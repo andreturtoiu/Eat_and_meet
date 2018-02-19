@@ -105,7 +105,7 @@ public class UserProfile extends AppCompatActivity{
         invia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   if(checkRate(ratingBarGeneral2,inputText)){
+            if(checkRate(ratingBarGeneral2,inputText)){
                     float rating = ratingBarGeneral2.getRating();
                     String text = inputText.getText().toString();
                     RatingLoggedProfile r = new RatingLoggedProfile(emailFrom,emailUser,text,rating);
@@ -126,7 +126,8 @@ public class UserProfile extends AppCompatActivity{
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
-                // }
+               }
+
             }
         });
 
@@ -142,14 +143,16 @@ public class UserProfile extends AppCompatActivity{
 
     }
     public boolean checkRate(RatingBar r , EditText t){
-        if(r.getRating() ==0 &&  t.getText() == null){
+        if(r.getRating() ==0 &&  t.getText().length() == 0 ){
+            t.setError("Inserire una recensione valida\n" + "-Una recensione da 1 a 5\n" + "-Raccontaci la tua esperienza" );
             return false;
         }
-        if(r.getRating() == 0  || t.getText() == null){
+        if(r.getRating() == 0  || t.getText().length() == 0 ){
+            t.setError("Inserire una recensione valida\n" + "-Una recensione da 1 a 5\n" + "-Raccontaci la tua esperienza" );
             return false;
         }
 
-        if(r.getRating() != 0 &&  t.getText() != null){
+        if(r.getRating() != 0 &&  t.getText().length() != 0 ){
             return true;
         }
         return true;
