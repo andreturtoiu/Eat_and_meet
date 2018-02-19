@@ -46,6 +46,7 @@ public class EventFactory {
                 e.setFotoList(evento.getFotoList());
                 e.setFotoUriList(evento.getFotoUriList());
                 e.setData(evento.getDataCalendar());
+                e.setLocation(evento.getLocation());
             }
     }
 
@@ -217,6 +218,9 @@ public class EventFactory {
         Calendar c = Calendar.getInstance();
         //Evento 0
         e = new Event();
+        ArrayList<Double> position = new ArrayList<>(2);
+        position.add(39.245449);
+        position.add(9.189008);
         e.setUser("dcont@ium.it");
         e.setTitolo("Serata Fritto Misto");
         e.setDescrizione("Tagliere della Burla con salame, lardo, peperoni in bagna cauda, lonzino tonnato,\n" +
@@ -245,24 +249,33 @@ public class EventFactory {
         e.addPartecipante("atur@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
+        e.setLocation(position);
         listaEventi.add(e);
         //Evento 1
         e = new Event();
+        ArrayList<Double> position2 = new ArrayList<>(2);
+        position.add(39.211658);
+        position.add(9.118163);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 1");
         e.setDescrizione("Descrizione 1");
         e.setCucina("Indiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 1");
+        e.setVia("Via Diaz 1");
         e.setCity("Cagliari");
         c.set(2018,3,2,19,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
+        e.setLocation(position2);
         listaEventi.add(e);
         //Evento 2
         e = new Event();
+        ArrayList<Double> position3 = new ArrayList<>(2);
+        position.add(45.530402);
+        position.add(9.026751);
+        e.setLocation(position3);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Serata della Bourguignonne");
@@ -290,13 +303,17 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 3
         e = new Event();
+        ArrayList<Double> position4 = new ArrayList<>(2);
+        position.add(45.530402);
+        position.add(9.026751);
+        e.setLocation(position4);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Evento 3");
         e.setDescrizione("Descrizione  3");
         e.setCucina("Cinese");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 3");
+        e.setVia("Via Celio Vibena 3");
         e.setCity("Roma");
         c.set(2018,3,4,19,0);
         e.setData(c);
@@ -322,6 +339,7 @@ public class EventFactory {
         listaEventi.add(e);
         //Evento 5
         e = new Event();
+
         c = Calendar.getInstance();
         e.setUser("rmam@ium.it");
         e.setTitolo("Evento 5");

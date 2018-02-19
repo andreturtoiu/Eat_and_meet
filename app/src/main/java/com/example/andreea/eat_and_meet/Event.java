@@ -35,6 +35,7 @@ public class Event implements Serializable {
     private ArrayList<String> partecipanti = new ArrayList<>();
     private ArrayList<String> richieste = new ArrayList<>();
     private List<BitmapDataObject> fotoUriList = new ArrayList<>();
+    private ArrayList<Double> location = new ArrayList<>();
 
     public Event(){
         this.setTitolo("");
@@ -174,5 +175,13 @@ public class Event implements Serializable {
     public void setFotoList(ArrayList<Integer> fotoList) {
         this.foto = fotoList;
     }
+
+    public void setLocation(ArrayList<Double> location) {this.location = location;}
+
+    public ArrayList<Double> getLocation() {return this.location;}
 }
+
+
+
+
 

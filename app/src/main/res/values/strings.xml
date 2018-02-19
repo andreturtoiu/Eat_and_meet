@@ -10,5 +10,6 @@
     <string name="title_activity_home_page">HomePage</string>
     <string name="title_activity_navigation_menu">NavigationMenu</string>
     <string name="cooking_type">Seleziona...</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

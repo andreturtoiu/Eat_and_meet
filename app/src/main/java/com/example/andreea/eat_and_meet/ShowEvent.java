@@ -3,6 +3,7 @@ package com.example.andreea.eat_and_meet;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -72,6 +73,21 @@ public class ShowEvent extends AppCompatActivity{
         TextView data = (TextView) findViewById(R.id.DataId);
         data.setText(evento.getData());
 
+
+        ///
+        ImageView map = (ImageView) findViewById(R.id.map);
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ArrayList<Double> pos = evento.getLocation();
+                Intent intent = new Intent(ShowEvent.this,MapsActivity.class);
+                intent.putExtra("POSITION_EXTRA",pos);
+                startActivity(intent);
+            }
+        });
+
+        //
         ArrayList<Integer> fotoList = evento.getFotoList();
         List<BitmapDataObject> fotoUriList = evento.getFotoUriList();
         LinearLayout ss = (LinearLayout) findViewById(R.id.SlideshowId);
