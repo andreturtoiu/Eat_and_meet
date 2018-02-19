@@ -218,13 +218,28 @@ public class EventFactory {
         //Evento 0
         e = new Event();
         e.setUser("dcont@ium.it");
-        e.setTitolo("Evento 0");
-        e.setDescrizione("Descrizione 0");
+        e.setTitolo("Serata Fritto Misto");
+        e.setDescrizione("Tagliere della Burla con salame, lardo, peperoni in bagna cauda, lonzino tonnato,\n" +
+                "frittata rognosa e gnocco fritto\n" +
+                "\n" +
+                "Fritto misto della burla;\n" +
+                "\n" +
+                "Impanati: Cervella, milanese di maiale, cotechino e Grive (polpette di fegato e salsiccia)\n" +
+                "\n" +
+                "Al burro: fettina di fegato, salsiccetta e carote\n" +
+                "\n" +
+                "Il dolce: mela, amaretto, semolino  e ananas in pastella\n" +
+                "\n" +
+                "Bunet,\n" +
+                "\n" +
+                "Semifreddo al torroncino con salsa al cioccolato fondente\n" +
+                "\n" +
+                "Acqua, vino della casa e caffè");
         e.setCucina("Italiana");
-        e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 0");
-        e.setCity("Roma");
-        c.set(2018,3,1,12,0);
+        e.setPranzo_cena(Event.CENA);
+        e.setVia("Via Sicilia 27");
+        e.setCity("Quartu Sant'Elena");
+        c.set(2018,3,1,20,0);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -250,11 +265,21 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
-        e.setTitolo("Evento 2");
-        e.setDescrizione("Descrizione  2");
+        e.setTitolo("Serata della Bourguignonne");
+        e.setDescrizione("Flute di Prosecco di Valdobbiadene\n" +
+                "\n" +
+                "Tagliere della Burla con gnocco fritto\n" +
+                "\n" +
+                "Bourguignonne delle nostre carni:\n" +
+                "\n" +
+                "Fesa di bovino Fassone Piemontese, filetto di maiale e salsiccia accompagnate da maionese, maionese all’aglio, salsa tartara, salsa rosa, senape, ketchup e come contorno patatine fritte\n" +
+                "\n" +
+                "Dolce a scelta\n" +
+                "\n" +
+                "Acqua, vino della casa e caffè");
         e.setCucina("Francese");
         e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 2");
+        e.setVia("Via Castellazzo 64");
         e.setCity("Milano");
         c.set(2018,3,3,12,0);
         e.setData(c);
@@ -314,13 +339,23 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("rmam@ium.it");
-        e.setTitolo("Evento 6");
-        e.setDescrizione("Descrizione 6");
-        e.setCucina("Giapponese");
+        e.setTitolo("Pranzo Sapore di Mare");
+        e.setDescrizione("Tartare di gamberi crudi e cotti con avocado, punte di asparagi, chantilly al limone e crema di basilico\n" +
+                "\n" +
+                "Polipetti in umido con calamaro ripieno al cous cous, vongole e bottarga\n" +
+                "\n" +
+                "Riso Carnaroli con gallinelle di mare, seppioline, cozze, fiori di zucca e zafferano\n" +
+                "\n" +
+                "Tagliata di tonno al sesamo con salsa di yogurt alle erbe, misticanza e ribes\n" +
+                "\n" +
+                "Cazpacho di fragole e mirtilli con gelato alla crema e panna montata\n" +
+                "\n" +
+                "Acqua e caffè");
+        e.setCucina("Italiana");
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via 6");
         e.setCity("Pisa");
-        c.set(2018,3,7,12,0);
+        c.set(2018,3,7,12,30);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -347,13 +382,18 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("atur@ium.it");
-        e.setTitolo("Evento 8");
-        e.setDescrizione("Descrizione 8");
-        e.setCucina("Francese");
-        e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 8");
+        e.setTitolo("Food & Love");
+        e.setDescrizione("MENU\n" +
+                "Zuppa delicatissima alle cipolle con Pancetta croccante\n" +
+                "Tagliatelle fresche di farina bio ai carciofi\n" +
+                "Maiale sfilacciato e insalata di cavolo cappuccio croccante\n" +
+                "Tarte Tatin\n" +
+                "Vino Bianco e rosso bio, pane fatto in casa da pasta madre, acqua della fonte di Principessa, caffè della moka. .");
+        e.setCucina("Italiana");
+        e.setPranzo_cena(Event.CENA);
+        e.setVia("Via Roma 8");
         e.setCity("Cagliari");
-        c.set(2018,3,9,12,0);
+        c.set(2018,3,9,20,15);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
@@ -362,13 +402,23 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("atur@ium.it");
-        e.setTitolo("Evento 9");
-        e.setDescrizione("Descrizione 9");
-        e.setCucina("Indiana");
+        e.setTitolo("Sapori del Brasile");
+        e.setDescrizione("MENU\n" +
+                "Si inizierà con un antipasto di pão de queijo (pane fatto con amido di manioca e parmigiano) e manioca fritta.\n" +
+                "\n" +
+                "Piatto unico composto da fagioli neri, riso bianco e picanha brasiliana, il tutto cucinato secondo la tradizione carioca.\n" +
+                "\n" +
+                "Accompagnamenti di contorno, farofa (simile a un pan grattato cucinato con pancetta e salsiccia) e vinagrete (insalatina di pomodori, peperoni e cipolle).\n" +
+                "\n" +
+                "Dolce una mousse al maracujá (frutto della passione).\n" +
+                "\n" +
+                "acqua\n" +
+                "birra ghiacciatissima");
+        e.setCucina("Brasiliana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 9");
+        e.setVia("Via Roma 8");
         e.setCity("Cagliari");
-        c.set(2018,3,10,19,0);
+        c.set(2018,3,10,20,0);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("msta@ium.it");
@@ -379,13 +429,20 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("atur@ium.it");
-        e.setTitolo("Evento 10");
-        e.setDescrizione("Descrizione 10");
-        e.setCucina("Cinese");
-        e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 10");
-        e.setCity("Milano");
-        c.set(2018,3,11,12,0);
+        e.setTitolo("Que viva Mexico!");
+        e.setDescrizione("MENU\n" +
+                "\n" +
+                "Aperitivo: Tequila sunrise e bicchierini di ceviche (pesce marinato) con nachos di mais\n" +
+                "A tavola: tacos di frumento da comporre al momento con chili di carne, formaggio, lime, salse (guacamole, panna acida, salsa rossa piccante) e verdure (fagioli rossi, peperoni, pomodori, cipolla, insalata, sedano, mais, zucca)\n" +
+                "Mole poblano (pollo con salsa al cioccolato) servito con riso bollito\n" +
+                "Dolce: Flan de vanilla\n" +
+                "\n" +
+                "E da bere.... birra messicana!");
+        e.setCucina("Messicana");
+        e.setPranzo_cena(Event.CENA);
+        e.setVia("Via Roma 8");
+        e.setCity("Cagliari");
+        c.set(2018,3,11,20,30);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("msta@ium.it");
@@ -396,13 +453,20 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("atur@ium.it");
-        e.setTitolo("Evento 11");
-        e.setDescrizione("Descrizione 11");
-        e.setCucina("Giapponese");
+        e.setTitolo("Festa dello stocco");
+        e.setDescrizione("MENU\n" +
+                "Aperitivo di apertura:\n" +
+                "Tarallini fatti in casa con olio evo farina integrale e poco sale accompagnato da olive\n" +
+                "Caciocavallo semi piccante \n" +
+                "a seguire:\n" +
+                "Degustazione di zuppa di stoccafisso\n" +
+                "carciofi alla romana \n" +
+                "Il tutto accompagnato da un calice di vino rosso, e acqua. Per concludere la serata un buon caffè");
+        e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 11");
-        e.setCity("Roma");
-        c.set(2018,3,12,19,0);
+        e.setVia("Via Roma 8");
+        e.setCity("Cagliari");
+        c.set(2018,3,12,20,45);
         e.setData(c);
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
@@ -411,13 +475,22 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("atur@ium.it");
-        e.setTitolo("Evento 12");
-        e.setDescrizione("Descrizione 12");
-        e.setCucina("Tedesca");
-        e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 12");
-        e.setCity("Firenze");
-        c.set(2018,3,13,12,0);
+        e.setTitolo("Una delizia di Apericena");
+        e.setDescrizione("MENU\n" +
+                "Taglieri misti di salumi e formaggi accompagnati da ottime crescentine\n" +
+                "Assortimento di pizza ai vari gusti\n" +
+                "Torta salata della nonna\n" +
+                "Panettone salato farcito \n" +
+                "Tramezzini \n" +
+                "Frittelle dolci e salate\n" +
+                "Spiedini di frutta di stagione con gelato al cioccolato\n" +
+                "Dolce della casa \n" +
+                "Acqua, bibite, vino, caffè");
+        e.setCucina("Italiana");
+        e.setPranzo_cena(Event.CENA);
+        e.setVia("Via Roma 8");
+        e.setCity("Cagliari");
+        c.set(2018,3,13,19,30);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("rmam@ium.it");
@@ -428,13 +501,24 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("msta@ium.it");
-        e.setTitolo("Evento 13");
-        e.setDescrizione("Descrizione 13");
+        e.setTitolo("Viva Mexico");
+        e.setDescrizione(
+                "MENU\n" +
+                "Aperitivo con uno shot di Tequila o bevanda analcolica\n" +
+                "Antipasto a base di Totopos (tortilla chips) con Salse\n" +
+                "\n" +
+                "Piatto principale: \n" +
+                "Sopes (tipico piatto del nord del Messico), \n" +
+                "Enchilada (piatto tipico della tradizione culinaria messicana, composto da una tortilla ripiena, arrotolata su se stessa e condita con salsa chili. Il ripieno della tortilla può essere di vari tipi: carne, formaggio, verdura, fagioli)\n" +
+                "\n" +
+                "Birra\n" +
+                "\n" +
+                "Caffè");
         e.setCucina("Messicana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 13");
+        e.setVia("Via Silvestri 13");
         e.setCity("Roma");
-        c.set(2018,3,14,19,0);
+        c.set(2018,3,14,20,30);
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -445,13 +529,19 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("msta@ium.it");
-        e.setTitolo("Evento 14");
-        e.setDescrizione("Descrizione 14");
-        e.setCucina("Italiana");
+        e.setTitolo("Festa brasiliana");
+        e.setDescrizione("MENU\n" +
+                "Feijoada carioca: stufato di carni varie con salsicce fresche e affumicata e fagioli neri \n" +
+                "Riso bianco \n" +
+                "Farofa ( farina di manioca condita)\n" +
+                "Couve refogada ( bieta ripassata in padella)\n" +
+                "\n" +
+                "Desert pudim de leite");
+        e.setCucina("Brasiliana");
         e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via 14");
+        e.setVia("Via Nazionale 14");
         e.setCity("Pisa");
-        c.set(2018,3,15,12,0);
+        c.set(2018,3,15,13,30);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
@@ -477,12 +567,26 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("atur@ium.it");
-        e.setTitolo("Evento 16");
-        e.setDescrizione("Descrizione 16");
+        e.setTitolo("Polentona: e poi c'è Jack");
+        e.setDescrizione("MENU\n" +
+                "Aperitivo di benvenuto\n" +
+                "Antipasto:\n" +
+                "Peperone crusco lucano\n" +
+                "Formaggi con marmellata fatta in casa.\n" +
+                "Salumi lucani.\n" +
+                "\n" +
+                "Piatto unico\n" +
+                "Polenta con ragù salsiccie e funghi\n" +
+                "\n" +
+                "dolce e frutta di stagione\n" +
+                "caffè e JACK DANIEL'S\n" +
+                "\n" +
+                "Acqua, vino e bibite analcoliche\n" +
+                "pane");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via 16");
-        e.setCity("Roma");
+        e.setVia("Via Roma 8");
+        e.setCity("Cagliari");
         c.set(2018,3,16,20,0);
         e.setData(c);
         e.addFoto(R.drawable.logo);

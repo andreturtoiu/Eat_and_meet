@@ -8,6 +8,7 @@
         <item>Tedesca</item>
         <item>Messicana</item>
         <item>Giapponese</item>
+        <item>Brasiliana</item>
     </string-array>
 
     <string-array name="tipo_cucina_search">
@@ -19,5 +20,6 @@
         <item>Tedesca</item>
         <item>Messicana</item>
         <item>Giapponese</item>
+        <item>Brasiliana</item>
     </string-array>
 </resources>
