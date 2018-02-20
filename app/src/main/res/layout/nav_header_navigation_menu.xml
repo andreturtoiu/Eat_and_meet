@@ -18,7 +18,7 @@
         android:layout_width="91dp"
         android:layout_height="83dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:src="@drawable/utente1" />
+      />
 
     <TextView
         android:layout_width="233dp"

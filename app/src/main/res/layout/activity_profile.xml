@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginTop="10dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/utente4" />
+                    android:src="@drawable/andreea" />
 
                 <TextView
                     android:id="@+id/nameProfile"
