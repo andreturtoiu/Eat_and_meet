@@ -20,15 +20,12 @@
         <activity
             android:name=".Login_activity"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".SignUp"
             android:label="Registrazione"
@@ -55,7 +52,7 @@
         <activity
             android:name=".CreateEvent"
             android:label="CreateEvent"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SearchEvents"
             android:label="Cerca Eventi" />
@@ -67,7 +64,7 @@
             android:name=".CreateEvent2"
             android:label="Descrizione Evento"
             android:parentActivityName=".CreateEvent"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ShowBookedUsersList"
             android:label="Partecipanti"
@@ -91,8 +88,7 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps">
-        </activity>
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>
