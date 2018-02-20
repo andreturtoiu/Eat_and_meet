@@ -55,7 +55,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SearchEvents"
-            android:label="Cerca Eventi" />
+            android:label="Cerca Eventi"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".HomePage"/>
         <activity
             android:name=".ShowEventList"
             android:label="Lista Eventi"

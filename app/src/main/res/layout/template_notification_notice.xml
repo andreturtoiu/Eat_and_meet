@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <TextView
+            android:id="@+id/notifiNoticeInfo"
+            android:layout_width="314dp"
+            android:layout_height="76dp"
+            android:layout_marginStart="12dp"
+            android:text="Tizio X ha cancellato la sua iscrizione dall'evento 'Nome evento'"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/notifNoticeOk"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="36dp"
+            android:layout_height="35dp"
+            android:text="x" />
+    </LinearLayout>
+</LinearLayout>

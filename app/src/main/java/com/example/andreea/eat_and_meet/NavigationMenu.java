@@ -84,6 +84,8 @@ public class NavigationMenu extends AppCompatActivity
             startActivity(t);
 
         } else if (id == R.id.notifies) {
+            Intent t = new Intent(NavigationMenu.this, NotificationsPage.class);
+            startActivity(t);
 
         } else if (id == R.id.logout) {
             Intent t = new Intent(NavigationMenu.this, Login_activity.class);
