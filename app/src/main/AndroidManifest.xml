@@ -74,7 +74,8 @@
         <activity
             android:name=".UserProfile"
             android:label="Profilo"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".LoggedProfile"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -90,6 +90,8 @@ public class HomePage extends AppCompatActivity {
                         startActivity(t);
 
                         } else if (item.getItemId() == R.id.notifies) {
+                        Intent t = new Intent(HomePage.this,NotificationsPage.class);
+                        startActivity(t);
 
                         } else if (item.getItemId() == R.id.logout) {
                                 Intent t = new Intent(HomePage.this, Login_activity.class);
