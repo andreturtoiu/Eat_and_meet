@@ -265,6 +265,7 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
+        e.addRequest("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         e.setLocation(position);
@@ -282,6 +283,7 @@ public class EventFactory {
         e.setCity("Quartu Sant'Elena");
         c.set(2018,3,2,19,0);
         e.setData(c);
+        e.addRequest("ajon@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         e.setLocation(position);
@@ -367,6 +369,7 @@ public class EventFactory {
         e.setCity("Cagliari");
         c.set(2018,3,6,19,0);
         e.setData(c);
+        e.addRequest("dcont@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
@@ -398,6 +401,7 @@ public class EventFactory {
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
         e.addPartecipante("msta@ium.it");
+        e.addRequest("ajon@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
@@ -437,6 +441,7 @@ public class EventFactory {
         e.setCity("Quartu Sant'Elena");
         c.set(2018,3,9,20,15);
         e.setData(c);
+        e.addRequest("msta@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
@@ -465,6 +470,7 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("msta@ium.it");
+        e.addRequest("tcai@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
@@ -569,6 +575,7 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
+        e.addRequest("tcai@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
@@ -592,6 +599,7 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
+        e.addRequest("ajon@ium.it");
         e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
