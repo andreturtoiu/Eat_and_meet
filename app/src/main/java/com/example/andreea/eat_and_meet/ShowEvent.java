@@ -1,8 +1,11 @@
 package com.example.andreea.eat_and_meet;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,11 +25,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Michele on 05/02/2018.
@@ -80,10 +87,14 @@ public class ShowEvent extends AppCompatActivity{
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<Double> pos = evento.getLocation();
                 Intent intent = new Intent(ShowEvent.this,MapsActivity.class);
-                intent.putExtra("POSITION_EXTRA",pos);
-                startActivity(intent);
+                ArrayList<Double> pos = evento.getLocation();
+                if(pos != null) {
+                    intent.putExtra("POSITION_EXTRA", pos);
+                    startActivity(intent);
+                }else {
+
+                }
             }
         });
 
@@ -148,6 +159,8 @@ public class ShowEvent extends AppCompatActivity{
         LinearLayout ll = (LinearLayout) findViewById(R.id.showEventBody);
         ll.addView(btn);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -319,5 +332,6 @@ public class ShowEvent extends AppCompatActivity{
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
+
 
 }

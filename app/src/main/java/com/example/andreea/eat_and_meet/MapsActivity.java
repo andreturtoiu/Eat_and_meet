@@ -23,7 +23,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
         Intent intent = getIntent();
         ArrayList<Double> loc = (ArrayList<Double>) intent.getSerializableExtra("POSITION_EXTRA");
         lat = loc.get(0);
@@ -50,7 +49,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng pos = new LatLng(lat, lng);
-        mMap.addMarker(new MarkerOptions().position(pos).title("Il tuo evento si terrà qui" ));
+        mMap.addMarker(new MarkerOptions().position(pos).title("Il tuo evento si terrà qui"));
+        mMap.setMinZoomPreference(12);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
     }
 }

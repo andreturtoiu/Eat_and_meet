@@ -62,7 +62,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     Geocoder geocoder;
     ArrayList<Address> address;
     LocationManager locationManager;
-
+    boolean clicked = false;
 
 
     @Override
@@ -118,8 +118,10 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
             @Override
             public void onClick(View v) {
                 getLocation();
+                clicked = true;
             }
         });
+
 
 
         ////////////////
@@ -264,6 +266,22 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         int pranzo_cena = checkedRadioButtonId == R.id.radio_pranzo ? Event.PRANZO : Event.CENA;
 
         String userEmail = PersonFactory.getInstance().getLoggedUser();
+
+
+        if (!clicked){
+            Geocoder coder = new Geocoder(this);
+            try {
+                String addString = cityEditView.getText().toString();
+                ArrayList<Address> adresses = (ArrayList<Address>) coder.getFromLocationName(address+ "," + city, 50);
+                for(Address add : adresses){
+                    longitude = add.getLongitude();
+                    latitude = add.getLatitude();
+
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         Event event = new Event();
         event.setTitolo(title);
