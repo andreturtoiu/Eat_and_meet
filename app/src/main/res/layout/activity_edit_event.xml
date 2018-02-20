@@ -5,6 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        />
+
     <ScrollView
         android:layout_marginTop="60dp"
         android:layout_width="match_parent"
@@ -12,9 +21,11 @@
 
         <LinearLayout
             android:id="@+id/showEventBody"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
+            android:layout_marginLeft="30dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@drawable/white_rectangle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -22,21 +33,35 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginBottom="20dp"
+                android:text="Puoi modificare solo le seguenti informazioni"/>
+            <TextView
                 android:id="@+id/TitoloLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Titolo" />
+                android:text="Titolo"
+                android:textSize="15dp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/TitoloId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:background="#f2f2f2"
+                android:inputType="textPersonName"
+                android:textSize="15dp" />
 
             <HorizontalScrollView
                 android:id="@+id/scroll_slideshow"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
+                android:background="#f2f2f2"
                 android:layout_height="50dp">
 
                 <LinearLayout
@@ -57,7 +82,10 @@
                 android:id="@+id/InfoLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Descrizione" />
+                android:layout_marginTop="10dp"
+                android:text="Descrizione"
+                android:textSize="15dp"
+                android:textColor="#000"/>
 
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -69,30 +97,49 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="textMultiLine"/>
+                    android:background="#f2f2f2"
+                    android:inputType="textMultiLine"
+                    android:textSize="15dp" />
+
             </android.support.v4.widget.NestedScrollView>
 
             <TextView
                 android:id="@+id/DataLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Data Evento" />
+                android:text="Data Evento"
+                android:textSize="15dp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/DataId"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10" />
+                android:layout_height="30dp"
+                android:background="#f2f2f2"
+                />
             <TextView
                 android:id="@+id/TimeId"
                 android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="30dp"
+                android:background="#f2f2f2"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10" />
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="20dp"
+                android:text="Queste informazioni non possono essere cambiate"/>
             <TextView
                 android:id="@+id/AddressLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Indirizzo" />
+                android:text="Indirizzo"
+                android:textSize="15dp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/AddressId"
@@ -104,7 +151,9 @@
                 android:id="@+id/IscrittiLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Numero Iscritti" />
+                android:text="Numero Iscritti"
+                android:textSize="15dp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/IscrittiId"
@@ -116,7 +165,9 @@
                 android:id="@+id/CucinaLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tipo di Cucina" />
+                android:text="Tipo di Cucina"
+                android:textSize="15dp"
+                android:textColor="#000"/>
 
             <TextView
                 android:id="@+id/CucinaId"

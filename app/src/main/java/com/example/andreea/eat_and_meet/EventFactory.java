@@ -325,7 +325,6 @@ public class EventFactory {
 
         //Evento 3
         e = new Event();
-        e.setLocation(position2);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
         e.setTitolo("Carne...carne e ancora carne");
@@ -339,8 +338,9 @@ public class EventFactory {
                 "Caffè");
         e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setLocation(position);
+        e.setVia("Via Sicilia 27");
+        e.setCity("Quartu Sant'Elena");
         c.set(2018,3,4,19,0);
         e.setData(c);
         e.addFoto(R.drawable.carne);
@@ -633,8 +633,9 @@ public class EventFactory {
                 "Desert pudim de leite");
         e.setCucina("Brasiliana");
         e.setPranzo_cena(Event.PRANZO);
-        e.setVia("Via Nazionale 14");
-        e.setCity("Pisa");
+        e.setVia("Via Silvio Pellico 18");
+        e.setCity("Quartu Sant'Elena");
+        e.setLocation(position4);
         c.set(2018,3,15,13,30);
         e.setData(c);
         e.addPartecipante("rmam@ium.it");

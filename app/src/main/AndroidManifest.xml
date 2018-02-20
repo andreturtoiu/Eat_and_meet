@@ -33,13 +33,14 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ShowEvent"
-            android:label="Descrizione Evento"
+            android:label="Descrizione dell'evento"
             android:launchMode="singleTop"
             android:parentActivityName=".HomePage"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditEvent"
-            android:label="Modifica Evento"
+            android:label="Modifica l'evento"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ShowEvent" />
         <activity
             android:name=".HomePage"
@@ -51,25 +52,28 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CreateEvent"
-            android:label="CreateEvent"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Crea un nuovo evento"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".HomePage"/>
         <activity
             android:name=".SearchEvents"
-            android:label="Cerca Eventi"
+            android:label="Cerca nuovi eventi"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".HomePage"/>
         <activity
             android:name=".ShowEventList"
-            android:label="Lista Eventi"
-            android:parentActivityName=".HomePage" />
+            android:label="Lista degli eventi"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".SearchEvents" />
         <activity
             android:name=".CreateEvent2"
-            android:label="Descrizione Evento"
+            android:label="Descrizione dell'evento"
             android:parentActivityName=".CreateEvent"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ShowBookedUsersList"
-            android:label="Partecipanti"
+            android:label="Lista dei partecipanti"
+            android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".ShowEvent" />
         <activity
             android:name=".UserProfile"
@@ -78,8 +82,9 @@
             android:parentActivityName=".LoggedProfile"/>
         <activity
             android:name=".NotificationsPage"
-            android:label="Pagina Notifiche"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="Notifiche"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".HomePage"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

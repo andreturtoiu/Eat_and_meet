@@ -16,6 +16,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -71,6 +72,8 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_create_events);
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         Person loggedUser;
         String emailUser;
@@ -85,24 +88,16 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         findViewById(R.id.timeTextView).setOnClickListener(this);
         findViewById(R.id.dateTextView).setOnClickListener(this);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout1);
 
         emailUser = PersonFactory.getInstance().getLoggedUser();
         loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
 
-        View headerview = navigationView.getHeaderView(0);
-        TextView profilename = (TextView) headerview.findViewById(R.id.name);
         titleEditView = (EditText) findViewById(R.id.editEvent);
         addressEditView = (EditText) findViewById(R.id.editIndirizzo);
         cityEditView = (EditText) findViewById(R.id.editCitta);
         dateTextView = (TextView) findViewById(R.id.dateTextView);
         timeTextView = (TextView) findViewById(R.id.timeTextView);
-        profilename.setText(loggedUser.getName() + " " + loggedUser.getSurname());
 
-
-        ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
-        img.setImageResource(loggedUser.getFoto());
 
 
         //Geolocalizzazione
@@ -126,52 +121,6 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
         ////////////////
 
-
-
-
-        headerview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = PersonFactory.getInstance().getLoggedUser();
-                Intent t1 = new Intent(CreateEvent.this, LoggedProfile.class);
-                startActivity(t1);
-            }
-        });
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                drawerLayout.closeDrawers();
-
-                if (item.getItemId() == R.id.events) {
-                    Intent t = new Intent(CreateEvent.this, HomePage.class);
-                    startActivity(t);
-                } else if (item.getItemId() == R.id.create_event) {
-                    Intent t = new Intent(CreateEvent.this, CreateEvent.class);
-                    startActivity(t);
-
-                } else if (item.getItemId() == R.id.search_events) {
-                    Intent t = new Intent(CreateEvent.this, SearchEvents.class);
-                    startActivity(t);
-
-                } else if (item.getItemId() == R.id.notifies) {
-
-                } else if (item.getItemId() == R.id.logout) {
-                    Intent t = new Intent(CreateEvent.this, Login_activity.class);
-                    startActivity(t);
-                } else if (item.getItemId() == R.id.imageView) {
-                    Intent t = new Intent(CreateEvent.this, LoggedProfile.class);
-                    startActivity(t);
-
-                }
-                return false;
-            }
-        });
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Crea Evento");
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
         //saveButton = (Button) this.findViewById(R.id.prosegui);
 
@@ -271,7 +220,6 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         if (!clicked){
             Geocoder coder = new Geocoder(this);
             try {
-                String addString = cityEditView.getText().toString();
                 ArrayList<Address> adresses = (ArrayList<Address>) coder.getFromLocationName(address+ "," + city, 50);
                 for(Address add : adresses){
                     longitude = add.getLongitude();
@@ -394,8 +342,9 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
             address = (ArrayList<Address>) geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
             if (address != null) {
+
                 Address returnedAddress = address.get(0);
-                addressEditView.setText(returnedAddress.getAddressLine(0));
+                addressEditView.setText(returnedAddress.getThoroughfare() + "," + returnedAddress.getSubThoroughfare());
                 cityEditView.setText(returnedAddress.getLocality());
             }
             else {

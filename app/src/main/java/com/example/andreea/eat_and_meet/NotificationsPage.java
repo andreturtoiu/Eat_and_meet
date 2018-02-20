@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -35,70 +36,21 @@ public class NotificationsPage extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications_page);
-        Toolbar toolbar= (Toolbar) findViewById(R.id.toolbar);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
         String logged_user=PersonFactory.getInstance().getLoggedUser();
         ArrayList<Notifications> notifications = PersonFactory.getInstance().getUserByEmail(logged_user).getMyNotifications();
-        setSupportActionBar(toolbar);
+
         Intent intent = getIntent();
 
-
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_notif);
-
-        View headerview = navigationView.getHeaderView(0);
 
         emailUser = PersonFactory.getInstance().getLoggedUser();
         loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
 
 
-        TextView profilename = (TextView) headerview.findViewById(R.id.name);
-        profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
-        ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
-        img.setImageResource(loggedUser.getFoto());
-
-
-        headerview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = PersonFactory.getInstance().getLoggedUser();
-                Intent t1 = new Intent(NotificationsPage.this, LoggedProfile.class);
-                t1.putExtra("EMAIL_EXTRA",email);
-                startActivity(t1);
-            }
-        });
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                drawerLayout.closeDrawers();
-
-                if (item.getItemId()== R.id.events) {
-                    Intent t = new Intent(NotificationsPage.this, HomePage.class);
-                    startActivity(t);
-                }else if (item.getItemId() == R.id.create_event) {
-                    Intent t = new Intent(NotificationsPage.this, CreateEvent.class);
-                    startActivity(t);
-
-                } else if (item.getItemId() == R.id.search_events) {
-                    Intent t = new Intent(NotificationsPage.this,SearchEvents.class);
-                    startActivity(t);
-
-                } else if (item.getItemId() == R.id.notifies) {
-
-                } else if (item.getItemId() == R.id.logout) {
-                    Intent t = new Intent(NotificationsPage.this, Login_activity.class);
-                    startActivity(t);
-                }
-
-                return false;
-            }
-        });
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Notifiche");
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
 
         LinearLayout ll= (LinearLayout) findViewById(R.id.container_notif);
 
