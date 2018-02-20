@@ -33,7 +33,7 @@ tools:openDrawer="start">
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
+                app:popupTheme="@style/AppTheme.AppBarOverlay">
 
 
                 <android.support.design.widget.TabLayout
