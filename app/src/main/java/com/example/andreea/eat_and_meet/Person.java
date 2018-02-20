@@ -2,15 +2,6 @@ package com.example.andreea.eat_and_meet;
 
 
 
-import android.content.Context;
-import android.widget.RatingBar;
-
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +21,7 @@ public class Person implements Serializable {
     private String city;
     private String phoneNumber;
     private ArrayList<RatingLoggedProfile> ratings;
+    private ArrayList<Notifications> myNotifications;
     private int foto;
 
 
@@ -43,12 +35,13 @@ public class Person implements Serializable {
         this.setCity("");
         this.setPhoneNumber("");
         this.ratings = new ArrayList<RatingLoggedProfile>(0);
+        this.setMyNotifications(new ArrayList<Notifications>());
 
 
     }
 
     public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,
-                  String  phoneNumber, ArrayList<RatingLoggedProfile> ratingsList, int foto){
+                  String  phoneNumber, ArrayList<RatingLoggedProfile> ratingsList, ArrayList<Notifications> myNotifications, int foto){
 
         this.setName(name);
         this.setSurname(surname);
@@ -59,6 +52,7 @@ public class Person implements Serializable {
         this.setCity(city);
         this.setPhoneNumber(phoneNumber);
         this.setRatings(ratingsList);
+        this.setMyNotifications(myNotifications);
         this.setFoto(foto);
     }
 
@@ -139,4 +133,7 @@ public class Person implements Serializable {
     public int getFoto () {return this.foto;}
 
 
+    public ArrayList<Notifications> getMyNotifications() { return myNotifications; }
+
+    public void setMyNotifications(ArrayList<Notifications> myNotifications) { this.myNotifications = myNotifications; }
 }

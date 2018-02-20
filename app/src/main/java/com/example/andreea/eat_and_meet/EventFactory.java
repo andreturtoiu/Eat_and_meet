@@ -265,7 +265,8 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
-        e.addFoto(R.drawable.frittomisto);
+        e.addRequest("msta@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         e.setLocation(position);
         listaEventi.add(e);
@@ -274,22 +275,16 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
-        e.setTitolo("Conoscersi a tavola");
-        e.setDescrizione("MENU\n" +
-                "Aperitivo con salumi della Lomellina\n" +
-                "Spaghetti guanciale e trevisano\n" +
-                "Cotolette alla Bolognese\n" +
-                "Ofelle di Parona con vin Santo\n" +
-                "Una bottiglia di vino ogni 4 persone\n" +
-                "Acqua \n" +
-                "Caffe");
-        e.setCucina("Italiana");
+        e.setTitolo("Evento 1");
+        e.setDescrizione("Descrizione 1");
+        e.setCucina("Indiana");
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via Sicilia 27");
         e.setCity("Quartu Sant'Elena");
         c.set(2018,3,2,19,0);
         e.setData(c);
-        e.addFoto(R.drawable.spaghetti);
+        e.addRequest("ajon@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         e.setLocation(position);
         listaEventi.add(e);
@@ -319,31 +314,24 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("atur@ium.it");
         e.addPartecipante("msta@ium.it");
-        e.addFoto(R.drawable.bourguignonne);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
 
         //Evento 3
         e = new Event();
-        e.setLocation(position2);
+        e.setLocation(position);
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
-        e.setTitolo("Carne...carne e ancora carne");
-        e.setDescrizione("MENU\n" +
-                "Aperitivo di benvenuto\n" +
-                "Grigliata di carne (le carni saranno scelte in funzione dei tagli che reputerò migliori dal produttore)\n" +
-                "Insalata \n" +
-                "Tagliere di formaggi di capra con marmellate fatte in casa\n" +
-                "Offelle di Parona\n" +
-                "Una bottiglia di vino ogni 4 persone\n" +
-                "Caffè");
-        e.setCucina("Italiana");
+        e.setTitolo("Evento 3");
+        e.setDescrizione("Descrizione  3");
+        e.setCucina("Cinese");
         e.setPranzo_cena(Event.CENA);
-        e.setVia("Via Roma 8");
-        e.setCity("Cagliari");
+        e.setVia("Via Sicilia 27");
+        e.setCity("Quartu Sant'Elena");
         c.set(2018,3,4,19,0);
         e.setData(c);
-        e.addFoto(R.drawable.carne);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
 
@@ -353,20 +341,9 @@ public class EventFactory {
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("dcont@ium.it");
-        e.setTitolo("A cena dai nativi americani");
-        e.setDescrizione("MENU\n" +
-                "Pane fritto Navajo\n" +
-                "\n" +
-                "Succotash mohegan\n" +
-                "\n" +
-                "Galletto ripieno di chicchi d'uva e mele cotta in clay pot\n" +
-                "Hoe cake (polenta di mais al forno) con salsa Chimichurry\n" +
-                "Budino Abenaki\n" +
-                "Tisana alla liquerizia o\n" +
-                "caffee della napoletana o in cialda\n" +
-                "Vino rosso Nero di Troia DOC (1/3 di bottiglia a testa)\n" +
-                "Acqua minerale");
-        e.setCucina("Americana");
+        e.setTitolo("Evento 4");
+        e.setDescrizione("Descrizione  4");
+        e.setCucina("Tedesca");
         e.setPranzo_cena(Event.PRANZO);
         e.setVia("Via Sicilia 27");
         e.setCity("Quartu Sant'Elena");
@@ -374,7 +351,7 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("msta@ium.it");
-        e.addFoto(R.drawable.hoecake);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         e.setLocation(position);
         listaEventi.add(e);
@@ -384,20 +361,16 @@ public class EventFactory {
         e.setLocation(position2);
         c = Calendar.getInstance();
         e.setUser("rmam@ium.it");
-        e.setTitolo("Cena Jack Daniel");
-        e.setDescrizione("Una sera in stile e sapore americano, inizieremo con pannocchie mais dolci al forno, per proseguire polenta croccante e pancetta per continuare con un hamburger 180 gr e patatine fritte per concludere con cheesecake New York e Jack Daniel’s.\nMENU\n" +
-                "1) Mais dolce al forno e frittatine \n" +
-                "2) Polenta croccante e pancetta\n" +
-                "3) Hamburger e patatine \n" +
-                "4) Cheesecake\n" +
-                "Bevande comprese birra o vino, oltre al Jack Deniel’s ghiacciato");
-        e.setCucina("Americana");
+        e.setTitolo("Evento 5");
+        e.setDescrizione("Descrizione 5");
+        e.setCucina("Messicana");
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via Roma, 8");
         e.setCity("Cagliari");
         c.set(2018,3,6,19,0);
         e.setData(c);
-        e.addFoto(R.drawable.cenajack);
+        e.addRequest("dcont@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
 
@@ -428,7 +401,8 @@ public class EventFactory {
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
         e.addPartecipante("msta@ium.it");
-        e.addFoto(R.drawable.calamari);
+        e.addRequest("ajon@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
 
@@ -437,32 +411,15 @@ public class EventFactory {
         c = Calendar.getInstance();
         e.setLocation(position2);
         e.setUser("rmam@ium.it");
-        e.setTitolo("Panzerotti With Us");
-        e.setDescrizione("MENU\n" +
-                "Il menù prevede 4 varietà di panzerotti serviti a centro tavola, sono garantiti per ogni gnammers almeno 5 panzerotti a testa.\n" +
-                "\n" +
-                "I panzerotti proposti sono:\n" +
-                "1) Panzerotti di Pomodoro e mozzarella;\n" +
-                "2) Panzerotti di Cipolle\n" +
-                "3) Panzerotti con Tonno e capperi (+ pomodoro e mozzarella)\n" +
-                "4) Panzerotti con cime di rapa e salsiccia (+ peperoncino)*\n" +
-                "\n" +
-                "* anche senza salsiccia per i vegetariani previa comunicazione in fase di prenotazione.\n" +
-                "\n" +
-                "Altri ingredienti utilizzati: Origano e formaggio di tipo Pecorino.\n" +
-                "\n" +
-                "Bevande: Birra Peroni Gran riserve e acqua.\n" +
-                "\n" +
-                "Nota: l'impasto è con lievito madre e farina senatore cappelli\n" +
-                "\n" +
-                "Dolce: Sporcamuss ( dolce tipico pugliese di Sfoglia e crema pasticcera)");
+        e.setTitolo("Evento 7");
+        e.setDescrizione("Descrizione 7");
         e.setCucina("Italiana");
-        e.setPranzo_cena(Event.PRANZO);
+        e.setPranzo_cena(Event.CENA);
         e.setVia("Via Roma, 8");
         e.setCity("Cagliari");
-        c.set(2018,3,8,13,0);
+        c.set(2018,3,8,19,0);
         e.setData(c);
-        e.addFoto(R.drawable.panzerotti);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 8
@@ -484,7 +441,8 @@ public class EventFactory {
         e.setCity("Quartu Sant'Elena");
         c.set(2018,3,9,20,15);
         e.setData(c);
-        e.addFoto(R.drawable.zuppa);
+        e.addRequest("msta@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 9
@@ -512,7 +470,8 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("msta@ium.it");
-        e.addFoto(R.drawable.saboresdobrasil);
+        e.addRequest("tcai@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 10
@@ -537,7 +496,7 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("msta@ium.it");
-        e.addFoto(R.drawable.mexico);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 11
@@ -560,7 +519,7 @@ public class EventFactory {
         e.setLocation(position3);
         c.set(2018,3,12,20,45);
         e.setData(c);
-        e.addFoto(R.drawable.stocco);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 12
@@ -587,7 +546,7 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("rmam@ium.it");
-        e.addFoto(R.drawable.apericena);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 13
@@ -616,7 +575,8 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("dcont@ium.it");
         e.addPartecipante("atur@ium.it");
-        e.addFoto(R.drawable.sopes);
+        e.addRequest("tcai@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 14
@@ -639,27 +599,24 @@ public class EventFactory {
         e.setData(c);
         e.addPartecipante("rmam@ium.it");
         e.addPartecipante("atur@ium.it");
-        e.addFoto(R.drawable.festabrasil);
+        e.addRequest("ajon@ium.it");
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 15
         e = new Event();
         c = Calendar.getInstance();
         e.setUser("msta@ium.it");
-        e.setTitolo("Cena Giapponese");
-        e.setDescrizione("MENU\n" +
-                "Yakiudon con verdure, gamberi e funghi shiitake\n" +
-                "Maiale in salsa teriyaki\n" +
-                "Sushi: Nigiri Gio, Uramaki special, nigiri ponpon\n" +
-                "Acqua, vino e dessert");
-        e.setCucina("Giapponese");
+        e.setTitolo("Evento 15");
+        e.setDescrizione("Descrizione 15");
+        e.setCucina("Italiana");
         e.setPranzo_cena(Event.CENA);
         e.setVia("Via Silvio Pellico 18");
         e.setCity("Quartu Sant'Elena");
         e.setLocation(position4);
         c.set(2018,3,16,19,0);
         e.setData(c);
-        e.addFoto(R.drawable.sushi);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
         //Evento 16
@@ -689,7 +646,7 @@ public class EventFactory {
         e.setLocation(position3);
         c.set(2018,3,16,20,0);
         e.setData(c);
-        e.addFoto(R.drawable.polentona);
+        e.addFoto(R.drawable.logo);
         e.setMaxBookings(4);
         listaEventi.add(e);
 
