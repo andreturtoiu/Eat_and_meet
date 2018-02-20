@@ -1,5 +1,6 @@
 package com.example.andreea.eat_and_meet;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +28,8 @@ public class NotificationsPage extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-
+    Person loggedUser;
+    String emailUser;
     @Override
     protected void onCreate(Bundle savedInstanceState){
 
@@ -38,8 +40,7 @@ public class NotificationsPage extends AppCompatActivity {
         ArrayList<Notifications> notifications = PersonFactory.getInstance().getUserByEmail(logged_user).getMyNotifications();
         setSupportActionBar(toolbar);
         Intent intent = getIntent();
-        Person loggedUser;
-        String emailUser;
+
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_notif);
@@ -116,6 +117,7 @@ public class NotificationsPage extends AppCompatActivity {
         final LinearLayout notificationView;
         TextView info;
         Button delete;
+        final Notifications clone = n;
 
         switch (n.getContensto()){
             case Notifications.RICHIESTA:
@@ -124,7 +126,7 @@ public class NotificationsPage extends AppCompatActivity {
                 ImageView userpic = (ImageView) notificationView.findViewById(R.id.userpicNotification);
                 Button confirm = (Button) notificationView.findViewById(R.id.confirmNotification);
                 Button deny = (Button) notificationView.findViewById(R.id.denyNotification);
-                info.setText(PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" vuole partecipare all'eveto: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setText(PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" vuole partecipare all'evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
                 info.setId(View.generateViewId());
                 userpic.setImageResource(PersonFactory.getInstance().getUserByEmail(n.getMandante()).getFoto());
                 userpic.setId(View.generateViewId());
@@ -133,6 +135,8 @@ public class NotificationsPage extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //TODO implementa logica
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
                     }
                 });
                 confirm.setId(View.generateViewId());
@@ -141,6 +145,8 @@ public class NotificationsPage extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //TODO implementa logica
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
                     }
                 });
                 deny.setId(View.generateViewId());
@@ -150,13 +156,14 @@ public class NotificationsPage extends AppCompatActivity {
                 notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
                 info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
                 delete = (Button) notificationView.findViewById(R.id.notifNoticeOk);
-                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha rifiutato la tua richiesta di partecipare all evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha rifiutato la tua richiesta di partecipare all evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
                 info.setId(View.generateViewId());
 
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO implementa logica
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
                     }
                 });
                 delete.setId(View.generateViewId());
@@ -166,13 +173,14 @@ public class NotificationsPage extends AppCompatActivity {
                 notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
                 info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
                 delete = (Button) notificationView.findViewById(R.id.notifNoticeOk);
-                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha accettato la tua richiesta di partecipare all evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha accettato la tua richiesta di partecipare all evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
                 info.setId(View.generateViewId());
 
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO implementa logica
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
                     }
                 });
                 delete.setId(View.generateViewId());
@@ -182,13 +190,15 @@ public class NotificationsPage extends AppCompatActivity {
                 notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
                 info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
                 delete = (Button) notificationView.findViewById(R.id.notifNoticeOk);
-                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha apportato modifiche all'evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha apportato modifiche all'evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
                 info.setId(View.generateViewId());
 
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO implementa logica
+
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
                     }
                 });
                 delete.setId(View.generateViewId());
@@ -198,13 +208,14 @@ public class NotificationsPage extends AppCompatActivity {
                 notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
                 info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
                 delete = (Button) notificationView.findViewById(R.id.notifNoticeOk);
-                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha annullato l'evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha annullato l'evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
                 info.setId(View.generateViewId());
 
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO implementa logica
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
                     }
                 });
                 delete.setId(View.generateViewId());

@@ -81,6 +81,7 @@ public class PersonFactory{
         ArrayList<Notifications> n2 = new ArrayList<Notifications>();
         n2.add(new Notifications("msta@ium.it", 8, Notifications.RICHIESTA));
         n2.add(new Notifications("tcai@ium.it", 9, Notifications.RICHIESTA));
+        n2.add(new Notifications("tcai@ium.it", 9, Notifications.MODIFICA));
         r2.add(new RatingLoggedProfile("ajon@ium.it","atur@ium.it" ,"Andreea è una perfetta padrona di casa oltre ad essere un ottima chef. La qualità del cibo servito e la sua gentilezza hanno reso quest'esperienza davvero piacevole. Verdadera cocina Mexicana!! Alla prossima!!!", 4));
         r2.add(new RatingLoggedProfile("msta@ium.it","atur@ium.it","Quanto è divertente Andreea e quanto è brava!!! Abbiamo divorato i tuoi antipasti al gorgonzola e i tuoi deliziosi ravioli! I tuoi racconti ci hanno fatto fare un piacevole tuffo nella storia della Roma Antica e in quella degli anni 50! Grazie di tutto.Ci rivedremo presto!", 5));
         Calendar c2 = Calendar.getInstance();
