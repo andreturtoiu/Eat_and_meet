@@ -79,7 +79,7 @@ public class PersonFactory{
 
         //Utente 4
         ArrayList<RatingLoggedProfile> r3 = new ArrayList<RatingLoggedProfile>();
-        r3.add(new RatingLoggedProfile("ajon@ium.it","msta@ium.it", "Seconda volta a casa di Michele e mi sono trovata benissimo. La cena era molto buona, il dessert particolarissimo e tutto abbondante, vino compreso. La compagnia davvero piacevole e Michele è bravissimo a mettere tutti a proprio agio. Ci rivediamo presto", 4));
+        r3.add(new RatingLoggedProfile("ajon@ium.it","msta@ium.it", "Seconda volta a casa di Michele e mi sono trovato benissimo. La cena era molto buona, il dessert particolarissimo e tutto abbondante, vino compreso. La compagnia davvero piacevole e Michele è bravissimo a mettere tutti a proprio agio. Ci rivediamo presto", 4));
         r3.add(new RatingLoggedProfile("dcont@ium.it", "msta@ium.it","Serata deliziosa, cucina preparata con grande competenza. Compagnia piacevole, allegria spensierata. Grazie Michele, perdonami per il ritardo. Spero di recuperare una bella serata insieme a te.", 5));
         Calendar c3 = Calendar.getInstance();
         c3.set(1989,7, 24);
