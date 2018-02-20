@@ -19,25 +19,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Città"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingStart="5dp"
+            android:text="Città" />
+
         <EditText
             android:id="@+id/citta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"/>
+            android:inputType="text" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tipo di cucina"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:paddingStart="5dp"
+            android:text="Tipo di cucina" />
+
         <Spinner
             android:id="@+id/spinner_cucina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:entries="@array/tipo_cucina_search"
             android:prompt="@string/cooking_type" />
         <LinearLayout
@@ -64,7 +75,8 @@
             android:id="@+id/search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cerca"/>
+            android:layout_marginTop="10dp"
+            android:text="Cerca" />
     </LinearLayout>
 
 
