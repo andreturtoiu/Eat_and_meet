@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fafafa"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -22,12 +23,15 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_rectangle"
         android:paddingLeft="40dp"
         android:paddingRight="40dp">
 
         <EditText
             android:id="@+id/eventDescription"
             android:layout_width="match_parent"
+            android:background="#f2f2f2"
             android:layout_height="117dp"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
@@ -37,6 +41,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:background="#f2f2f2"
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/textView4"
