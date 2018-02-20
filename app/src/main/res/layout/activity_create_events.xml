@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#fafafa"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -38,7 +39,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:background="@drawable/white_rectangle"
             android:orientation="vertical"
+            android:layout_marginTop="20dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp">
 
@@ -46,7 +49,7 @@
                 android:id="@+id/editEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="10dp"
                 android:background="#f2f2f2"
                 android:ems="10"
@@ -61,7 +64,7 @@
                 android:id="@+id/editIndirizzo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="#f2f2f2"
                 android:ems="10"
                 android:hint="Indirizzo: Via"
@@ -70,23 +73,35 @@
                 android:paddingStart="20dp"
                 android:paddingTop="10dp" />
 
-            <EditText
-                android:id="@+id/editCitta"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:background="#f2f2f2"
-                android:ems="10"
-                android:hint="Indirizzo: Città"
-                android:inputType="textPersonName"
-                android:paddingBottom="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/geo"
-                android:text = "geolocalizzazione"/>
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editCitta"
+                    android:layout_width="256dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="1"
+                    android:background="#f2f2f2"
+                    android:ems="10"
+                    android:hint="Indirizzo: città"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingTop="10dp" />
+
+                <ImageView
+                    android:id="@+id/geo"
+                    android:layout_width="48dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1"
+                    android:background="#f2f2f2"
+                    android:src="@drawable/ic_location" />
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,31 +110,17 @@
 
                 <TextView
                     android:id="@+id/dateTextView"
-                    android:layout_width="match_parent"
+                    android:layout_width="290dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="10dp"
                     android:background="#f2f2f2"
                     android:clickable="true"
-                    android:ems="10"
                     android:focusable="true"
                     android:paddingBottom="10dp"
                     android:paddingStart="10dp"
                     android:paddingTop="10dp"
                     android:text="Data: gg/mm/aaa" />
-
-                <TextView
-                    android:id="@+id/timeTextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#f2f2f2"
-                    android:clickable="true"
-                    android:ems="10"
-                    android:focusable="true"
-                    android:paddingBottom="10dp"
-                    android:paddingStart="10dp"
-                    android:paddingTop="10dp"
-                    android:text="Ora: hh:mm" />
 
             </LinearLayout>
 
@@ -128,18 +129,18 @@
                 android:id="@+id/cucinaTextview"
                 android:layout_width="match_parent"
                 android:layout_height="17dp"
-                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
                 android:background="#f2f2f2"
                 android:paddingStart="20dp"
                 android:text="Tipo Cucina"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                android:textColor="#000" />
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="26dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="20dp"
                 android:entries="@array/tipo_cucina"
                 android:paddingStart="20dp" />
 
@@ -147,25 +148,28 @@
                 android:id="@+id/radio_group"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/white_rectangle"
                 android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/radio_pranzo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="65dp"
-                    android:background="#f2f2f2"
+                    android:backgroundTint="#f2f2f2"
+                    android:background="@drawable/white_rectangle"
+                    android:checked="true"
                     android:onClick="onRadioButtonClicked"
                     android:paddingRight="10dp"
-                    android:checked="true"
+                    android:layout_weight="1"
                     android:text="Pranzo" />
 
                 <RadioButton
                     android:id="@+id/radio_cena"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="50dp"
-                    android:background="#f2f2f2"
+                    android:backgroundTint="#f2f2f2"
+                    android:layout_weight="1"
+                    android:background="@drawable/white_rectangle"
                     android:onClick="onRadioButtonClicked"
                     android:paddingRight="10dp"
                     android:text="Cena" />
@@ -175,7 +179,7 @@
                 android:id="@+id/prosegui"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:text="Prosegui" />
         </LinearLayout>
 
@@ -188,6 +192,20 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_navigation_menu"
-        app:menu="@menu/activity_navigation_menu_drawer" />
+        app:menu="@menu/activity_navigation_menu_drawer">
+
+        <TextView
+            android:id="@+id/timeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_rectangle"
+            android:clickable="true"
+            android:ems="10"
+            android:focusable="true"
+            android:paddingBottom="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp"
+            android:text="Ora: hh:mm" />
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
