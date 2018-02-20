@@ -106,7 +106,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
 
         //Geolocalizzazione
-        Button geo = (Button)findViewById(R.id.geo);
+        ImageView geo = (ImageView) findViewById(R.id.geo);
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
