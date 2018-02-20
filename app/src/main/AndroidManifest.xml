@@ -76,6 +76,10 @@
             android:label="Profilo"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".LoggedProfile"/>
+        <activity
+            android:name=".NotificationsPage"
+            android:label="Pagina Notifiche"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
