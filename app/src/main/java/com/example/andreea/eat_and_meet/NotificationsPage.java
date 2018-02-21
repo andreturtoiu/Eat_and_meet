@@ -86,7 +86,11 @@ public class NotificationsPage extends AppCompatActivity {
                 confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO implementa logica
+
+                        EventFactory.getInstance().getEventById(clone.getEvento()).addPartecipante(clone.getMandante());
+                        EventFactory.getInstance().getEventById(clone.getEvento()).getRichieste().remove(clone.getMandante());
+                        Notifications nn= new Notifications(loggedUser.getEmail(), clone.getEvento(), Notifications.R_APPROVATA);
+                        PersonFactory.getInstance().getUserByEmail(clone.getMandante()).getMyNotifications().add(nn);
                         loggedUser.getMyNotifications().remove(clone);
                         notificationView.setVisibility(View.GONE);
                     }
@@ -96,7 +100,10 @@ public class NotificationsPage extends AppCompatActivity {
                 deny.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //TODO implementa logica
+
+                        EventFactory.getInstance().getEventById(clone.getEvento()).getRichieste().remove(clone.getMandante());
+                        Notifications nn= new Notifications(loggedUser.getEmail(), clone.getEvento(), Notifications.R_APPROVATA);
+                        PersonFactory.getInstance().getUserByEmail(clone.getMandante()).getMyNotifications().add(nn);
                         loggedUser.getMyNotifications().remove(clone);
                         notificationView.setVisibility(View.GONE);
                     }
@@ -156,11 +163,29 @@ public class NotificationsPage extends AppCompatActivity {
                 delete.setId(View.generateViewId());
                 break;
 
+            case Notifications.RINUNCIA:
+                notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
+                info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
+                delete = (Button) notificationView.findViewById(R.id.notifNoticeOk);
+                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" si è cancellato dall'evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setId(View.generateViewId());
+
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
+                    }
+                });
+                delete.setId(View.generateViewId());
+                break;
+
             default:
                 notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
                 info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
                 delete = (Button) notificationView.findViewById(R.id.notifNoticeOk);
-                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha annullato l'evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ha annullato l'evento: "+n.getCancellato());
                 info.setId(View.generateViewId());
 
                 delete.setOnClickListener(new View.OnClickListener() {
@@ -171,7 +196,6 @@ public class NotificationsPage extends AppCompatActivity {
                     }
                 });
                 delete.setId(View.generateViewId());
-                break;
         }
 
         return notificationView;

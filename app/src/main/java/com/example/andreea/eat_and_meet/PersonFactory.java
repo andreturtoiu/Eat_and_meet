@@ -4,6 +4,7 @@ package com.example.andreea.eat_and_meet;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -153,6 +154,19 @@ public class PersonFactory{
 
     public String getLoggedUser() {
         return loggedUser;
+    }
+
+    public void sendNotifications (Notifications n, Event e) {
+
+        ArrayList<String> partecipanti = e.getPartecipanti();
+
+        for (String p: partecipanti){
+
+            PersonFactory.getInstance().getUserByEmail(p).getMyNotifications().add(n);
+
+
+        }
+
     }
 
 

@@ -13,9 +13,11 @@ public class Notifications implements Serializable {
     public static final int R_APPROVATA = 2;
     public static final int MODIFICA = 3;
     public static final int CANCELLAZIONE = 4;
+    public static final int RINUNCIA = 5;
 
 
     private String mandante;
+    private String cancellato;
     private int evento;
     private int contensto;
 
@@ -24,6 +26,15 @@ public class Notifications implements Serializable {
         this.mandante = mandante;
         this.evento = evento;
         this.contensto = contensto;
+        this.setCancellato(null);
+
+    }
+    public Notifications(String mandante, int evento, int contensto, String cancellato){
+
+        this.mandante = mandante;
+        this.evento = evento;
+        this.contensto = contensto;
+        this.setCancellato(cancellato);
 
     }
 
@@ -50,5 +61,13 @@ public class Notifications implements Serializable {
 
     public void setContensto(int contensto) {
         this.contensto = contensto;
+    }
+
+    public String getCancellato() {
+        return cancellato;
+    }
+
+    public void setCancellato(String cancellato) {
+        this.cancellato = cancellato;
     }
 }

@@ -38,6 +38,8 @@ public class EventFactory {
         return null;
     }
 
+
+
     public void editEvent(Event evento){
         int id = evento.getId();
         for(Event e:listaEventi)
@@ -47,14 +49,23 @@ public class EventFactory {
                 e.setFotoUriList(evento.getFotoUriList());
                 e.setData(evento.getDataCalendar());
                 e.setLocation(evento.getLocation());
+                Notifications n= new Notifications(e.getUser(), id, Notifications.MODIFICA);
+                PersonFactory.getInstance().sendNotifications(n, e);
             }
     }
 
     public void deleteEventById(int id){
         Event position = null;
         for(Event e:this.listaEventi){
-            if (e.getId() == id ) position = e;
+            if (e.getId() == id ) {
+                position = e;
+
+                Notifications n= new Notifications(e.getUser(), id, Notifications.CANCELLAZIONE, e.getTitolo());
+                PersonFactory.getInstance().sendNotifications(n, e);
+            }
         }
+
+
         this.listaEventi.remove(position);
     }
 
@@ -62,6 +73,8 @@ public class EventFactory {
         for(Event e:listaEventi){
             if (e.getId()==idEvent){
                 e.unSubscribe(idUser);
+                Notifications n= new Notifications(idUser, e.getId(), Notifications.RINUNCIA);
+                PersonFactory.getInstance().getUserByEmail(e.getUser()).getMyNotifications().add(n);
             }
         }
     }
@@ -78,6 +91,9 @@ public class EventFactory {
         for(Event e:listaEventi){
             if (e.getId()==idEvent){
                 e.addRequest(idUser);
+                Notifications n= new Notifications(idUser, e.getId(), Notifications.RICHIESTA);
+                PersonFactory.getInstance().getUserByEmail(e.getUser()).getMyNotifications().add(n);
+
             }
         }
     }
