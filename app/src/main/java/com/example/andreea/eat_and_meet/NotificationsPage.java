@@ -102,7 +102,7 @@ public class NotificationsPage extends AppCompatActivity {
                     public void onClick(View v) {
 
                         EventFactory.getInstance().getEventById(clone.getEvento()).getRichieste().remove(clone.getMandante());
-                        Notifications nn= new Notifications(loggedUser.getEmail(), clone.getEvento(), Notifications.R_APPROVATA);
+                        Notifications nn= new Notifications(loggedUser.getEmail(), clone.getEvento(), Notifications.R_RIFIUTATA);
                         PersonFactory.getInstance().getUserByEmail(clone.getMandante()).getMyNotifications().add(nn);
                         loggedUser.getMyNotifications().remove(clone);
                         notificationView.setVisibility(View.GONE);
