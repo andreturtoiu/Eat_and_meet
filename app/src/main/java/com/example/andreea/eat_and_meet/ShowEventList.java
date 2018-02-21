@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 
 public class ShowEventList extends AppCompatActivity {
-
+    TextView t;
     @SuppressLint("WrongViewCast")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +30,10 @@ public class ShowEventList extends AppCompatActivity {
         Intent intent = getIntent();
         ArrayList<Event> eventi = (ArrayList<Event>) intent.getSerializableExtra("EVENT_LIST");
         LinearLayout ll = (LinearLayout) findViewById(R.id.event_container);
-        TextView t = (TextView) findViewById(R.id.noEvent);
-        t.setText(" dldldl");
+        t = (TextView) findViewById(R.id.noEvent);
+        if(eventi.isEmpty()){
+            t.setText("Non hai eventi in programmazione");
+        }
         for(Event e : eventi){
             //Genero Layout Evento
             LinearLayout lle = EventFactory.getInstance().newEventView(e,new HandleEvent(e),this);

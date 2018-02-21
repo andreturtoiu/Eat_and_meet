@@ -180,10 +180,9 @@ public class EventFactory {
             if(citta.equals(""))
                 citta = "Roma"; //citta = PersonFactory.getIstance().citta utente loggato
 
-                for(Event e:filter_cucina)
-                    if (e.getCity().equals(citta))
-                        filter_citta.add(e);
-
+                for(Event e:filter_cucina){
+                    if (e.getCity().contains(citta))
+                        filter_citta.add(e);}
         }
 
         //Filtro pranzo_cena
