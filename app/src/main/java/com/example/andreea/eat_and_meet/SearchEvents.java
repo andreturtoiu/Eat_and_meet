@@ -44,7 +44,7 @@ public class SearchEvents extends AppCompatActivity {
 
     class sendInput implements View.OnClickListener {
         public void onClick(View v) {
-            Intent intent = new Intent(SearchEvents.this, ShowEventList.class);
+            Intent intent = new Intent(SearchEvents.this, ShowSearchedEvent.class);
 
             String cucina = spinner.getSelectedItem().toString();
             int pranzo_cena;
@@ -73,7 +73,7 @@ public class SearchEvents extends AppCompatActivity {
             String citta = text_citta.getText().toString();
             ArrayList<Event> list = EventFactory.getInstance().searchEventsByFilter(cucina,citta,pranzo_cena);
 
-            intent.putExtra("EVENT_LIST", list);
+            intent.putExtra("EVENT_SEARCHED", list);
 
             startActivity(intent);
         }

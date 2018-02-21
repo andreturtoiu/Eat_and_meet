@@ -16,6 +16,7 @@
         <activity
             android:name=".LoggedProfile"
             android:label="Profilo"
+            android:parentActivityName=".HomePage"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Login_activity"
@@ -54,7 +55,8 @@
             android:name=".CreateEvent"
             android:label="Crea un nuovo evento"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".HomePage"/>
+            android:parentActivityName=".HomePage"
+            />
         <activity
             android:name=".SearchEvents"
             android:label="Cerca nuovi eventi"
@@ -78,13 +80,23 @@
         <activity
             android:name=".UserProfile"
             android:label="Profilo"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".LoggedProfile"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.andreea.eat_and_meet.UserProfile" />
+
         <activity
             android:name=".NotificationsPage"
             android:label="Notifiche"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".HomePage"/>
+
+        <activity
+            android:name=".ShowSearchedEvent"
+            android:label="Eventi trovati"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".SearchEvents"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

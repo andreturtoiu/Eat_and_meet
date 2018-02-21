@@ -40,13 +40,7 @@
                 android:textColor="#000"
                 android:layout_marginBottom="20dp"
                 android:text="Puoi modificare solo le seguenti informazioni"/>
-            <TextView
-                android:id="@+id/TitoloLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Titolo"
-                android:textSize="15dp"
-                android:textColor="#000"/>
+
 
             <TextView
                 android:id="@+id/TitoloId"
@@ -55,7 +49,9 @@
                 android:ems="10"
                 android:background="#f2f2f2"
                 android:inputType="textPersonName"
-                android:textSize="15dp" />
+                android:textSize="25dp"
+                android:textColor="@color/textToolbar"
+                android:textAlignment="center"/>
 
             <HorizontalScrollView
                 android:id="@+id/scroll_slideshow"

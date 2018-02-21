@@ -39,17 +39,31 @@
                 android:layout_margin="10dp"
                 >
 
-                <TextView
-                    android:id="@+id/TitoloLabel"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Titolo"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:layout_alignParentRight="true"
-                    android:gravity="left"
-                    android:textColor="#000"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Organizzato da "/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/userPhoto"
+                        android:layout_marginLeft="10dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/userOrg"
+                        android:textStyle="bold"
+                        android:textSize="16dp"/>
+
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/TitoloId"
@@ -57,8 +71,11 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:layout_toLeftOf="@id/TitoloLabel"
+                    android:layout_marginTop="10dp"
                     android:gravity="right"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/textToolbar"
                     android:textAlignment="center"/>
 
                 <HorizontalScrollView

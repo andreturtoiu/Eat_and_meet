@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.LocationListener;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -66,7 +67,12 @@ public class ShowEvent extends AppCompatActivity{
         if(confirmRequest) dialogConfirm("Inviata richiesta d'iscrizione all'evento "+evento.getTitolo());
         if(confirmUnsubscribe) dialogConfirm("Hai annullato la tua iscrizione all'evento "+evento.getTitolo());
 
-
+        final String user = evento.getUser();
+        Person person = PersonFactory.getInstance().getUserByEmail(user);
+        TextView userName = (TextView)findViewById(R.id.userOrg);
+        ImageView userPic = (ImageView)(findViewById(R.id.userPhoto));
+        userName.setText(person.getName() + " " + person.getSurname());
+        userPic.setImageResource(person.getFoto());
         TextView titolo = (TextView) findViewById(R.id.TitoloId);
         titolo.setText(evento.getTitolo());
         TextView info =  (TextView) findViewById(R.id.InfoId);
@@ -95,6 +101,33 @@ public class ShowEvent extends AppCompatActivity{
                 }else {
 
                 }
+            }
+        });
+
+        userName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(user.equals(PersonFactory.getInstance().getLoggedUser())){
+
+                }else {
+                    Intent intent = new Intent(ShowEvent.this, UserProfile.class);
+                    intent.putExtra("EMAIL_EXTRA", user);
+                    startActivity(intent);
+                }
+            }
+        });
+
+        userPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(user.equals(PersonFactory.getInstance().getLoggedUser())){
+
+                }else {
+                    Intent intent = new Intent(ShowEvent.this, UserProfile.class);
+                    intent.putExtra("EMAIL_EXTRA", user);
+                    startActivity(intent);
+                }
+
             }
         });
 

@@ -1,4 +1,5 @@
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
@@ -13,199 +14,178 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appbar"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/appbar_padding_top"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/AppTheme.PopupOverlay">
-
-
-                <android.support.design.widget.TabLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tabLayout" />
-
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.AppBarLayout>
-
-        <LinearLayout
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/descriptionProfile"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
-                android:layout_margin="10dp"
-                android:background="@drawable/profile_backgournd"
-                android:elevation="2dp"
-                android:paddingBottom="16dp">
-
-                <ImageView
-                    android:id="@+id/picProfile"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/andreea" />
-
-                <TextView
-                    android:id="@+id/nameProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/picProfile"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif"
-                    android:text="Nome Cognome"
-                    android:textColor="@android:color/black"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/birthdateProfile"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/nameProfile"
-                    android:layout_centerHorizontal="true"
-                    android:gravity="center"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Data di nascita"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/addressProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/birthdateProfile"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Indirizzo - Città"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/emailProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/addressProfile"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Email"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/telphoneProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/emailProfile"
-                    android:layout_centerHorizontal="true"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Numero di Telefono"
-                    android:textSize="16sp" />
-
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="365dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/descriptionProfile"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/profile_backgournd"
-                android:elevation="2dp"
-                android:paddingBottom="16dp">
-
+                android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/aboutYouRect"
+                    android:id="@+id/descriptionProfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
                     android:layout_margin="10dp"
-                    android:layout_alignParentStart="true">
+                    android:background="@drawable/profile_backgournd"
+                    android:elevation="2dp"
+                    android:paddingBottom="16dp">
+
+                    <ImageView
+                        android:id="@+id/picProfile"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/andreea" />
 
                     <TextView
-                        android:id="@+id/aboutYou"
+                        android:id="@+id/nameProfile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
+                        android:layout_below="@+id/picProfile"
                         android:layout_centerHorizontal="true"
                         android:fontFamily="sans-serif"
-                        android:text="Dicono su di te"
+                        android:text="Nome Cognome"
                         android:textColor="@android:color/black"
-                        android:textSize="20dp" />
+                        android:textSize="24sp" />
 
-                    <RatingBar
-                        android:id="@+id/ratingBarGeneral"
-                        style="@android:style/Widget.Material.RatingBar.Indicator"
-                        android:layout_width="175dp"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="30dp"
+                    <TextView
+                        android:id="@+id/birthdateProfile"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/nameProfile"
                         android:layout_centerHorizontal="true"
-                        android:isIndicator="true"
-                        android:numStars="5"
-                        android:rating="3"
-                        android:stepSize="1.0" />
+                        android:gravity="center"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Data di nascita"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/addressProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/birthdateProfile"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Indirizzo - Città"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/emailProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/addressProfile"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Email"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/telphoneProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/emailProfile"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Numero di Telefono"
+                        android:textSize="16sp" />
 
 
                 </RelativeLayout>
 
-                <ScrollView
-                    android:layout_width="365dp"
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp">
+                    android:layout_below="@id/descriptionProfile"
+                    android:layout_margin="10dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/profile_backgournd"
+                    android:elevation="2dp"
+                    android:paddingBottom="16dp">
 
-                    <LinearLayout
-                        android:id="@+id/aboutYouContainer"
+
+                    <RelativeLayout
+                        android:id="@+id/aboutYouRect"
+                        android:layout_width="350dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/scrollView2"
+                        android:layout_alignParentTop="true">
+
+                        <TextView
+                            android:id="@+id/aboutYou"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="sans-serif"
+                            android:text="Dicono su di te"
+                            android:textColor="@android:color/black"
+                            android:textSize="20dp" />
+
+                        <RatingBar
+                            android:id="@+id/ratingBarGeneral"
+                            style="@android:style/Widget.Material.RatingBar.Indicator"
+                            android:layout_width="175dp"
+                            android:layout_height="50dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:isIndicator="true"
+                            android:numStars="5"
+                            android:rating="3"
+                            android:stepSize="1.0" />
+
+
+                    </RelativeLayout>
+
+                    <ScrollView
+                        android:id="@+id/scrollView2"
                         android:layout_width="match_parent"
-                        android:layout_height="365dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginBottom="14dp"
-                        android:orientation="vertical">
+                        android:layout_height="500dp"
+                        android:layout_marginTop="100dp">
 
-                    </LinearLayout>
-                </ScrollView>
+                        <LinearLayout
+                            android:id="@+id/aboutYouContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginBottom="14dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:orientation="vertical">
 
-            </RelativeLayout>
+                        </LinearLayout>
+                    </ScrollView>
 
-        </LinearLayout>
+                </RelativeLayout>
 
+            </LinearLayout>
+
+
+        </ScrollView>
 
 
 
     </LinearLayout>
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_navigation_menu"
-        app:menu="@menu/activity_navigation_menu_drawer" />
-<!--
 
 -->
 
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>
 
 
 

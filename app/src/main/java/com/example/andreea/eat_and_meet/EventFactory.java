@@ -1,6 +1,8 @@
 package com.example.andreea.eat_and_meet;
 
 import android.content.Context;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -207,27 +209,65 @@ public class EventFactory {
         return filter_final;
 
     }
+
+
     public LinearLayout newEventView (Event e, View.OnClickListener ocl, Context c){
-        LinearLayout eventView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_event, null);
-        TextView title = (TextView) eventView.findViewById(R.id.template_event_title);
-        TextView info = (TextView) eventView.findViewById(R.id.template_event_info);
-        ImageView photo = (ImageView) eventView.findViewById(R.id.template_event_photo);
-        title.setText(e.getTitolo());
-        title.setId(View.generateViewId());
-        info.setText(e.getDescrizione());
-        info.setId(View.generateViewId());
-        if(e.getFotoList() != null && e.getFotoList().size()>0)
-            photo.setImageResource(e.getFotoList().get(0));
-        else if (e.getFotoUriList() != null && e.getFotoUriList().size()>0)
-            photo.setImageBitmap(e.getFotoUriList().get(0).getBitmap());
-        else
-            photo.setImageResource(R.drawable.logo_2);
-        photo.setId(View.generateViewId());
-        eventView.setId(View.generateViewId());
+
+        Person user = PersonFactory.getInstance().getUserByEmail(e.getUser());
+        String userMail = PersonFactory.getInstance().getLoggedUser();
+        LinearLayout eventView;
+
+        //Miei eventi
+        if(user.getEmail().equals(userMail)){
+         eventView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_my_events, null);
+            TextView title = (TextView) eventView.findViewById(R.id.template_event_title);
+            TextView info = (TextView) eventView.findViewById(R.id.template_event_info);
+            ImageView photo = (ImageView) eventView.findViewById(R.id.template_event_photo);
+            title.setText(e.getTitolo());
+            title.setId(View.generateViewId());
+            info.setText(e.getDescrizione());
+            info.setId(View.generateViewId());
+            if(e.getFotoList() != null && e.getFotoList().size()>0)
+                photo.setImageResource(e.getFotoList().get(0));
+            else if (e.getFotoUriList() != null && e.getFotoUriList().size()>0)
+                photo.setImageBitmap(e.getFotoUriList().get(0).getBitmap());
+            else
+                photo.setImageResource(R.drawable.logo_2);
+            photo.setId(View.generateViewId());
+            eventView.setId(View.generateViewId());
+
+
+        }else {
+
+             eventView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_event, null);
+
+            TextView title = (TextView) eventView.findViewById(R.id.template_event_title);
+            ImageView photo = (ImageView) eventView.findViewById(R.id.template_event_photo);
+            ImageView userPhoto = (ImageView) eventView.findViewById(R.id.userPhoto) ;
+            TextView presentation = (TextView) eventView.findViewById(R.id.titleEvent);
+            userPhoto.setImageResource(user.getFoto());
+            presentation.setText(user.getName() + " " + "organizza l'evento");
+            title.setText(e.getTitolo());
+            title.setId(View.generateViewId());
+            if(e.getFotoList() != null && e.getFotoList().size()>0)
+                photo.setImageResource(e.getFotoList().get(0));
+            else if (e.getFotoUriList() != null && e.getFotoUriList().size()>0)
+                photo.setImageBitmap(e.getFotoUriList().get(0).getBitmap());
+            else
+                photo.setImageResource(R.drawable.logo_2);
+            photo.setId(View.generateViewId());
+            eventView.setId(View.generateViewId());
+
+            userPhoto.setId(View.generateViewId());
+            presentation.setId(View.generateViewId());
+
+        }
         //Aggiungo listener
         eventView.setOnClickListener(ocl);
         return eventView;
     }
+
+
 
     private EventFactory() {
         //via sicilia

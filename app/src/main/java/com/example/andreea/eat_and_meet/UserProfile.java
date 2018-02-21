@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -114,7 +115,8 @@ public class UserProfile extends AppCompatActivity{
             if(checkRate(ratingBarGeneral2,inputText)){
                     float rating = ratingBarGeneral2.getRating();
                     String text = inputText.getText().toString();
-                    RatingLoggedProfile r = new RatingLoggedProfile(emailFrom,emailUser,text,rating);
+                    String userLogged = PersonFactory.getInstance().getLoggedUser();
+                    RatingLoggedProfile r = new RatingLoggedProfile(userLogged,emailUser,text,rating);
                     updateRatings(user,r);
 
                 View popview = getLayoutInflater().inflate(R.layout.rate_dialog, null);
@@ -143,6 +145,16 @@ public class UserProfile extends AppCompatActivity{
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return  true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 
     private void updateRatings(Person p,RatingLoggedProfile r){
         p.addRatings(r);
