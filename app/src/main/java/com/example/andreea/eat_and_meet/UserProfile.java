@@ -2,6 +2,7 @@ package com.example.andreea.eat_and_meet;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -118,21 +119,32 @@ public class UserProfile extends AppCompatActivity{
                     String userLogged = PersonFactory.getInstance().getLoggedUser();
                     RatingLoggedProfile r = new RatingLoggedProfile(userLogged,emailUser,text,rating);
                     updateRatings(user,r);
+                android.support.v7.app.AlertDialog.Builder builder1 = new android.support.v7.app.AlertDialog.Builder(UserProfile.this);
+                builder1.setMessage("Vuoi inviare la tua recensione ?");
+                builder1.setCancelable(true);
+                builder1.setPositiveButton(
+                        "Si",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent rate = new Intent(UserProfile.this, UserProfile.class);
+                                rate.putExtra("EMAIL_EXTRA",emailUser);
+                                startActivity(rate);
 
-                View popview = getLayoutInflater().inflate(R.layout.rate_dialog, null);
-                Button confirm = (Button) popview.findViewById(R.id.confirmButton);
-                confirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent rate = new Intent(UserProfile.this, UserProfile.class);
-                        rate.putExtra("EMAIL_EXTRA",emailUser);
-                        startActivity(rate);
-                    }
-                });
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfile.this);
-                builder.setView(popview);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                                dialog.cancel();
+                            }
+                        });
+                builder1.setNegativeButton(
+                        "No",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                android.support.v7.app.AlertDialog alert11 = builder1.create();
+                alert11.show();
+
+
 
                }
 

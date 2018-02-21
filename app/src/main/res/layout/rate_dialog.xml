@@ -17,11 +17,11 @@
 
     <Button
         android:id="@+id/confirmButton"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/popuptext"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:text="Conferma" />
+        android:text="Ok" />
 
 </LinearLayout>
