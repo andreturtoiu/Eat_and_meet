@@ -57,7 +57,7 @@ public class Login_activity extends AppCompatActivity {
 
         if(password.getText() == null || password.getText().length()==0){
 
-            email.setError("Inserire la propria password");
+            password.setError("Inserire la propria password");
             errors++;
 
 
