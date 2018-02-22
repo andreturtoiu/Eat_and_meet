@@ -257,6 +257,7 @@ public class SignUp extends AppCompatActivity {
         this.person.setAddress(this.addressText.getText().toString());
         this.person.setCity(this.cityText.getText().toString());
         this.person.setPhoneNumber(this.phoneText.getText().toString());
+        this.person.setFoto(-1);
 
     }
 

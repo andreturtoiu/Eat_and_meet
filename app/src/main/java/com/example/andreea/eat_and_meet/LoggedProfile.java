@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +53,21 @@ public class LoggedProfile  extends AppCompatActivity{
         emailUser = PersonFactory.getInstance().getLoggedUser();
         loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
 
-
+        ImageView img = (ImageView) findViewById(R.id.picProfile);
+        if(loggedUser.getFoto()== -1 && loggedUser.getFoto2() == null){
+            TextView requestWarning = (TextView) findViewById(R.id.changePhoto);
+            String message = "Inserisci la tua foto";
+            requestWarning.setText(message);
+            requestWarning.setOnClickListener(new HandleRequest(emailUser));
+            requestWarning.setGravity(Gravity.CENTER_HORIZONTAL);
+        }else if(loggedUser.getFoto() != -1 && loggedUser.getFoto2() == null){
+            img.setImageResource(loggedUser.getFoto());
+        }else if(loggedUser.getFoto() == -1 && loggedUser.getFoto2() != null) {
+            BitmapDataObject pic = loggedUser.getFoto2();
+            ImageView foto = new ImageView(this);
+            img.setImageBitmap(pic.getBitmap());
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+        }
         //Prende la data
         Calendar birth = loggedUser.getBirthdate();
         int dd = birth.get(Calendar.DAY_OF_MONTH);
@@ -61,8 +76,7 @@ public class LoggedProfile  extends AppCompatActivity{
         String strdate =  String.format("%d",dd)   + "/" + String.format("%d",mm) + "/" + String.format("%d",YY);
 
         //Informazioni dell'utente loggato
-        ImageView img = (ImageView) findViewById(R.id.picProfile);
-        img.setImageResource(loggedUser.getFoto());
+
         TextView name = (TextView) findViewById(R.id.nameProfile);
         name.setText(loggedUser.getName()+ " "+ loggedUser.getSurname());
         TextView birthday = (TextView)findViewById(R.id.birthdateProfile);
@@ -99,6 +113,18 @@ public class LoggedProfile  extends AppCompatActivity{
 
 
 }
+    class HandleRequest implements View.OnClickListener{
+        String email;
+        @Override
+        public void onClick(View v){
+            Intent addPhoto = new Intent(LoggedProfile.this,AddProfilePhoto.class);
+            addPhoto.putExtra("EXTRA_PHOTO",email);
+            startActivity(addPhoto);
+        }
+        public HandleRequest(String email){
+            this.email= email;
+        }
+    }
 
     class Inner implements View.OnClickListener {
         String emailFrom;

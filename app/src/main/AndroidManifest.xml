@@ -101,6 +101,10 @@
             android:name=".RequestEvents"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".HomePage"/>
+        <activity
+            android:name=".AddProfilePhoto"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".LoggedProfile"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

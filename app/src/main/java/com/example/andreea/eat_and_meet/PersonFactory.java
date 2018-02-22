@@ -63,7 +63,7 @@ public class PersonFactory{
         r.add(new RatingLoggedProfile("atur@ium.it","dcont@ium.it", "Davide è un cuoco e padrone di casa eccezionale, il menu era veramente eccellente e così le birre artigianali in abbinamento. Ambiente molto accogliente e famigliare, compagnia piacevole e cordiale. Una serata da ricordare!", 5));
         Calendar c = Calendar.getInstance();
         c.set(1994,1, 3);
-        p = new Person("Davide", "Contini", c, "pippopop", "dcont@ium.it", "Via Garibaldi 121", "Santa Giusta", "3485595491", r, n, R.drawable.davide);
+        p = new Person("Davide", "Contini", c, "pippopop", "dcont@ium.it", "Via Garibaldi 121", "Santa Giusta", "3485595491", r, n, R.drawable.davide,null);
         listaUtenti.add(p);
 
         //Utente 2
@@ -76,7 +76,7 @@ public class PersonFactory{
         r1.add(new RatingLoggedProfile("dcont@ium.it", "rmam@ium.it","Bellissima atmosfera in una casa accogliente. Riccardo è un ottimo padrone di casa.", 4));
         Calendar c1 = Calendar.getInstance();
         c1.set(1996,8, 30);
-        p = new Person("Riccardo", "Mameli", c1, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892", r1, n1,R.drawable.riccardo);
+        p = new Person("Riccardo", "Mameli", c1, "AndroidStudio", "rmam@ium.it", "Via Roma 1", "Cagliari", "1234567892", r1, n1,R.drawable.riccardo,null);
         listaUtenti.add(p);
 
         //Utente 3
@@ -89,7 +89,7 @@ public class PersonFactory{
         r2.add(new RatingLoggedProfile("msta@ium.it","atur@ium.it","Quanto è divertente Andreea e quanto è brava!!! Abbiamo divorato i tuoi antipasti al gorgonzola e i tuoi deliziosi ravioli! I tuoi racconti ci hanno fatto fare un piacevole tuffo nella storia della Roma Antica e in quella degli anni 50! Grazie di tutto.Ci rivedremo presto!", 5));
         Calendar c2 = Calendar.getInstance();
         c2.set(1995,5, 13);
-        p = new Person("Andreea", "Turtoiu", c2, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633", r2, n2, R.drawable.andreea);
+        p = new Person("Andreea", "Turtoiu", c2, "12_1211", "atur@ium.it", "Via Dante 32", "Quartu", "3465643633", r2, n2, R.drawable.andreea,null);
         listaUtenti.add(p);
 
         //Utente 4
@@ -102,7 +102,7 @@ public class PersonFactory{
         r3.add(new RatingLoggedProfile("dcont@ium.it", "msta@ium.it","Serata deliziosa, cucina preparata con grande competenza. Compagnia piacevole, allegria spensierata. Grazie Michele, perdonami per il ritardo. Spero di recuperare una bella serata insieme a te.", 5));
         Calendar c3 = Calendar.getInstance();
         c3.set(1989,7, 24);
-        p = new Person("Michele", "Staffiere", c3, "Ert453", "msta@ium.it", "Via Vai 67", "Cagliari", "3333233231", r3, n3, R.drawable.michele);
+        p = new Person("Michele", "Staffiere", c3, "Ert453", "msta@ium.it", "Via Vai 67", "Cagliari", "3333233231", r3, n3, R.drawable.michele,null);
         listaUtenti.add(p);
 
         //Utente 5
@@ -112,7 +112,7 @@ public class PersonFactory{
         r4.add(new RatingLoggedProfile("msta@ium.it","tcai@ium.it", "Testo Esperienza2", 4));
         Calendar c4 = Calendar.getInstance();
         c4.set(1950,10, 4);
-        p = new Person("Mariella", "Locci", c4, "Ca_t1zio", "tcai@ium.it", "Via Roma 123", "Carbonia", "34411231313",r4, empty,R.drawable.utentedonna);
+        p = new Person("Mariella", "Locci", c4, "Ca_t1zio", "tcai@ium.it", "Via Roma 123", "Carbonia", "34411231313",r4, empty,R.drawable.utentedonna,null);
         listaUtenti.add(p);
 
 
@@ -122,7 +122,11 @@ public class PersonFactory{
         r5.add(new RatingLoggedProfile("msta@ium.it", "ajon@ium.it","Piacevolissima serata in buona compagnia e cena squisita. grazie Aldo!", 4));
         Calendar c5 = Calendar.getInstance();
         c5.set(1970,11, 21);
-        p = new Person("Aldo", "Jones", c5, "SkyLab", "ajon@ium.it", "Via Carmine 53", "Monserrato", "577590838",r5, empty,R.drawable.aldojones);
+        p = new Person("Aldo", "Jones", c5, "SkyLab", "ajon@ium.it", "Via Carmine 53", "Monserrato", "577590838",r5, empty,R.drawable.aldojones,null);
+        listaUtenti.add(p);
+
+
+        p = new Person("P", "p", c5, "a", "a@a.it", "Via Carmine 53", "Monserrato", "0",r5, empty,-1,null);
         listaUtenti.add(p);
     }
 

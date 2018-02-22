@@ -20,6 +20,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,7 +64,20 @@ public class HomePage extends AppCompatActivity {
         TextView profilename = (TextView) headerview.findViewById(R.id.name);
         profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
         ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
-        img.setImageResource(loggedUser.getFoto());
+
+        if(loggedUser.getFoto()== -1 && loggedUser.getFoto2() == null){
+            img.setImageResource(R.drawable.logo_2);
+        }else if(loggedUser.getFoto() != -1 && loggedUser.getFoto2() == null){
+            img.setImageResource(loggedUser.getFoto());
+        }else if(loggedUser.getFoto() == -1 && loggedUser.getFoto2() != null) {
+            BitmapDataObject pic = loggedUser.getFoto2();
+            ImageView foto = new ImageView(this);
+            img.setImageBitmap(pic.getBitmap());
+            foto.setScaleType(ImageView.ScaleType.FIT_XY);
+        }
+
+
+
 
 
         headerview.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +91,6 @@ public class HomePage extends AppCompatActivity {
         });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     drawerLayout.closeDrawers();
 
