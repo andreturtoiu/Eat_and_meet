@@ -14,6 +14,7 @@ public class Notifications implements Serializable {
     public static final int MODIFICA = 3;
     public static final int CANCELLAZIONE = 4;
     public static final int RINUNCIA = 5;
+    public static final int RIMOZIONE = 6;
 
 
     private String mandante;

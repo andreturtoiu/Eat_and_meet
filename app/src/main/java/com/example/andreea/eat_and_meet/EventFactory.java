@@ -76,8 +76,14 @@ public class EventFactory {
         for(Event e:listaEventi){
             if (e.getId()==idEvent){
                 e.unSubscribe(idUser);
-                Notifications n= new Notifications(idUser, e.getId(), Notifications.RINUNCIA);
-                PersonFactory.getInstance().getUserByEmail(e.getUser()).getMyNotifications().add(n);
+                if(PersonFactory.getInstance().getLoggedUser().equals(idUser)) { //mi sto ritirando
+                    Notifications n = new Notifications(idUser, e.getId(), Notifications.RINUNCIA);
+                    PersonFactory.getInstance().getUserByEmail(e.getUser()).getMyNotifications().add(n);
+                }
+                else{
+                    Notifications n = new Notifications(e.getUser(), e.getId(), Notifications.RIMOZIONE);
+                    PersonFactory.getInstance().getUserByEmail(idUser).getMyNotifications().add(n);
+                }
             }
         }
     }

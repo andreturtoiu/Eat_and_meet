@@ -181,6 +181,23 @@ public class NotificationsPage extends AppCompatActivity {
                 delete.setId(View.generateViewId());
                 break;
 
+            case Notifications.RIMOZIONE:
+                notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
+                info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
+                delete = (Button) notificationView.findViewById(R.id.notifNoticeOk);
+                info.setText("L'utente " + PersonFactory.getInstance().getUserByEmail(n.getMandante()).getName()+" "+PersonFactory.getInstance().getUserByEmail(n.getMandante()).getSurname()+" ti ha rimosso dall evento: "+EventFactory.getInstance().getEventById(n.getEvento()).getTitolo());
+                info.setId(View.generateViewId());
+
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        loggedUser.getMyNotifications().remove(clone);
+                        notificationView.setVisibility(View.GONE);
+                    }
+                });
+                delete.setId(View.generateViewId());
+                break;
+
             default:
                 notificationView = (LinearLayout) LayoutInflater.from(c).inflate(R.layout.template_notification_notice, null);
                 info = (TextView) notificationView.findViewById(R.id.notifiNoticeInfo);
