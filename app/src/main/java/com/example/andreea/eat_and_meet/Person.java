@@ -37,7 +37,7 @@ public class Person implements Serializable {
         this.setPhoneNumber("");
         this.ratings = new ArrayList<RatingLoggedProfile>(0);
         this.setMyNotifications(new ArrayList<Notifications>());
-        this.setFoto(-1);
+        this.setFoto(R.drawable.logo_2);
     }
 
     public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,

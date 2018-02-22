@@ -3,6 +3,7 @@ package com.example.andreea.eat_and_meet;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -18,6 +19,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
@@ -232,6 +234,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         }
 
         Event event = new Event();
+        event.setId(EventFactory.getInstance().generateId());
         event.setTitolo(title);
         event.setVia(address);
         event.setCity(city);
@@ -332,6 +335,9 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
                 dateTextView.setError(null);
         }
 
+        if(!checkDataAndTime(EventFactory.getInstance().getPartialEvent())){
+            errors++;
+        }
 
         return errors == 0;
     }
@@ -385,6 +391,58 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         catch(SecurityException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkDataAndTime(Event event){
+        final String loggedUser = PersonFactory.getInstance().getLoggedUser();
+        if(!event.isTimeValid()){
+            //errore non valido
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(CreateEvent.this);
+            builder1.setMessage("Gli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
+            builder1.setCancelable(true);
+            builder1.setNegativeButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+            return false;
+        }
+        final Event e = EventFactory.getInstance().isDateReserved(event,loggedUser);
+        if(e != null){
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(CreateEvent.this);
+            builder1.setMessage("Hai già un impegno per l'evento: "+e.getTitolo());
+            builder1.setCancelable(false);
+            builder1.setPositiveButton(
+                    "Mostra Evento",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(CreateEvent.this,ShowEvent.class);
+                            String loggedUser = PersonFactory.getInstance().getLoggedUser();
+                            intent.putExtra("EVENT_EXTRA",e);
+                            startActivity(intent);
+
+                            dialog.cancel();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "Ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+            return false;
+        }
+        return true;
+
     }
 
 }

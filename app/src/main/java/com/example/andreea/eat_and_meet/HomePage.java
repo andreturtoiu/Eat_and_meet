@@ -65,11 +65,11 @@ public class HomePage extends AppCompatActivity {
         profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
         ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
 
-        if(loggedUser.getFoto()== -1 && loggedUser.getFoto2() == null){
+        if(loggedUser.getFoto()== (R.drawable.logo_2) && loggedUser.getFoto2() == null){
             img.setImageResource(R.drawable.logo_2);
-        }else if(loggedUser.getFoto() != -1 && loggedUser.getFoto2() == null){
+        }else if(loggedUser.getFoto() != (R.drawable.logo_2) && loggedUser.getFoto2() == null){
             img.setImageResource(loggedUser.getFoto());
-        }else if(loggedUser.getFoto() == -1 && loggedUser.getFoto2() != null) {
+        }else if(loggedUser.getFoto2() != null) {
             BitmapDataObject pic = loggedUser.getFoto2();
             ImageView foto = new ImageView(this);
             img.setImageBitmap(pic.getBitmap());

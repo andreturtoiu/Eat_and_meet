@@ -23,6 +23,7 @@ public class EventFactory {
     private static EventFactory singleton;
     private String connectionString;
     private Event partialEvent;
+    private int nextValidId;
 
     public static EventFactory getInstance() {
         if (singleton == null) {
@@ -768,9 +769,10 @@ public class EventFactory {
         listaEventi.add(e);
 
         //Generazione ID sequenziali
-        int i = 0;
+        nextValidId = 0;
         for(Event ev:listaEventi){
-            ev.setId(i++);
+            ev.setId(nextValidId);
+            nextValidId++;
         }
     }
 
@@ -784,5 +786,11 @@ public class EventFactory {
 
     public void addEvent(Event event) {
         this.listaEventi.add(event);
+    }
+
+    public int generateId(){
+        int id = nextValidId;
+        nextValidId++;
+        return id;
     }
 }

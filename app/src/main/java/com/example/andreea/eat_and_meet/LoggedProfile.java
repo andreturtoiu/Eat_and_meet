@@ -49,25 +49,24 @@ public class LoggedProfile  extends AppCompatActivity{
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-
         emailUser = PersonFactory.getInstance().getLoggedUser();
         loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
 
         ImageView img = (ImageView) findViewById(R.id.picProfile);
-        if(loggedUser.getFoto()== -1 && loggedUser.getFoto2() == null){
+        if(loggedUser.getFoto()== (R.drawable.logo_2) && loggedUser.getFoto2() == null){
             TextView requestWarning = (TextView) findViewById(R.id.changePhoto);
             String message = "Inserisci la tua foto";
             requestWarning.setText(message);
             requestWarning.setOnClickListener(new HandleRequest(emailUser));
             requestWarning.setGravity(Gravity.CENTER_HORIZONTAL);
-        }else if(loggedUser.getFoto() != -1 && loggedUser.getFoto2() == null){
+        }else if(loggedUser.getFoto() != (R.drawable.logo_2) && loggedUser.getFoto2() == null){
             img.setImageResource(loggedUser.getFoto());
-        }else if(loggedUser.getFoto() == -1 && loggedUser.getFoto2() != null) {
-            BitmapDataObject pic = loggedUser.getFoto2();
-            ImageView foto = new ImageView(this);
-            img.setImageBitmap(pic.getBitmap());
-            foto.setScaleType(ImageView.ScaleType.FIT_XY);
-        }
+        }else if(loggedUser.getFoto2() != null) {
+        BitmapDataObject pic = loggedUser.getFoto2();
+        ImageView foto = new ImageView(this);
+        img.setImageBitmap(pic.getBitmap());
+        foto.setScaleType(ImageView.ScaleType.FIT_XY);
+    }
         //Prende la data
         Calendar birth = loggedUser.getBirthdate();
         int dd = birth.get(Calendar.DAY_OF_MONTH);

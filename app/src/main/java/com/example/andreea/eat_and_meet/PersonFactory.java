@@ -126,7 +126,7 @@ public class PersonFactory{
         listaUtenti.add(p);
 
 
-        p = new Person("P", "p", c5, "a", "a@a.it", "Via Carmine 53", "Monserrato", "0",r5, empty,-1,null);
+        p = new Person("P", "p", c5, "a", "a@a.it", "Via Carmine 53", "Monserrato", "0",r5, empty,R.drawable.logo_2,null);
         listaUtenti.add(p);
     }
 

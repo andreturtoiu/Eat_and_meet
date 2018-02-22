@@ -5,15 +5,21 @@ import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.io.UTFDataFormatException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,10 +30,12 @@ import java.util.Locale;
  */
 
 public class SignUp extends AppCompatActivity {
-
+    private static final int REQUEST_PICK_IMAGE = 1;
     PersonFactory utenti = PersonFactory.getInstance();
     Person person;
     EditText nameText, surnameText, birthText, emailText, passwordText, addressText, cityText, phoneText;
+    ImageView fotoImage;
+    BitmapDataObject user_foto;
     Button saveButton;
  //   TextView nameError, surnameError, emailError, passwordError, addressError, cityError, phoneError;
     boolean isResumed;
@@ -40,8 +48,9 @@ public class SignUp extends AppCompatActivity {
         person = new Person();
         isResumed = false;
         datePickerFragment = new DatePickerFragment();
+        user_foto = null;
 
-
+        fotoImage = (ImageView) findViewById(R.id.user_pic);
         nameText = (EditText) findViewById(R.id.nomeSignUp);
         surnameText = (EditText) findViewById(R.id.cognomeSignUp);
         birthText = (EditText) findViewById(R.id.date);
@@ -67,6 +76,8 @@ public class SignUp extends AppCompatActivity {
         phoneError = (TextView) this.findViewById(R.id.phoneErrorSignUp);
         phoneError.setVisibility(View.GONE);
 */
+
+        fotoImage.setOnClickListener(new AddFotoListener());
 
         birthText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,7 +268,8 @@ public class SignUp extends AppCompatActivity {
         this.person.setAddress(this.addressText.getText().toString());
         this.person.setCity(this.cityText.getText().toString());
         this.person.setPhoneNumber(this.phoneText.getText().toString());
-        this.person.setFoto(-1);
+        //this.person.setFoto(-1);
+        this.person.setFoto2(user_foto);
 
     }
 
@@ -265,6 +277,52 @@ public class SignUp extends AppCompatActivity {
 
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
+
+    class AddFotoListener implements View.OnClickListener{
+        public void onClick(View view) {
+
+            //Creo un intent che lancia un'activity per selezionare un'immagine dalla galleria
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+
+            //Setto il tipo di file da cercare
+            intent.setType("image/*");
+
+            //Lancio l'activity dandogli un identificativo che mi servirà a prendermi il risultato
+            startActivityForResult(intent, REQUEST_PICK_IMAGE);
+
+        }
+
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Controllo se ha preso correttamente l'immagine
+        if (requestCode == REQUEST_PICK_IMAGE && resultCode == RESULT_OK) {
+            //L'Uri è un indirizzo che identifica l'immagine all'interno del device
+            Uri selectedimg = data.getData();
+            Bitmap bitmap = null;
+            try {
+                //Bitmap sono immagini non compresse
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedimg);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //Se non è riuscito a prendere l'immagine annullo
+            if (bitmap == null) {
+                return;
+            }
+
+            user_foto = new BitmapDataObject(bitmap);
+
+            //Creo una ImageView con l'immagine appena presa
+            fotoImage.setImageBitmap(bitmap);
+
+        }
+    }
+
 
 }
 
