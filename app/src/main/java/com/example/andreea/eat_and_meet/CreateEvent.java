@@ -411,6 +411,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
             alert11.show();
             return false;
         }
+
         final Event e = EventFactory.getInstance().isDateReserved(event,loggedUser);
         if(e != null){
             AlertDialog.Builder builder1 = new AlertDialog.Builder(CreateEvent.this);

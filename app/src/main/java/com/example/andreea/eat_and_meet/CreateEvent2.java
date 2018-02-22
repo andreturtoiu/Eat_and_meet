@@ -147,6 +147,7 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+
     private boolean checkInput(){
         EditText editTextDesc = (EditText) findViewById(R.id.eventDescription);
         EditText editTextMaxBookings = (EditText) findViewById(R.id.maxPerson);
