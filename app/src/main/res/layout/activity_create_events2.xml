@@ -16,36 +16,24 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/AppTheme.AppBarOverlay"
-       />
+        />
     <ScrollView
         android:layout_width="match_parent"
-<<<<<<< HEAD
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/white_rectangle"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
-
-        <EditText
-            android:id="@+id/eventDescription"
-=======
         android:layout_height="match_parent"
         android:id="@+id/scrollcreate2"
         android:background="#fafafa">
         <LinearLayout
->>>>>>> origin/master
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:layout_marginTop="20dp"
-            android:background="@drawable/white_rectangle"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp">
+            android:background="@drawable/profile_backgournd"
+            android:elevation="2dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
             <EditText
                 android:id="@+id/eventDescription"
