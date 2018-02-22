@@ -66,8 +66,8 @@ public class MyBookings extends Fragment {
         ArrayList<Event> l;
         @Override
         public void onClick(View v){
-            Intent showEventList = new Intent(getActivity(),ShowEventList.class);
-            showEventList.putExtra("EVENT_LIST",l);
+            Intent showEventList = new Intent(getActivity(),RequestEvents.class);
+            showEventList.putExtra("EVENT_REQUESTS",l);
             startActivity(showEventList);
         }
         public HandleRequest(ArrayList<Event> l){

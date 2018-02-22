@@ -180,8 +180,11 @@ public class EventFactory {
             if(citta.equals(""))
                 citta = "Roma"; //citta = PersonFactory.getIstance().citta utente loggato
 
+                String appc = citta.toLowerCase();
+                String c1 = upperCaseFirst(appc);
+
                 for(Event e:filter_cucina){
-                    if (e.getCity().contains(citta))
+                    if (e.getCity().contains(citta) || e.getCity().contains(c1))
                         filter_citta.add(e);}
         }
 
@@ -209,6 +212,15 @@ public class EventFactory {
 
     }
 
+    public static String upperCaseFirst(String value) {
+
+        // Convert String to char array.
+        char[] array = value.toCharArray();
+        // Modify first element in array.
+        array[0] = Character.toUpperCase(array[0]);
+        // Return string.
+        return new String(array);
+    }
 
     public LinearLayout newEventView (Event e, View.OnClickListener ocl, Context c){
 
