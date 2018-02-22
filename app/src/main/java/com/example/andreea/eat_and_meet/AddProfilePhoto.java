@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,13 @@ public class AddProfilePhoto extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_profile_photo);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+
+
         Intent intent = getIntent();
         email = intent.getStringExtra("EXTRA_PHOTO");
         ll = (LinearLayout)findViewById(R.id.imageContainer);
@@ -47,8 +56,7 @@ public class AddProfilePhoto extends AppCompatActivity implements View.OnClickLi
             clicked +=1;
             if(clicked == 1){
                 changePhoto();
-            }else{
-                clicked -= 1;
+            }else if(clicked>1){
                 ll.removeAllViews();
                 changePhoto();
 
@@ -104,6 +112,7 @@ public class AddProfilePhoto extends AppCompatActivity implements View.OnClickLi
             params.setMargins(20, 0, 20, 0);
             imageView.setLayoutParams(params);
 
+            //Aggiungo l'immagine al linear
             LinearLayout container = (LinearLayout) findViewById(R.id.imageContainer);
             container.addView(imageView);
 

@@ -104,7 +104,13 @@
         <activity
             android:name=".AddProfilePhoto"
             android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".LoggedProfile"/>
+            android:parentActivityName=".LoggedProfile"
+            android:label="Aggiungi foto"/>
+        <activity
+            android:name=".SearchedEventDetails"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".ShowSearchedEvent"
+            android:label="Aggiungi foto"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
