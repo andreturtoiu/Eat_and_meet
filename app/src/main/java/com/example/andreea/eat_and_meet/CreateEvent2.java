@@ -55,7 +55,7 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
 
         if (view.getId() == R.id.create_event_btn) {
             android.support.v7.app.AlertDialog.Builder builder1 = new android.support.v7.app.AlertDialog.Builder(CreateEvent2.this);
-            builder1.setMessage("Vuoi inviare la tua recensione ?");
+            builder1.setMessage("Vuoi creare l'evento?");
             builder1.setCancelable(true);
             builder1.setPositiveButton(
                     "Si",
@@ -123,20 +123,42 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         //informazioni inserite
 
         EditText editTextDesc = (EditText) findViewById(R.id.eventDescription);
+        EditText editTextMaxBookings = (EditText) findViewById(R.id.maxPerson);
         String description = editTextDesc.getText().toString();
+        int maxBookings = 5;
+        int errors = 0;
+        editTextDesc.setError(null);
+        editTextMaxBookings.setError(null);
+
+        try{
+            maxBookings = Integer.parseInt(editTextMaxBookings.getText().toString());
+            if (maxBookings < 2){
+                editTextMaxBookings.setError("Il numero minimo è 2");
+                errors++;
+            }
+        }
+        catch (NumberFormatException e){
+            editTextMaxBookings.setError("Inserire un numero intero");
+            errors++;
+        }
 
         int min_size = 10;
         if(description.length() < min_size){
             editTextDesc.setError("Inserire una descrizione di almeno "+min_size);
-            return;
+            errors++;
         }
+
+        if(errors > 0) return;
+
         editTextDesc.setError(null);
+        editTextMaxBookings.setError(null);
 
         EventFactory factory = EventFactory.getInstance();
 
         Event event = factory.getPartialEvent();
         event.setDescrizione(description);
         event.setFotoUriList(fotoUriList);
+        event.setMaxBookings(maxBookings);
 
         factory.addEvent(event);
 

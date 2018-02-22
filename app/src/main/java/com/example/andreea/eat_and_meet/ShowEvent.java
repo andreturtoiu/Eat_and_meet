@@ -82,7 +82,7 @@ public class ShowEvent extends AppCompatActivity{
         TextView address = (TextView) findViewById(R.id.AddressId);
         address.setText(evento.getIndirizzo());
         TextView partecipanti = (TextView) findViewById(R.id.IscrittiId);
-        partecipanti.setText(evento.getPartecipanti().size()+"");
+        partecipanti.setText(evento.getPartecipanti().size()+" su "+evento.getMaxBookings());
         TextView data = (TextView) findViewById(R.id.DataId);
         data.setText(evento.getData());
 

@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Eat_and_meet.iml" filepath="$PROJECT_DIR$/Eat_and_meet.iml" />
+      <module fileurl="file://C:\Users\Denny\Desktop\Eat_and_meet\Eat_and_meet.iml" filepath="C:\Users\Denny\Desktop\Eat_and_meet\Eat_and_meet.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Andreea\Desktop\Progetto_Eat\Eat_and_Meet\app\app.iml" filepath="C:\Users\Andreea\Desktop\Progetto_Eat\Eat_and_Meet\app\app.iml" />
+      <module fileurl="file://C:\Users\Denny\Desktop\Eat_and_meet\app\app.iml" filepath="C:\Users\Denny\Desktop\Eat_and_meet\app\app.iml" />
     </modules>
   </component>
 </project>
