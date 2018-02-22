@@ -11,32 +11,33 @@
       <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F5F5F5"
+            android:background="#fafafa"
             android:scaleType="centerCrop"
             android:id="@+id/formBack"/>
 
 
-
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
         android:id="@+id/formLogo"
-        android:src="@drawable/logo_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/linearLayout2"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="64dp"
         android:scaleType="fitCenter"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
-        />
+        android:src="@drawable/logo_2" />
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:orientation="vertical"
-            android:background="@drawable/rounded_white"
+            android:background="@drawable/profile_backgournd"
+            android:elevation="2dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="200dp"
-            >
+            android:id="@+id/linearLayout2">
 
             <TextView
                 android:layout_width="match_parent"
@@ -67,6 +68,7 @@
                 android:paddingStart="10dp"
                 android:id="@+id/userEmail"
                 android:layout_marginBottom="10dp"
+                android:defaultFocusHighlightEnabled="true"
                 />
             <AutoCompleteTextView
                 android:layout_width="match_parent"

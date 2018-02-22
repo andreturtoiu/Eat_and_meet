@@ -23,10 +23,12 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/white_rectangle"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
         <EditText
             android:id="@+id/eventDescription"

@@ -213,7 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="120dp"
                 android:background="@drawable/register_button"
                 android:text="Invia"
                 android:textColor="@color/white" />

@@ -21,8 +21,9 @@
 
         <LinearLayout
             android:id="@+id/showEventBody"
-            android:layout_width="300dp"
-            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/white_rectangle"
@@ -47,6 +48,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="#f2f2f2"
                 android:inputType="textPersonName"
                 android:textSize="25dp"
@@ -57,6 +60,8 @@
                 android:id="@+id/scroll_slideshow"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
                 android:background="#f2f2f2"
                 android:layout_height="50dp">
 
@@ -86,14 +91,16 @@
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:fillViewport="true">
 
                 <EditText
                     android:id="@+id/InfoId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:background="#f2f2f2"
+                    android:ems="10"
                     android:inputType="textMultiLine"
                     android:textSize="15dp" />
 
@@ -110,12 +117,16 @@
             <TextView
                 android:id="@+id/DataId"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_height="30dp"
                 android:background="#f2f2f2"
                 />
             <TextView
                 android:id="@+id/TimeId"
                 android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_height="30dp"
                 android:background="#f2f2f2"
