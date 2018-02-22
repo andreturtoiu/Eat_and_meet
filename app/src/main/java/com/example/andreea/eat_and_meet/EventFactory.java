@@ -160,6 +160,8 @@ public class EventFactory {
                 if (ev.getUser().equals(email)) return ev;
                 //Controllo i partecipanti
                 if (ev.getPartecipanti().contains(email)) return ev;
+                //controllo richieste
+                if (ev.getRichieste().contains(email)) return ev;
             }
         }
 
