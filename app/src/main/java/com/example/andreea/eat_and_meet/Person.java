@@ -23,6 +23,7 @@ public class Person implements Serializable {
     private ArrayList<RatingLoggedProfile> ratings;
     private ArrayList<Notifications> myNotifications;
     private int foto;
+    private BitmapDataObject foto2;
 
 
     public Person(){
@@ -36,12 +37,11 @@ public class Person implements Serializable {
         this.setPhoneNumber("");
         this.ratings = new ArrayList<RatingLoggedProfile>(0);
         this.setMyNotifications(new ArrayList<Notifications>());
-
-
+        this.setFoto(-1);
     }
 
     public Person(String name,String  surname,Calendar  birthdate,String  password,String  email,String  address,String  city,
-                  String  phoneNumber, ArrayList<RatingLoggedProfile> ratingsList, ArrayList<Notifications> myNotifications, int foto){
+                  String  phoneNumber, ArrayList<RatingLoggedProfile> ratingsList, ArrayList<Notifications> myNotifications, int foto,BitmapDataObject foto2){
 
         this.setName(name);
         this.setSurname(surname);
@@ -54,6 +54,7 @@ public class Person implements Serializable {
         this.setRatings(ratingsList);
         this.setMyNotifications(myNotifications);
         this.setFoto(foto);
+        this.setFoto2(foto2);
     }
 
     public String getName() {
@@ -133,6 +134,13 @@ public class Person implements Serializable {
     public int getFoto () {return this.foto;}
 
 
+    public BitmapDataObject getFoto2(){
+        return this.foto2;
+    }
+
+    public void setFoto2(BitmapDataObject foto2){
+        this.foto2 = foto2;
+    }
     public ArrayList<Notifications> getMyNotifications() { return myNotifications; }
 
     public void setMyNotifications(ArrayList<Notifications> myNotifications) { this.myNotifications = myNotifications; }
