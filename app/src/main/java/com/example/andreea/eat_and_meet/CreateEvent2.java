@@ -54,6 +54,7 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         }
 
         if (view.getId() == R.id.create_event_btn) {
+            if (!checkInput()) return;
             android.support.v7.app.AlertDialog.Builder builder1 = new android.support.v7.app.AlertDialog.Builder(CreateEvent2.this);
             builder1.setMessage("Vuoi creare l'evento?");
             builder1.setCancelable(true);
@@ -125,6 +126,31 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         EditText editTextDesc = (EditText) findViewById(R.id.eventDescription);
         EditText editTextMaxBookings = (EditText) findViewById(R.id.maxPerson);
         String description = editTextDesc.getText().toString();
+        int maxBookings = Integer.parseInt(editTextMaxBookings.getText().toString());
+
+
+        EventFactory factory = EventFactory.getInstance();
+
+        Event event = factory.getPartialEvent();
+        event.setDescrizione(description);
+        event.setFotoUriList(fotoUriList);
+        event.setMaxBookings(maxBookings);
+
+        factory.addEvent(event);
+
+        //Setto l'evento parziale a null perché lo sto salvando nella lista eventi
+        factory.setPartialEvent(null);
+
+        Intent intent = new Intent(this, HomePage.class);
+        //Questo flag serve a togliere le activity di creazione evento dalla cronologia delle activity
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    private boolean checkInput(){
+        EditText editTextDesc = (EditText) findViewById(R.id.eventDescription);
+        EditText editTextMaxBookings = (EditText) findViewById(R.id.maxPerson);
+        String description = editTextDesc.getText().toString();
         int maxBookings = 5;
         int errors = 0;
         editTextDesc.setError(null);
@@ -148,26 +174,6 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
             errors++;
         }
 
-        if(errors > 0) return;
-
-        editTextDesc.setError(null);
-        editTextMaxBookings.setError(null);
-
-        EventFactory factory = EventFactory.getInstance();
-
-        Event event = factory.getPartialEvent();
-        event.setDescrizione(description);
-        event.setFotoUriList(fotoUriList);
-        event.setMaxBookings(maxBookings);
-
-        factory.addEvent(event);
-
-        //Setto l'evento parziale a null perché lo sto salvando nella lista eventi
-        factory.setPartialEvent(null);
-
-        Intent intent = new Intent(this, HomePage.class);
-        //Questo flag serve a togliere le activity di creazione evento dalla cronologia delle activity
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+        return errors==0;
     }
 }
