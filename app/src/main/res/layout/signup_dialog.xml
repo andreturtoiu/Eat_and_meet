@@ -11,10 +11,12 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Utente Registrato Correttamente"
+        android:layout_marginTop="12dp"
         android:textSize="20sp"/>
 
     <Button
         android:id="@+id/ConfirmButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/popuptext"

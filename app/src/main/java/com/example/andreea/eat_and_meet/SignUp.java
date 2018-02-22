@@ -170,6 +170,7 @@ public class SignUp extends AppCompatActivity {
             birthText.setError("Inserire la data di nascita");
             errors++;
 
+
         }
         else{
             birthText.setError(null);

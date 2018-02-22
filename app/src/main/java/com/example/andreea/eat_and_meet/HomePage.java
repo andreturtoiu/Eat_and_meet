@@ -1,6 +1,7 @@
 package com.example.andreea.eat_and_meet;
 
 import android.content.Intent;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -49,6 +50,7 @@ public class HomePage extends AppCompatActivity {
         String emailUser;
 
 
+
         navigationView= (NavigationView) findViewById(R.id.nav_view);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -57,6 +59,7 @@ public class HomePage extends AppCompatActivity {
         emailUser = PersonFactory.getInstance().getLoggedUser();
         loggedUser = PersonFactory.getInstance().getUserByEmail(emailUser);
 
+        setNavItemCount(R.id.notifies, loggedUser.getMyNotifications().size());
         TextView profilename = (TextView) headerview.findViewById(R.id.name);
         profilename.setText(loggedUser.getName()+" "+ loggedUser.getSurname());
         ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
@@ -109,6 +112,7 @@ public class HomePage extends AppCompatActivity {
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        //setNavItemCount(R.id.notifies, loggedUser.getMyNotifications().size());
 
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
@@ -182,6 +186,11 @@ public class HomePage extends AppCompatActivity {
         }
     }
 
+    private void setNavItemCount(@IdRes int itemId, int count){
+        TextView view = (TextView) navigationView.getMenu().findItem(itemId).getActionView();
+        view.setText(count > 0 ? String.valueOf(count) : null);
+
+    }
 
 }
 
