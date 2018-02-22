@@ -35,6 +35,23 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp">
 
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:textColor="#000"
+                android:text="Numero massimo di partecipanti"/>
+
+            <EditText
+                android:id="@+id/maxPerson"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f2f2f2"
+                android:hint="es. 10"
+                android:layout_marginBottom="20dp"
+
+                android:ems="10"/>
             <EditText
                 android:id="@+id/eventDescription"
                 android:layout_width="match_parent"
@@ -48,8 +65,9 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:background="#f2f2f2"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="#f2f2f2">
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
