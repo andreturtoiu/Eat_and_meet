@@ -50,7 +50,7 @@ public class ShowSearchedEvent extends AppCompatActivity {
         Event e;
         @Override
         public void onClick(View v){
-            Intent showEvent = new Intent(ShowSearchedEvent.this,ShowEvent.class);
+            Intent showEvent = new Intent(ShowSearchedEvent.this,SearchedEventDetails.class);
             showEvent.putExtra("EVENT_EXTRA",e);
             startActivity(showEvent);
         }

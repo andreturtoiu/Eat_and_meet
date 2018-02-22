@@ -66,7 +66,7 @@ public class HomePage extends AppCompatActivity {
         ImageView img = (ImageView) headerview.findViewById(R.id.imageView);
 
         if(loggedUser.getFoto()== -1 && loggedUser.getFoto2() == null){
-            img.setImageResource(R.drawable.logo_2);
+            img.setImageResource(loggedUser.getFoto());
         }else if(loggedUser.getFoto() != -1 && loggedUser.getFoto2() == null){
             img.setImageResource(loggedUser.getFoto());
         }else if(loggedUser.getFoto() == -1 && loggedUser.getFoto2() != null) {
@@ -91,6 +91,7 @@ public class HomePage extends AppCompatActivity {
         });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     drawerLayout.closeDrawers();
 
