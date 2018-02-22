@@ -1,5 +1,6 @@
 package com.example.andreea.eat_and_meet;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -53,7 +54,27 @@ public class CreateEvent2 extends AppCompatActivity implements View.OnClickListe
         }
 
         if (view.getId() == R.id.create_event_btn) {
-            saveEvent();
+            android.support.v7.app.AlertDialog.Builder builder1 = new android.support.v7.app.AlertDialog.Builder(CreateEvent2.this);
+            builder1.setMessage("Vuoi inviare la tua recensione ?");
+            builder1.setCancelable(true);
+            builder1.setPositiveButton(
+                    "Si",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent rate = new Intent(CreateEvent2.this, HomePage.class);
+                            saveEvent();
+                            dialog.cancel();
+                        }
+                    });
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            android.support.v7.app.AlertDialog alert11 = builder1.create();
+            alert11.show();
         }
     }
 
