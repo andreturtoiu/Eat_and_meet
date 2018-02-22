@@ -17,6 +17,12 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollcreate1"
+            android:background="#fafafa">
+
 
 
         <LinearLayout
@@ -47,6 +53,7 @@
                 android:paddingTop="10dp" />
 
 
+<<<<<<< HEAD
             <EditText
                 android:id="@+id/editIndirizzo"
                 android:layout_width="match_parent"
@@ -69,20 +76,22 @@
                 android:layout_marginLeft="10dp"
                 android:orientation="horizontal">
 
+=======
+>>>>>>> origin/master
                 <EditText
-                    android:id="@+id/editCitta"
-                    android:layout_width="256dp"
+                    android:id="@+id/editIndirizzo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:layout_weight="1"
                     android:background="#f2f2f2"
                     android:ems="10"
-                    android:hint="Indirizzo: città"
+                    android:hint="Indirizzo: Via"
                     android:inputType="textPersonName"
                     android:paddingBottom="10dp"
                     android:paddingStart="20dp"
                     android:paddingTop="10dp" />
 
+<<<<<<< HEAD
                 <ImageView
                     android:id="@+id/geo"
                     android:layout_width="48dp"
@@ -98,6 +107,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+=======
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editCitta"
+                        android:layout_width="256dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:ems="10"
+                        android:hint="Indirizzo: città"
+                        android:inputType="textPersonName"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp" />
+
+                    <ImageView
+                        android:id="@+id/geo"
+                        android:layout_width="48dp"
+                        android:layout_height="44dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:src="@drawable/ic_location" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+>>>>>>> origin/master
 
                 <TextView
                     android:id="@+id/dateTextView"
@@ -114,6 +159,7 @@
                     android:paddingTop="10dp"
                     android:text="Data: gg/mm/aaa" />
 
+<<<<<<< HEAD
                 <TextView
                     android:id="@+id/timeTextView"
                     android:layout_width="match_parent"
@@ -128,11 +174,25 @@
                     android:paddingStart="10dp"
                     android:paddingTop="10dp"
                     android:text="Ora: hh:mm" />
+=======
+                    <TextView
+                        android:id="@+id/timeTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#f2f2f2"
+                        android:clickable="true"
+                        android:ems="10"
+                        android:focusable="true"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="10dp"
+                        android:paddingTop="10dp"
+                        android:text="Ora: hh:mm" />
+>>>>>>> origin/master
 
 
-            </LinearLayout>
+                </LinearLayout>
 
-
+<<<<<<< HEAD
             <TextView
                 android:id="@+id/cucinaTextview"
                 android:layout_width="match_parent"
@@ -164,38 +224,66 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/white_rectangle"
                 android:orientation="horizontal">
+=======
 
-                <RadioButton
-                    android:id="@+id/radio_pranzo"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/cucinaTextview"
+                    android:layout_width="match_parent"
+                    android:layout_height="17dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#f2f2f2"
+                    android:paddingStart="20dp"
+                    android:text="Tipo Cucina"
+                    android:textAlignment="viewStart"
+                    android:textColor="#000" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    android:layout_marginBottom="20dp"
+                    android:entries="@array/tipo_cucina"
+                    android:paddingStart="20dp" />
+>>>>>>> origin/master
+
+                <RadioGroup
+                    android:id="@+id/radio_group"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#f2f2f2"
                     android:background="@drawable/white_rectangle"
-                    android:checked="true"
-                    android:onClick="onRadioButtonClicked"
-                    android:paddingRight="10dp"
-                    android:layout_weight="1"
-                    android:text="Pranzo" />
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/radio_cena"
-                    android:layout_width="wrap_content"
+                    <RadioButton
+                        android:id="@+id/radio_pranzo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#f2f2f2"
+                        android:background="@drawable/white_rectangle"
+                        android:checked="true"
+                        android:onClick="onRadioButtonClicked"
+                        android:paddingRight="10dp"
+                        android:layout_weight="1"
+                        android:text="Pranzo" />
+
+                    <RadioButton
+                        android:id="@+id/radio_cena"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#f2f2f2"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_rectangle"
+                        android:onClick="onRadioButtonClicked"
+                        android:paddingRight="10dp"
+                        android:text="Cena" />
+                </RadioGroup>
+
+                <Button
+                    android:id="@+id/prosegui"
+                    android:layout_width="190dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#f2f2f2"
-                    android:layout_weight="1"
-                    android:background="@drawable/white_rectangle"
-                    android:onClick="onRadioButtonClicked"
-                    android:paddingRight="10dp"
-                    android:text="Cena" />
-            </RadioGroup>
-
-            <Button
-                android:id="@+id/prosegui"
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Prosegui" />
-        </LinearLayout>
-
+                    android:layout_marginTop="20dp"
+                    android:text="Prosegui" />
+            </LinearLayout>
+        </ScrollView>
 </LinearLayout>
 

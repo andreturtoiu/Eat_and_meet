@@ -58,6 +58,7 @@ public class PersonFactory{
         ArrayList<Notifications> n = new ArrayList<Notifications>();
         n.add(new Notifications("msta@ium.it", 0, Notifications.RICHIESTA));
         n.add(new Notifications("ajon@ium.it", 1, Notifications.RICHIESTA));
+        n.add(new Notifications("atur@ium.it", 8, Notifications.MODIFICA));
         r.add(new RatingLoggedProfile("rmam@ium.it","dcont@ium.it", "Non esiste nulla di più bello che essere accolti da un sorriso e da un buon cibo!! Serata dove si è subito creata un' atmosfera piacevole fra i commensali.", 4));
         r.add(new RatingLoggedProfile("atur@ium.it","dcont@ium.it", "Davide è un cuoco e padrone di casa eccezionale, il menu era veramente eccellente e così le birre artigianali in abbinamento. Ambiente molto accogliente e famigliare, compagnia piacevole e cordiale. Una serata da ricordare!", 5));
         Calendar c = Calendar.getInstance();
@@ -70,6 +71,7 @@ public class PersonFactory{
         ArrayList<Notifications> n1 = new ArrayList<Notifications>();
         n1.add(new Notifications("dcont@ium.it", 5, Notifications.RICHIESTA));
         n1.add(new Notifications("ajon@ium.it", 6, Notifications.RICHIESTA));
+        n1.add(new Notifications("dcont@ium.it", 0, Notifications.R_APPROVATA));
         r1.add(new RatingLoggedProfile("ajon@ium.it","rmam@ium.it", "É stata una serata molto piacevole e ricca di argomenti interessanti . Beh, quanto al cibo : eccezionale!!!", 3));
         r1.add(new RatingLoggedProfile("dcont@ium.it", "rmam@ium.it","Bellissima atmosfera in una casa accogliente. Riccardo è un ottimo padrone di casa.", 4));
         Calendar c1 = Calendar.getInstance();
@@ -95,6 +97,7 @@ public class PersonFactory{
         ArrayList<Notifications> n3 = new ArrayList<Notifications>();
         n3.add(new Notifications("tcai@ium.it", 13, Notifications.RICHIESTA));
         n3.add(new Notifications("ajon@ium.it", 14, Notifications.RICHIESTA));
+        n3.add(new Notifications("rmam@ium.it", 13, Notifications.RINUNCIA));
         r3.add(new RatingLoggedProfile("ajon@ium.it","msta@ium.it", "Seconda volta a casa di Michele e mi sono trovata benissimo. La cena era molto buona, il dessert particolarissimo e tutto abbondante, vino compreso. La compagnia davvero piacevole e Michele è bravissimo a mettere tutti a proprio agio. Ci rivediamo presto", 4));
         r3.add(new RatingLoggedProfile("dcont@ium.it", "msta@ium.it","Serata deliziosa, cucina preparata con grande competenza. Compagnia piacevole, allegria spensierata. Grazie Michele, perdonami per il ritardo. Spero di recuperare una bella serata insieme a te.", 5));
         Calendar c3 = Calendar.getInstance();

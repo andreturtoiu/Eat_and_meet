@@ -157,20 +157,19 @@
                             android:layout_marginBottom="10dp" />
 
 
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:textColor="@color/white"
-                            android:text="Sign Up"
-                            android:id="@+id/signUpConfirm"
-                            android:textStyle="normal"
-                            android:background="@drawable/register_button"
-                            android:layout_gravity="center"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginBottom="36dp"/>
+                    <Button
+                        android:id="@+id/signUpConfirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="36dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/register_button"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:text="Sign Up"
+                        android:textColor="@color/white"
+                        android:textStyle="normal" />
 
 
             </LinearLayout>

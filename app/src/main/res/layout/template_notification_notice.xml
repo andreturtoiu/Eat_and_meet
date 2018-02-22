@@ -17,10 +17,9 @@
         <TextView
             android:id="@+id/notifiNoticeInfo"
             android:layout_width="314dp"
-            android:layout_height="76dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Tizio X ha cancellato la sua iscrizione dall'evento 'Nome evento'"
-            android:textSize="16dp" />
+            android:textSize="14dp" />
 
         <Button
             android:id="@+id/notifNoticeOk"
