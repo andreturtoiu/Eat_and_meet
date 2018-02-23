@@ -406,22 +406,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
     public boolean checkDataAndTime(Event event){
         final String loggedUser = PersonFactory.getInstance().getLoggedUser();
-        if(!event.isTimeValid()){
-            //errore non valido
-            AlertDialog.Builder builder1 = new AlertDialog.Builder(CreateEvent.this);
-            builder1.setMessage("Gli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
-            builder1.setCancelable(true);
-            builder1.setNegativeButton(
-                    "Ok",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert11 = builder1.create();
-            alert11.show();
-            return false;
-        }
+
 
         final Event e = EventFactory.getInstance().isDateReserved(event,loggedUser);
         if(e != null){
