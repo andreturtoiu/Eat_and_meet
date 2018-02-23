@@ -327,7 +327,7 @@ public class SearchedEventDetails  extends AppCompatActivity {
                         "Ok",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                Intent intent = new Intent(SearchedEventDetails.this,HomePage.class);
+                                Intent intent = new Intent(SearchedEventDetails.this,SearchEvents.class);
                                 startActivity(intent);
 
                                 dialog.cancel();
