@@ -187,6 +187,8 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
             //Creo una dialog per prendere l'ora impostandogli l'ora attuale e iscrivendo
             //la main activity all'evento di pick dell'ora
+            timeError.setError(null);
+            dateError.clearFocus();
             TimePickerDialog dialog = new TimePickerDialog(this, this, hour, minute, true);
             dialog.show();
         }
@@ -200,6 +202,8 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
 
             //Creo una dialog per prendere l'ora impostandogli l'ora attuale e iscrivendo
             //la main activity all'evento di pick dell'ora
+            dateError.setError(null);
+            timeError.clearFocus();
             datePickerDialog = new DatePickerDialog(CreateEvent.this, this, year, month, day);
             datePickerDialog.show();
         }
