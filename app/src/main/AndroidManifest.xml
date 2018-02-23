@@ -65,6 +65,7 @@
         <activity
             android:name=".ShowEventList"
             android:label="Lista degli eventi"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".SearchEvents" />
         <activity
@@ -95,6 +96,7 @@
         <activity
             android:name=".ShowSearchedEvent"
             android:label="Eventi trovati"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar"
 
             android:parentActivityName=".SearchEvents"/>
