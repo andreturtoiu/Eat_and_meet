@@ -56,9 +56,9 @@ public class PersonFactory{
         //Utente 1
         ArrayList<RatingLoggedProfile> r = new ArrayList<RatingLoggedProfile>();
         ArrayList<Notifications> n = new ArrayList<Notifications>();
-        n.add(new Notifications("msta@ium.it", 0, Notifications.RICHIESTA));
-        n.add(new Notifications("ajon@ium.it", 1, Notifications.RICHIESTA));
-        n.add(new Notifications("atur@ium.it", 8, Notifications.MODIFICA));
+        n.add(new Notifications("msta@ium.it", 0, Notifications.RICHIESTA, "Serata Fritto Misto"));
+        n.add(new Notifications("ajon@ium.it", 1, Notifications.RICHIESTA, "Conoscersi a tavola"));
+        n.add(new Notifications("atur@ium.it", 8, Notifications.MODIFICA, "Food & Love"));
         r.add(new RatingLoggedProfile("rmam@ium.it","dcont@ium.it", "Non esiste nulla di più bello che essere accolti da un sorriso e da un buon cibo!! Serata dove si è subito creata un' atmosfera piacevole fra i commensali.", 4));
         r.add(new RatingLoggedProfile("atur@ium.it","dcont@ium.it", "Davide è un cuoco e padrone di casa eccezionale, il menu era veramente eccellente e così le birre artigianali in abbinamento. Ambiente molto accogliente e famigliare, compagnia piacevole e cordiale. Una serata da ricordare!", 5));
         Calendar c = Calendar.getInstance();
@@ -69,9 +69,9 @@ public class PersonFactory{
         //Utente 2
         ArrayList<RatingLoggedProfile> r1 = new ArrayList<RatingLoggedProfile>();
         ArrayList<Notifications> n1 = new ArrayList<Notifications>();
-        n1.add(new Notifications("dcont@ium.it", 5, Notifications.RICHIESTA));
-        n1.add(new Notifications("ajon@ium.it", 6, Notifications.RICHIESTA));
-        n1.add(new Notifications("dcont@ium.it", 0, Notifications.R_APPROVATA));
+        n1.add(new Notifications("dcont@ium.it", 5, Notifications.RICHIESTA, "Cena Jack Daniel"));
+        n1.add(new Notifications("ajon@ium.it", 6, Notifications.RICHIESTA, "Pranzo Sapore di Mare"));
+        n1.add(new Notifications("dcont@ium.it", 0, Notifications.R_APPROVATA, "Serata Fritto Misto"));
         r1.add(new RatingLoggedProfile("ajon@ium.it","rmam@ium.it", "É stata una serata molto piacevole e ricca di argomenti interessanti . Beh, quanto al cibo : eccezionale!!!", 3));
         r1.add(new RatingLoggedProfile("dcont@ium.it", "rmam@ium.it","Bellissima atmosfera in una casa accogliente. Riccardo è un ottimo padrone di casa.", 4));
         Calendar c1 = Calendar.getInstance();
@@ -82,9 +82,9 @@ public class PersonFactory{
         //Utente 3
         ArrayList<RatingLoggedProfile> r2 = new ArrayList<RatingLoggedProfile>();
         ArrayList<Notifications> n2 = new ArrayList<Notifications>();
-        n2.add(new Notifications("msta@ium.it", 8, Notifications.RICHIESTA));
-        n2.add(new Notifications("tcai@ium.it", 9, Notifications.RICHIESTA));
-        n2.add(new Notifications("tcai@ium.it", 9, Notifications.MODIFICA));
+        n2.add(new Notifications("msta@ium.it", 8, Notifications.RICHIESTA, "Food & Love"));
+        n2.add(new Notifications("tcai@ium.it", 9, Notifications.RICHIESTA, "Sapori del Brasile"));
+        n2.add(new Notifications("rmam@ium.it", 6, Notifications.MODIFICA, "Pranzo Sapore di Mare"));
         r2.add(new RatingLoggedProfile("ajon@ium.it","atur@ium.it" ,"Andreea è una perfetta padrona di casa oltre ad essere un ottima chef. La qualità del cibo servito e la sua gentilezza hanno reso quest'esperienza davvero piacevole. Verdadera cocina Mexicana!! Alla prossima!!!", 4));
         r2.add(new RatingLoggedProfile("msta@ium.it","atur@ium.it","Quanto è divertente Andreea e quanto è brava!!! Abbiamo divorato i tuoi antipasti al gorgonzola e i tuoi deliziosi ravioli! I tuoi racconti ci hanno fatto fare un piacevole tuffo nella storia della Roma Antica e in quella degli anni 50! Grazie di tutto.Ci rivedremo presto!", 5));
         Calendar c2 = Calendar.getInstance();
@@ -95,9 +95,9 @@ public class PersonFactory{
         //Utente 4
         ArrayList<RatingLoggedProfile> r3 = new ArrayList<RatingLoggedProfile>();
         ArrayList<Notifications> n3 = new ArrayList<Notifications>();
-        n3.add(new Notifications("tcai@ium.it", 13, Notifications.RICHIESTA));
-        n3.add(new Notifications("ajon@ium.it", 14, Notifications.RICHIESTA));
-        n3.add(new Notifications("rmam@ium.it", 13, Notifications.RINUNCIA));
+        n3.add(new Notifications("tcai@ium.it", 13, Notifications.RICHIESTA, "Viva Mexico"));
+        n3.add(new Notifications("ajon@ium.it", 14, Notifications.RICHIESTA, "Festa brasiliana"));
+        n3.add(new Notifications("rmam@ium.it", 13, Notifications.RINUNCIA, "Viva Mexico"));
         r3.add(new RatingLoggedProfile("ajon@ium.it","msta@ium.it", "Seconda volta a casa di Michele e mi sono trovata benissimo. La cena era molto buona, il dessert particolarissimo e tutto abbondante, vino compreso. La compagnia davvero piacevole e Michele è bravissimo a mettere tutti a proprio agio. Ci rivediamo presto", 4));
         r3.add(new RatingLoggedProfile("dcont@ium.it", "msta@ium.it","Serata deliziosa, cucina preparata con grande competenza. Compagnia piacevole, allegria spensierata. Grazie Michele, perdonami per il ritardo. Spero di recuperare una bella serata insieme a te.", 5));
         Calendar c3 = Calendar.getInstance();
@@ -174,6 +174,18 @@ public class PersonFactory{
 
         }
 
+    }
+
+    public void removenotif(int evento, int tipoNotifica, String ricevente, String mandante){
+
+        //rimuove tutte le specifiche notifiche ricevute da un utente per un determinato evento
+        Notifications remove = null;
+        ArrayList<Notifications> notif = getUserByEmail(ricevente).getMyNotifications();
+
+        for (Notifications n: notif)
+            if (n.getEvento() == evento && n.getContensto() == tipoNotifica && n.getMandante() == mandante)  remove = n;
+
+        getUserByEmail(ricevente).getMyNotifications().remove(remove);
     }
 
 

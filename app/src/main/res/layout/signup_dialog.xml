@@ -12,8 +12,9 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Utente Registrato Correttamente"
+        android:textColor="#161616"
         android:layout_marginTop="12dp"
-        android:textSize="20sp"/>
+        android:textSize="16sp"/>
 
     <Button
         android:id="@+id/ConfirmButton"
@@ -23,6 +24,6 @@
         android:layout_below="@+id/popuptext"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
-        android:text="Conferma" />
+        android:text="Continua" />
 
 </LinearLayout>

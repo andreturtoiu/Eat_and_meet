@@ -52,17 +52,30 @@ public class EventFactory {
                 e.setFotoUriList(evento.getFotoUriList());
                 e.setData(evento.getDataCalendar());
                 e.setLocation(evento.getLocation());
-                Notifications n= new Notifications(e.getUser(), id, Notifications.MODIFICA);
+                Notifications n= new Notifications(e.getUser(), id, Notifications.MODIFICA, e.getTitolo());
                 PersonFactory.getInstance().sendNotifications(n, e);
             }
     }
 
     public void deleteEventById(int id){
         Event position = null;
+        Notifications deletednotif = null;
         for(Event e:this.listaEventi){
             if (e.getId() == id ) {
                 position = e;
 
+                for(Person p:PersonFactory.getInstance().getListaUtenti()){
+
+                    for(Notifications n:p.getMyNotifications()){
+
+                        if(position.getId()==n.getEvento() && n.getContensto()==Notifications.RICHIESTA)
+                            deletednotif = n;
+
+                    }
+
+                    p.getMyNotifications().remove(deletednotif);
+
+                }
                 Notifications n= new Notifications(e.getUser(), id, Notifications.CANCELLAZIONE, e.getTitolo());
                 PersonFactory.getInstance().sendNotifications(n, e);
             }
@@ -77,11 +90,12 @@ public class EventFactory {
             if (e.getId()==idEvent){
                 e.unSubscribe(idUser);
                 if(PersonFactory.getInstance().getLoggedUser().equals(idUser)) { //mi sto ritirando
-                    Notifications n = new Notifications(idUser, e.getId(), Notifications.RINUNCIA);
+                    Notifications n = new Notifications(idUser, e.getId(), Notifications.RINUNCIA, e.getTitolo());
                     PersonFactory.getInstance().getUserByEmail(e.getUser()).getMyNotifications().add(n);
-                }
+                    PersonFactory.getInstance().removenotif(e.getId(), Notifications.RICHIESTA, e.getUser(), PersonFactory.getInstance().getLoggedUser());
+               }
                 else{
-                    Notifications n = new Notifications(e.getUser(), e.getId(), Notifications.RIMOZIONE);
+                    Notifications n = new Notifications(e.getUser(), e.getId(), Notifications.RIMOZIONE, e.getTitolo());
                     PersonFactory.getInstance().getUserByEmail(idUser).getMyNotifications().add(n);
                 }
             }
@@ -100,7 +114,7 @@ public class EventFactory {
         for(Event e:listaEventi){
             if (e.getId()==idEvent){
                 e.addRequest(idUser);
-                Notifications n= new Notifications(idUser, e.getId(), Notifications.RICHIESTA);
+                Notifications n= new Notifications(idUser, e.getId(), Notifications.RICHIESTA, e.getTitolo());
                 PersonFactory.getInstance().getUserByEmail(e.getUser()).getMyNotifications().add(n);
 
             }

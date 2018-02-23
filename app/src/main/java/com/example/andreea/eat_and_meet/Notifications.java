@@ -1,5 +1,6 @@
 package com.example.andreea.eat_and_meet;
 
+import java.io.PushbackInputStream;
 import java.io.Serializable;
 
 /**
@@ -15,10 +16,11 @@ public class Notifications implements Serializable {
     public static final int CANCELLAZIONE = 4;
     public static final int RINUNCIA = 5;
     public static final int RIMOZIONE = 6;
+    public static final int FULL = 7;
 
 
     private String mandante;
-    private String cancellato;
+    private String titoloEvento;
     private int evento;
     private int contensto;
 
@@ -27,15 +29,15 @@ public class Notifications implements Serializable {
         this.mandante = mandante;
         this.evento = evento;
         this.contensto = contensto;
-        this.setCancellato(null);
+        this.titoloEvento = null;
 
     }
-    public Notifications(String mandante, int evento, int contensto, String cancellato){
+    public Notifications(String mandante, int evento, int contensto, String titoloEvento){
 
         this.mandante = mandante;
         this.evento = evento;
         this.contensto = contensto;
-        this.setCancellato(cancellato);
+        this.titoloEvento = titoloEvento;
 
     }
 
@@ -64,11 +66,11 @@ public class Notifications implements Serializable {
         this.contensto = contensto;
     }
 
-    public String getCancellato() {
-        return cancellato;
+    public String getTitoloEvento() {
+        return titoloEvento;
     }
 
-    public void setCancellato(String cancellato) {
-        this.cancellato = cancellato;
+    public void setTitoloEvento(String titoloEvento) {
+        this.titoloEvento = titoloEvento;
     }
 }
