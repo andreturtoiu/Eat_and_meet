@@ -57,6 +57,7 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
     private EditText titleEditView;
     private EditText addressEditView;
     private EditText cityEditView;
+    private TextView dateError,timeError;
     private int day, month, year, hour, minutes;
     private boolean timeSetBool = false,dateSetBool = false;
 
@@ -80,8 +81,10 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         Person loggedUser;
         String emailUser;
 
-
-
+        dateError = (TextView) findViewById(R.id.setDateError);
+        dateError.setOnClickListener(new ShowError());
+        timeError = (TextView) findViewById(R.id.setHourError);
+        timeError.setOnClickListener(new ShowError());
 
         Button prosegui = (Button) findViewById(R.id.prosegui);
         //Iscrivo la mainActivity all'evento di click del bottone
@@ -306,16 +309,18 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         }
 
         if(!timeSetBool) {
-            timeTextView.setError("Seleziona un'orario.\nGli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
+
+            timeError.setError("Seleziona un'orario.\nGli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
             errors++;
         }
         else{
             if(!EventFactory.getInstance().getPartialEvent().isTimeValid()){
-                timeTextView.setError("Gli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
+
+                timeError.setError("Gli eventi si possono svolgere solo nei seguenti orari:\nPranzo: 11:00 - 15:00\nCena: 16:00 - 22:00");
                 errors++;
             }
             else
-                timeTextView.setError(null);
+                timeError.setError(null);
         }
 
 
@@ -323,16 +328,18 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         c.add(Calendar.DATE,3);
 
         if(!dateSetBool) {
-            dateTextView.setError("Seleziona una data.\nNon si possono creare eventi a meno di 3 giorni dalla data corrente");
+
+            dateError.setError("Seleziona una data.\nNon si possono creare eventi a meno di 3 giorni dalla data corrente");
             errors++;
         }
         else{
             if(!EventFactory.getInstance().getPartialEvent().getDataCalendar().after(c)){
-                dateTextView.setError("Non si possono creare eventi a meno di 3 giorni dalla data corrente");
+
+                dateError.setError("Non si possono creare eventi a meno di 3 giorni dalla data corrente");
                 errors++;
             }
             else
-                dateTextView.setError(null);
+                dateError.setError(null);
         }
 
         if(!checkDataAndTime(EventFactory.getInstance().getPartialEvent())){
@@ -444,6 +451,15 @@ public class CreateEvent extends AppCompatActivity implements View.OnClickListen
         }
         return true;
 
+    }
+
+    class ShowError implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            if (view.hasFocus()) view.clearFocus();
+            else view.requestFocus();
+        }
     }
 
 }

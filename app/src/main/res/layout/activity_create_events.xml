@@ -131,9 +131,11 @@
 
                     <TextView
                         android:id="@+id/setDateError"
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="39dp"
                         android:layout_gravity="left"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:background="#f2f2f2"/>
 
                 </LinearLayout>
@@ -158,9 +160,11 @@
 
                     <TextView
                         android:id="@+id/setHourError"
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="39dp"
                         android:layout_gravity="left"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:background="#f2f2f2"/>
 
                 </LinearLayout>
