@@ -96,6 +96,7 @@
             android:name=".ShowSearchedEvent"
             android:label="Eventi trovati"
             android:theme="@style/AppTheme.NoActionBar"
+
             android:parentActivityName=".SearchEvents"/>
         <activity
             android:name=".RequestEvents"
