@@ -293,7 +293,7 @@ public class ShowEvent extends AppCompatActivity{
             if(e == null) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(ShowEvent.this);
                 builder1.setMessage("Posti disponibili: " + (evento.getMaxBookings() - evento.getPartecipanti().size()) + "\nSei sicuro?");
-                builder1.setCancelable(true);
+                builder1.setCancelable(false);
                 builder1.setPositiveButton(
                         "Sì",
                         new DialogInterface.OnClickListener() {
@@ -341,6 +341,10 @@ public class ShowEvent extends AppCompatActivity{
                         "Ok",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(ShowEvent.this,HomePage.class);
+                                finish();
+                                startActivity(intent);
+
                                 dialog.cancel();
                             }
                         });
