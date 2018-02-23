@@ -342,9 +342,7 @@ public class ShowEvent extends AppCompatActivity{
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent intent = new Intent(ShowEvent.this,HomePage.class);
-                                finish();
                                 startActivity(intent);
-
                                 dialog.cancel();
                             }
                         });
